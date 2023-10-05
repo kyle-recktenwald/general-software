@@ -54,3 +54,26 @@
 * **Recursive Runtimes:**
   * When you have a recursive function that makes multiple calls, the runtime will often (but not always) look like
     `O(branches^depth)`, where branches is the number of times each recursive call branches
+
+### Examples & Exercises:
+
+* **Example 1:**
+* Q. What is the runtime of the below code?
+```
+void foo(int[] array) {
+    int sum = 0;
+    int product = 1;
+    
+    for(int i = 0; i < array.length; i++) {
+        sum += array[i];
+    }
+    for(int i = 0; i < array.length; i++) {
+        product *= array[i];
+    }
+    System.out.println(sum + ", " + product);
+}
+```
+* A. This will take `O(N`) time
+    * One might think the runtime would be `O(2N)`, but constant factors, such as the number of loops, do not affect
+      the Big O notation
+    * The fact that we iterate through the array twice does not matter
