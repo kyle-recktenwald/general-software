@@ -106,7 +106,7 @@ void printUnordereedPairs(int[] array) {
     }
 }
 ```
-* A. We can retrive the runtime several ways:
+* A. We can retrieve the runtime several ways:
   * This pattern of for loop is very common
     * It's important that you know the runtime and that you deeply understand it
     * You can't just rely on memorizing common runtimes
@@ -119,4 +119,27 @@ void printUnordereedPairs(int[] array) {
       * `(N - 1) + (N - 2) + (N - 3) + ... 2 + 1`
       * `= 1 + 2 + 3 + ... + N - 1`
       * `= sum of 1 through N - 1`
-      * The sum of 1 through N - 1 is `N(N - 1) / 2` See "Sum of integers 1 through N" on page 630, so the runtime will be `O(N^2)`
+      * The sum of 1 through N - 1 is `N(N - 1) / 2`
+      * See "Sum of integers 1 through N" on page 630, so the runtime will be `O(N^2)`
+  * **What it Means:**
+    * Alternatively, wee can figure out the runtime by thinking about what the code "means"
+    * It iterates through each pair of values for `(i, j)` **where `j` is bigger than `i`**
+    * There are `N^2` total pairs
+      * Roughly half of those will have `i < j` and the remaining half will have `i > j`
+      * This pair goes through roughly <sup>N<sup>2</sup></sup>/<sub>2</sub> pairs so it does `O(N^2)` work
+  * **Visualizing What it Does:**
+    * The code iterates through the following `(i, j)` pairs when `N = 8`:
+    * <img src="images/Big_O_Example_4_1.png" width="300">
+    * This looks like half of an `N X N` matrix, which has size (roughly) <sup>N<sup>2</sup></sup>/<sub>2</sub>
+    * Therefore, it takes `O(N^2)` time
+  * **Average Work:**
+    * We know that the outer loop runs `N` times
+    * How much work foes the inner loop do?
+    * It varies across iterations, but we can think about the average iteration
+    * What is the average value of `1, 2, 3, 4, 5, 6, 7, 8, 9, 10`? The average value will be in the middle, so it will be roughly `5`
+    * We could give a more precise answer, or course, but we don't need to for big O
+    * What about for `1, 2, 3, ..., N`?
+      * The average value in the sequence is `N/2`
+      * Therefore, since the inner loop does `N/2` work on average, and it is run N times, the total work is 
+        <sup>N<sup>2</sup></sup>/<sub>2</sub>, which is `O(N^2)`
+
