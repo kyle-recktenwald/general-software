@@ -77,3 +77,46 @@ void foo(int[] array) {
     * One might think the runtime would be `O(2N)`, but constant factors, such as the number of loops, do not affect
       the Big O notation
     * The fact that we iterate through the array twice does not matter
+
+* **Example 2:**
+* Q. What is the runtime of the below code?
+```
+void printPairs(int[] array) {
+    for(int i = 0; i < array.length; i++) {
+        for(int j = 0; j < array.length; j++) {
+            System.out.println(array[i] + ", " array[j]);
+        }
+    }
+}
+```
+* A. The inner for loop has `O(N)` iterations, and it is called N times
+  * Therefore, the runtime is `O(N^2)`
+  * Another way we can see this is by inspecting what the "meaning" of the code is
+    * It is printing all pairs (two-element sequences)
+    * There are `O(N^2)` pairs; therefore the runtime is `O(N^2)`
+
+* **Example 3:**
+* Q. This is very similar code to the above example, but now the **inner for loop** starts at `i + 1`
+```
+void printUnordereedPairs(int[] array) {
+    for(int i = 0; i < array.length; i++) {
+        for(int j = i + 1; j < array.length; j++) {
+            System.out.println(array[i] + ", " array[j]);
+        }
+    }
+}
+```
+* A. We can retrive the runtime several ways:
+  * This pattern of for loop is very common
+    * It's important that you know the runtime and that you deeply understand it
+    * You can't just rely on memorizing common runtimes
+    * Deep comprehension is important
+  * **Counting the Iterations:**
+    * The first time through `j` runs for `N - 1` steps
+    * The second time, it's `N - 2` steps
+    * Then `N - 3` steps, and so on
+    * Therefore, the number of steps total is:
+      * `(N - 1) + (N - 2) + (N - 3) + ... 2 + 1`
+      * `= 1 + 2 + 3 + ... + N - 1`
+      * `= sum of 1 through N - 1`
+      * The sum of 1 through N - 1 is `N(N - 1) / 2` See "Sum of integers 1 through N" on page 630, so the runtime will be `O(N^2)`
