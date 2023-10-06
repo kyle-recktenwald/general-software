@@ -33,13 +33,14 @@
 * **Amortized Time:**
   * An `ArrayList`, or a dynamically resizing array, allows you to have the benefits of an array while offering 
     flexibility in size
-  * You won't run out of space in the `ArrayList` since its capacity will grow ass you insert elements
+  * You won't run out of space in the `ArrayList` since its capacity will grow as you insert elements
   * An `ArrayList` is implemented with an array
     * When the array hits capacity, the `Arraylist` class will create a new array with double the capacity and copy all 
       the elements over to the new array
   * Thus, determining the runtime of an insertion is difficult
   * **Amortized time** allows us to describe that the worst case happens once in a while, but won't happen soon after
   * Thus, the cost is **amortized**
+    * Amortized means to gradually write off the initial cost of (an asset) over a period
 * **Log N Runtimes:**
   * `O(log N)` is commonly seen in runtimes
   * **Binary Search** is an example of `O(log N)`
