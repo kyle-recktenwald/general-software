@@ -8,8 +8,9 @@ public class BigOExamples {
 
     System.out.println("Running...\n");
 
-    printUnorderedPairs(intArray2);
+    //printUnorderedPairs(intArray2);
     //printUnorderedPairs(intArray1, intArray2);
+    reverse(intArray2);
 
     System.out.println("\nFinished Running.");
 
@@ -30,6 +31,21 @@ public class BigOExamples {
           System.out.println(arrayA[i] + ", " + arrayB[j]);
         }
       }
+    }
+  }
+
+  static void reverse(int[] arrayA) {
+    for (int i = 0; i < arrayA.length / 2; i++) {
+      int other = arrayA.length - i - 1;
+      int temp = arrayA[i];
+      System.out.printf("[%s]: Other: %s, Temp: %s%n", i, other, temp);
+      arrayA[i] = arrayA[other];
+      arrayA[other] = temp;
+    }
+    System.out.println("Reversed Array:");
+
+    for(int i : arrayA){
+      System.out.printf("%s ", i);
     }
   }
 }

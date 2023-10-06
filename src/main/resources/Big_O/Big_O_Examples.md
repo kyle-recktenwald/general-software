@@ -131,3 +131,38 @@ void printUnorderedPairs(int[] arrayA, int[] arrayB) {
   * If you said `O(N^2)`, then remember your mistake for the future
     * It's **not `O(N^2)`**, because, there are **two different inputs**
     * Both matter and this is an extremely common mistake
+
+* **Example 5:**
+  * What about this strange bit of code?
+```
+void printUnorderedPairs(int[] arrayA, int[] arrayB) {
+    for (int i = 0; i < arrayA.length; i++) {
+        for(int j = 0; j < arrayB.length; j++){
+            for(int k = 0; k < 100000; k++) {
+                System.out.println(array[i] + ", " + arrayB[j]);
+            }
+        }
+    }
+}
+```
+* 
+  * Nothing has really changed here
+  * 100,000 units of work is still constant, sso the runtime is `O(ab)`
+
+* **Example 6:**
+  * The following code reverses an array
+  * What is its runtime?
+```
+void reverse(int[] arrayA) {
+    for (int i = 0; i < arrayA.length / 2; i++) {
+        int other = array.length - i - 1;
+        int temp = array[i];
+        array[i] = array[other];
+        array[other] = temp;
+    }
+}
+```
+* .
+  * This algorithm runs in `O(N)` time
+  * The fact that it only goes through the first half of the array (in terms of iterations) does not impact the big O time
+  * Also, the time complexity of the algorithm is `O(N/2)`, which simplifies to `O(N)`
