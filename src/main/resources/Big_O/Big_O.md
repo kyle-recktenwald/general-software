@@ -73,9 +73,9 @@ void foo(int[] array) {
     System.out.println(sum + ", " + product);
 }
 ```
-* A. This will take `O(N`) time
-    * One might think the runtime would be `O(2N)`, but constant factors, such as the number of loops, do not affect
-      the Big O notation
+* A. This will take `O(N)` time
+    * One might think the runtime would be `O(2N)`, but **constant factors, such as the number of loops, do not affect
+      the Big O notation**
     * The fact that we iterate through the array twice does not matter
 
 * **Example 2:**
@@ -107,7 +107,7 @@ void printUnorderedPairs(int[] array) {
 }
 ```
 * A. We can retrieve the runtime several ways:
-  * This pattern of for loop is very common
+  * This pattern of for loop is **very common**
     * It's important that you know the runtime and that you deeply understand it
     * You can't just rely on memorizing common runtimes
     * Deep comprehension is important
@@ -119,8 +119,26 @@ void printUnorderedPairs(int[] array) {
       * `(N - 1) + (N - 2) + (N - 3) + ... 2 + 1`
       * `= 1 + 2 + 3 + ... + N - 1`
       * `= sum of 1 through N - 1`
-      * The sum of 1 through N - 1 is `N(N - 1) / 2`
-      * See "Sum of integers 1 through N" on page 630, so the runtime will be `O(N^2)`
+      * The sum of 1 through N - 1 is `N(N - 1) / 2` (See "Sum of integers 1 through N"), so the runtime will be `O(N^2)`
+      * **"Sum of integers 1 through N:"**
+        * What is `1 + 2 + ... + n`? Let's figure it out by pairing up low values with high values
+        * If `n` is even, we pair `1` with `n`, `2` with `n - 1`, and so on
+          * We will have `n / 2` pairs each with sum `n + 1`
+        * If `n` is odd, we pair 0 with n, 1 with n - 1, and so on
+          * We will have `n + 1 / 2` pairs with sum `n`
+          * <img src="images/Big_O_Example_3_2.jpg" width="500">
+        * In either case, the sum is `n(n + 1) / 2`
+        * This reasoning comes up a lot in nested loops
+        * For example, consider the following code:
+```
+for(int i = 0; i < array.length; i++) {
+    for(int j = i + 1; j < array.length; j++) {
+        System.out.println(i + j);
+    }
+}
+```
+
+
   * **What it Means:**
     * Alternatively, we can figure out the runtime by thinking about what the code "means"
     * It iterates through each pair of values for `(i, j)` **where `j` is bigger than `i`**
@@ -129,7 +147,7 @@ void printUnorderedPairs(int[] array) {
       * This pair goes through roughly <sup>N<sup>2</sup></sup>/<sub>2</sub> pairs so it does `O(N^2)` work
   * **Visualizing What it Does:**
     * The code iterates through the following `(i, j)` pairs when `N = 8`:
-    * <img src="images/Big_O_Example_4_1.png" width="300">
+    * <img src="images/Big_O_Example_3_1.png" width="300">
     * This looks like half of an `N X N` matrix, which has size (roughly) <sup>N<sup>2</sup></sup>/<sub>2</sub>
     * Therefore, it takes `O(N^2)` time
   * **Average Work:**
