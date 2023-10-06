@@ -96,3 +96,36 @@ void printUnorderedPairs(int[] array) {
         * For example, if you have an array [1, 2, 3], it will print the following pairs: `(1, 2)`, `(1, 3)`, `(2, 3)`
         * As you can see, the pairs are unordered, meaning that `(1, 2)` is considered the same as `(2, 1)`, and the method does
           not print duplicates or the reversed order of pairs
+
+* **Example 4:**
+  * This is similar to the above, but now we have two different arrays:
+```
+void printUnorderedPairs(int[] arrayA, int[] arrayB) {
+    for (int i = 0; i < arrayA.length; i++) {
+        for(int j = 0; j < arrayB.length; j++){
+            if (arrayA[i] < arrayB[j]) {
+                System.out.println(arrayA[i] + ", " + arrayB[j]);
+            }
+        }
+    }
+}
+```
+* 
+  * We can break up this analysis
+  * The if-statement within `j`'s for-loop is `O(1)` time since it's just a sequence of constant-time statements
+  * We now have this:
+```
+void printUnorderedPairs(int[] arrayA, int[] arrayB) {
+    for (int i = 0; i < arrayA.length; i++) {
+        for(int j = 0; j < arrayB.length; j++){
+            /* O(1) work */
+        }
+    }
+}
+```
+* 
+  * For each element of arrayA, the inner for-loop goes through `b` iterations, where `b = arrayB.length
+  * If `a = arrayA.length`, then the runtime is `O(ab)`
+  * If you said `O(N^2)`, then remember your mistake for the future
+    * It's not `O(N^2)`, because, there are two different inputs
+    * Both matter and this is an extremely common mistake
