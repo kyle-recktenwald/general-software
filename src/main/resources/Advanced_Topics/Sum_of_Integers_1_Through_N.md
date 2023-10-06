@@ -21,4 +21,4 @@ for(int i = 0; i < array.length; i++) {
   * There are `n(n + 1) / 2` total iterations of the inner loop 
   * Therefore, this code takes `O(n^2) time`
 * **References:**
-* "[Big O](../Big_O/Big_O.md)")
+* "[Big_O_Examples_and_Exercises.md](../Big_O/Big_O_Examples_and_Exercises.md)")
