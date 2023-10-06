@@ -1,4 +1,4 @@
-### Big O Examples & Exercises:
+### Big O Examples:
 
 * **Example 1:**
 * Q. What is the runtime of the below code?
@@ -111,9 +111,11 @@ void printUnorderedPairs(int[] arrayA, int[] arrayB) {
 }
 ```
 * 
-  * We can break up this analysis
-  * The if-statement within `j`'s for-loop is `O(1)` time since it's just a sequence of constant-time statements
-  * We now have this:
+  * We can break up this analysis:
+    * The if-statement within `j`'s for-loop is `O(1)` time since it's **just a sequence of constant-time statements**:
+      * In other words, the if-statement **doesn't depend on the size of the input arrays**; it **only involves simple 
+        comparisons and printing**, which take a **constant amount of time regardless of the size of the arrays**
+    * We now have this:
 ```
 void printUnorderedPairs(int[] arrayA, int[] arrayB) {
     for (int i = 0; i < arrayA.length; i++) {
@@ -124,8 +126,8 @@ void printUnorderedPairs(int[] arrayA, int[] arrayB) {
 }
 ```
 * 
-  * For each element of arrayA, the inner for-loop goes through `b` iterations, where `b = arrayB.length
+  * **For each element of `arrayA`, the inner for-loop goes through `b` iterations, where `b = arrayB.length`**
   * If `a = arrayA.length`, then the runtime is `O(ab)`
   * If you said `O(N^2)`, then remember your mistake for the future
-    * It's not `O(N^2)`, because, there are two different inputs
+    * It's **not `O(N^2)`**, because, there are **two different inputs**
     * Both matter and this is an extremely common mistake
