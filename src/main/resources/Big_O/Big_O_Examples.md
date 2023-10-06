@@ -39,7 +39,7 @@ void printPairs(int[] array) {
         * There are `O(N^2)` pairs; therefore the runtime is `O(N^2)`
 
 * **Example 3:**
-* Q. This is very similar code to the above example, but now the **inner for loop** starts at `i + 1`
+* Q. This is very similar code to the above example, but now the **inner for-loop** starts at `i + 1`
 ```
 void printUnorderedPairs(int[] array) {
     for(int i = 0; i < array.length; i++) {
