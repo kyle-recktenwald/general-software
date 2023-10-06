@@ -1,10 +1,10 @@
 * **Sum of integers 1 through N:**
   * What is `1 + 2 + ... + n`? Let's figure it out by pairing up low values with high values
-    * If `n` is even, we pair `1` with `n`, `2` with `n - 1`, and so on
-  * We will have `n / 2` pairs each with sum `n + 1`
+  * If `n` is even, we pair `1` with `n`, `2` with `n - 1`, and so on
+    * We will have `n / 2` pairs each with sum `n + 1`
   * If `n` is odd, we pair 0 with n, 1 with `n - 1`, and so on
     * We will have `n + 1 / 2` pairs with sum `n`
-    * <img src="images/Sum_of_Integers_1_Through_N_1.jpg" width="500">
+  * <img src="images/Sum_of_Integers_1_Through_N_1.jpg" width="500">
   * In either case, the sum is `n(n + 1) / 2`
   * This reasoning comes up a lot in nested loops
   * For example, consider the following code:
