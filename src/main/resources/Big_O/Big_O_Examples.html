@@ -1,0 +1,225 @@
+<h3 id="big-o-examples">Big O Examples:</h3>
+<ul>
+    <li><strong>Example 1:</strong></li>
+    <li>Q. What is the runtime of the below code?</li>
+</ul>
+<pre><code>void foo(int[] array) {
+    int sum = 0;
+    int product = 1;
+
+    for(int i = 0; i &lt; array.length; i++) {
+        sum += array[i];
+    }
+    for(int i = 0; i &lt; array.length; i++) {
+        product *= array[i];
+    }
+    System.out.println(sum + &quot;, &quot; + product);
+}
+</code></pre>
+<ul>
+    <li><p>A. This will take <code>O(N)</code> time</p>
+        <ul>
+            <li>One might think the runtime would be <code>O(2N)</code>, but <strong>constant factors, such as the number of loops, do not affect
+                the Big O notation</strong></li>
+            <li>The fact that we iterate through the array twice does not matter</li>
+        </ul>
+    </li>
+    <li><p><strong>Example 2:</strong></p>
+    </li>
+    <li><p>Q. What is the runtime of the below code?</p>
+    </li>
+</ul>
+<pre><code>void printPairs(int[] array) {
+    for(int i = 0; i &lt; array.length; i++) {
+        for(int j = 0; j &lt; array.length; j++) {
+            System.out.println(array[i] + &quot;, &quot; array[j]);
+        }
+    }
+}
+</code></pre>
+<ul>
+    <li><p>A. The inner for loop has <code>O(N)</code> iterations, and it is called <code>N</code> times</p>
+        <ul>
+            <li>Therefore, the runtime is <code>O(N^2)</code></li>
+            <li>Another way we can see this is by inspecting what the &quot;meaning&quot; of the code is<ul>
+                <li>It is printing all pairs (two-element sequences)</li>
+                <li>There are <code>O(N^2)</code> pairs; therefore the runtime is <code>O(N^2)</code></li>
+            </ul>
+            </li>
+        </ul>
+    </li>
+    <li><p><strong>Example 3:</strong></p>
+    </li>
+    <li><p>Q. This is very similar code to the above example, but now the <strong>inner for loop</strong> starts at <code>i + 1</code></p>
+    </li>
+</ul>
+<pre><code>void printUnorderedPairs(int[] array) {
+    for(int i = 0; i &lt; array.length; i++) {
+        for(int j = i + 1; j &lt; array.length; j++) {
+            System.out.println(array[i] + &quot;, &quot; array[j]);
+        }
+    }
+}
+</code></pre>
+<ul>
+    <li>A. We can retrieve the runtime several ways:<ul>
+        <li>This pattern of for loop is <strong>very common</strong><ul>
+            <li>It&#39;s important that you know the runtime and that you deeply understand it</li>
+            <li>You can&#39;t just rely on memorizing common runtimes</li>
+            <li>Deep comprehension is important</li>
+        </ul>
+        </li>
+        <li><strong>Counting the Iterations:</strong><ul>
+            <li>The first time through, <code>j</code> runs for <code>N - 1</code> steps</li>
+            <li>The second time, it&#39;s <code>N - 2</code> steps</li>
+            <li>Then <code>N - 3</code> steps, and so on</li>
+            <li>Therefore, the number of steps total is:</li>
+            <li>The sum of 1 through <code>N - 1</code> is <code>N(N - 1) / 2</code> (See <a href="../Advanced_Topics/Sum_of_Integers_1_Through_N.md">Sum of integers 1 through N</a>), so the runtime will be <code>O(N^2)</code></li>
+        </ul>
+        </li>
+    </ul>
+    </li>
+</ul>
+<pre><code>(N - 1) + (N - 2) + (N - 3) + ... 2 + 1
+= 1 + 2 + 3 + ... + N - 1
+= sum of 1 through N - 1
+</code></pre>
+<ul>
+    <li><ul>
+        <li><strong>What it Means:</strong><ul>
+            <li>Alternatively, we can figure out the runtime by thinking about what the code &quot;means&quot;</li>
+            <li>It iterates through each pair of values for <code>(i, j)</code> <strong>where <code>j</code> is bigger than <code>i</code></strong></li>
+            <li>There are <code>N^2</code> total pairs<ul>
+                <li>Roughly half of those will have <code>i &lt; j</code> and the remaining half will have <code>i &gt; j</code></li>
+                <li>This pair goes through roughly <sup>N<sup>2</sup></sup>/<sub>2</sub> pairs so it does <code>O(N^2)</code> work</li>
+            </ul>
+            </li>
+        </ul>
+        </li>
+        <li><strong>Visualizing What it Does:</strong><ul>
+            <li>The code iterates through the following <code>(i, j)</code> pairs when <code>N = 8</code>:</li>
+            <li><img src="images/Big_O_Example_3_1.png" width="300"></li>
+            <li>This looks like half of an <code>N X N</code> matrix, which has size (roughly) <sup>N<sup>2</sup></sup>/<sub>2</sub></li>
+            <li>Therefore, it takes <code>O(N^2)</code> time</li>
+        </ul>
+        </li>
+        <li><strong>Average Work:</strong><ul>
+            <li>We know that the outer loop runs <code>N</code> times</li>
+            <li>How much work does the inner loop do?</li>
+            <li>It varies across iterations, but we can think about the average iteration</li>
+            <li>What is the average value of <code>1, 2, 3, 4, 5, 6, 7, 8, 9, 10</code>? The average value will be in the middle, so it will be roughly <code>5</code></li>
+            <li>We could give a more precise answer, or course, but we don&#39;t need to for big O</li>
+            <li>What about for <code>1, 2, 3, ..., N</code>?<ul>
+                <li>The average value in the sequence is <code>N/2</code></li>
+                <li>Therefore, since the inner loop does <code>N/2</code> work on average, and it is run N times, the total work is
+                    <sup>N<sup>2</sup></sup>/<sub>2</sub>, which is <code>O(N^2)</code></li>
+            </ul>
+            </li>
+        </ul>
+        </li>
+        <li><strong>Algorithm Explanation:</strong><ul>
+            <li>The algorithm is designed to iterate through an array and print all pairs of elements from the array in an
+                <strong>unordered fashion</strong></li>
+            <li>In other words, it prints all possible combinations of two elements from the array where the order of the
+                elements in each pair doesn&#39;t matter</li>
+            <li>For example, if you have an array [1, 2, 3], it will print the following pairs: <code>(1, 2)</code>, <code>(1, 3)</code>, <code>(2, 3)</code></li>
+            <li>As you can see, the pairs are unordered, meaning that <code>(1, 2)</code> is considered the same as <code>(2, 1)</code>, and the method does
+                not print duplicates or the reversed order of pairs</li>
+        </ul>
+        </li>
+    </ul>
+    </li>
+    <li><p><strong>Example 4:</strong></p>
+        <ul>
+            <li>This is similar to the above, but now we have two different arrays:</li>
+        </ul>
+    </li>
+</ul>
+<pre><code>void printUnorderedPairs(int[] arrayA, int[] arrayB) {
+    for (int i = 0; i &lt; arrayA.length; i++) {
+        for(int j = 0; j &lt; arrayB.length; j++){
+            if (arrayA[i] &lt; arrayB[j]) {
+                System.out.println(arrayA[i] + &quot;, &quot; + arrayB[j]);
+            }
+        }
+    }
+}
+</code></pre>
+<p>* </p>
+<ul>
+    <li>We can break up this analysis:<ul>
+        <li>The if-statement within <code>j</code>&#39;s for-loop is <code>O(1)</code> time since it&#39;s <strong>just a sequence of constant-time statements</strong>:<ul>
+            <li>In other words, the if-statement <strong>doesn&#39;t depend on the size of the input arrays</strong>; it <strong>only involves simple
+                comparisons and printing</strong>, which take a <strong>constant amount of time regardless of the size of the arrays</strong></li>
+        </ul>
+        </li>
+        <li>We now have this:</li>
+    </ul>
+    </li>
+</ul>
+<pre><code>void printUnorderedPairs(int[] arrayA, int[] arrayB) {
+    for (int i = 0; i &lt; arrayA.length; i++) {
+        for(int j = 0; j &lt; arrayB.length; j++){
+            /* O(1) work */
+        }
+    }
+}
+</code></pre>
+<p>* </p>
+<ul>
+    <li><p><strong>For each element of <code>arrayA</code>, the inner for-loop goes through <code>b</code> iterations, where <code>b = arrayB.length</code></strong></p>
+    </li>
+    <li><p>If <code>a = arrayA.length</code>, then the runtime is <code>O(ab)</code></p>
+    </li>
+    <li><p>If you said <code>O(N^2)</code>, then remember your mistake for the future</p>
+        <ul>
+            <li>It&#39;s <strong>not <code>O(N^2)</code></strong>, because, there are <strong>two different inputs</strong></li>
+            <li>Both matter and this is an extremely common mistake</li>
+        </ul>
+    </li>
+    <li><p><strong>Example 5:</strong></p>
+        <ul>
+            <li>What about this strange bit of code?</li>
+        </ul>
+    </li>
+</ul>
+<pre><code>void printUnorderedPairs(int[] arrayA, int[] arrayB) {
+    for (int i = 0; i &lt; arrayA.length; i++) {
+        for(int j = 0; j &lt; arrayB.length; j++){
+            for(int k = 0; k &lt; 100000; k++) {
+                System.out.println(array[i] + &quot;, &quot; + arrayB[j]);
+            }
+        }
+    }
+}
+</code></pre>
+<p>* </p>
+<ul>
+    <li><p>Nothing has really changed here</p>
+    </li>
+    <li><p>100,000 units of work is still constant, sso the runtime is <code>O(ab)</code></p>
+    </li>
+    <li><p><strong>Example 6:</strong></p>
+        <ul>
+            <li>The following code reverses an array</li>
+            <li>What is its runtime?</li>
+        </ul>
+    </li>
+</ul>
+<pre><code>void reverse(int[] arrayA) {
+    for (int i = 0; i &lt; arrayA.length / 2; i++) {
+        int other = array.length - i - 1;
+        int temp = array[i];
+        array[i] = array[other];
+        array[other] = temp;
+    }
+}
+</code></pre>
+<ul>
+    <li>.<ul>
+        <li>This algorithm runs in <code>O(N)</code> time</li>
+        <li>The fact that it only goes through the first half of the array (in terms of iterations) does not impact the big O time</li>
+        <li>Also, the time complexity of the algorithm is <code>O(N/2)</code>, which simplifies to <code>O(N)</code></li>
+    </ul>
+    </li>
+</ul>
