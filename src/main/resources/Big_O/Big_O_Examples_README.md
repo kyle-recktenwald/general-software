@@ -147,7 +147,7 @@ void printUnorderedPairs(int[] arrayA, int[] arrayB) {
 ```
 * 
   * Nothing has really changed here
-  * 100,000 units of work is still constant, sso the runtime is `O(ab)`
+  * 100,000 units of work is still constant, so the runtime is `O(ab)`
 
 * **Example 6:**
   * The following code reverses an array
