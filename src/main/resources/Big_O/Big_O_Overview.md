@@ -15,7 +15,7 @@
 
 ### Tips for Determining Big O:
 
-* Personal Tips:**
+* **Personal Tips:**
 * Focus on what N is
 * Pay attenton anywhere `.length` is used
 
