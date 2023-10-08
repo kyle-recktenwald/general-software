@@ -16,8 +16,8 @@
 ### Tips for Determining Big O:
 
 * **Personal Tips:**
-* Focus on what N is
-* Pay attenton anywhere `.length` is used
+    * Focus on what N is
+    * Pay attenton anywhere `.length` is used
 
 * **Dropping Constants & Non-Dominant Terms:**
     * It is very possible for `O(N)` code to run faster than `O(1)` code for specific inputs
