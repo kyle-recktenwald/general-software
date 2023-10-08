@@ -93,7 +93,7 @@ void printUnorderedPairs(int[] array) {
           **unordered fashion**
         * In other words, it prints all possible combinations of two elements from the array where the order of the
           elements in each pair doesn't matter
-        * For example, if you have an array [1, 2, 3], it will print the following pairs: `(1, 2)`, `(1, 3)`, `(2, 3)`
+        * For example, if you have an array `[1, 2, 3]`, it will print the following pairs: `(1, 2)`, `(1, 3)`, `(2, 3)`
         * As you can see, the pairs are unordered, meaning that `(1, 2)` is considered the same as `(2, 1)`, and the method does
           not print duplicates or the reversed order of pairs
 
