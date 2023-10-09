@@ -126,8 +126,8 @@ void printUnorderedPairs(int[] arrayA, int[] arrayB) {
 }
 ```
 * 
-  * **For each element of `arrayA`, the inner for-loop goes through `b` iterations, where `b = arrayB.length`**
-  * If `a = arrayA.length`, then the runtime is `O(ab)`
+  * For each element of `arrayA`, the inner for-loop goes through `b` iterations, where **`b = arrayB.length`**
+  * If **`a = arrayA.length`**, then the runtime is `O(ab)`
   * If you said `O(N^2)`, then remember your mistake for the future
     * It's **not `O(N^2)`**, because, there are **two different inputs**
     * Both matter and this is an extremely common mistake
@@ -166,3 +166,24 @@ void reverse(int[] arrayA) {
   * This algorithm runs in `O(N)` time
   * The fact that it only goes through the first half of the array (in terms of iterations) does not impact the big O time
   * Also, the time complexity of the algorithm is `O(N/2)`, which simplifies to `O(N)`
+
+* **Example 7:**
+  * Which of the following are equivalent to `O(N)`, and why?
+    * `O(N + P)`, where `P < N/2`
+    * `O(2N)`
+    * `O(N + log N)`
+    * `O(N + M)`
+  * Let's go through each of these:
+    * If `P < N/2`, then we know that **`N` is the dominant term**, so we can drop the `O(P)`
+      * Focus on the **dominant term**, which is the one that **grows the fastest** as our **input size (`N`) increases**
+      * Since `P` is **much smaller** than `N`, it won't significantly affect the overall growth rate
+      * So, we can essentially ignore it, and the complexity becomes `O(N)`
+    * `O(2N)` is `O(N)` since we drop the constant
+    * `O(N)` dominates `O(log N)`, so we can drop the `O(log N)`
+      * `log N` **increases by 1** for **each doubling** of `N`
+      * Logarithmic growth means that as the input size (N) increases, the time or resources required increase at a **much 
+        slower rate** compared to linear growth
+    * There is **no established relationship** between `N` and `M`, so we have to keep both variables in there
+      * We cannot simplify this expression further
+      * We have to keep both `N` and `M` in the complexity notation, and it remains `O(N + M)`
+  * Therefore, all but the last one are equivalent to `O(N)`
