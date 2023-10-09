@@ -187,3 +187,33 @@ void reverse(int[] arrayA) {
       * We cannot simplify this expression further
       * We have to keep both `N` and `M` in the complexity notation, and it remains `O(N + M)`
   * Therefore, all but the last one are equivalent to `O(N)`
+
+* **Example 8:**
+  * Q. Suppose we had an algorithm that took in an array of strings, sorted each string, and then sorted the full array
+    * What would the runtime be?
+  * Many candidates will incorrectly reason the following:
+    * Sorting each string is `O(N log N)` and we have to do this for each string, so that's `O(N*N log N)`
+    * We also have to sort the array, so that's an additional `O(N^2 log N + N log N)`, which is just `O(N^2 log N)` 
+      (`N^2 log N` is a higher order term than `N log N`)
+  * The problem is that we used `N` in two different ways
+    * In one case, it's the length of the string (which string?)
+    * And in another case, it's the length of the array
+  * You can prevent this error by either not using the variable `N` at all, or by **only using it** when there is **no
+    ambiguities** to what `N` could represent
+  * Avoid using `a` and `b` here, or `m` and `n`, as it's too easy to forget which is which and mix them up
+  * An `O(a^2)` runtime is completely different from an `O(a*b)` runtime
+  * Let's define new terms, and use names that are logical
+    * Let `s` be the **length** of the **longest string**
+    * Let `a` be the **length** of the **array**
+  * Now we can work through this in parts:
+    * Sorting each string `O(s log s)`
+      * Sorting algorithms typically have a time complexity of **O(N log N)** for N elements
+    * We have to do this **for every string** (and there are strings), so that's `O(a * s(log s))`
+    * Now we have to sort all the strings
+      * There are `a` strings, so you may be inclined to say that this takes `O(s)` time
+      * This is what most candidates would say
+    * You should also take into account that **you need to compare the strings**
+      * Each string comparison takes `O(s)` time
+      * There are `O(a log a)` comparisons, therefore this will take `O(a*s log a)` time
+    * If you add up these two parts, you get `O(a*s(log a + log s))`
+    * This is it, there's no way to reduce it further

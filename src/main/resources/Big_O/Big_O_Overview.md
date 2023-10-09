@@ -59,3 +59,13 @@
 * **Recursive Runtimes:**
   * When you have a recursive function that makes multiple calls, the runtime will often (but not always) look like
     `O(branches^depth)`, where branches is the number of times each recursive call branches
+* **Comparison-Based Sorting Algorithms:**
+  * Most common sorting algorithms, such as quicksort, mergesort, and heapsort, are comparison-based algorithms
+  * They compare elements in the array (i.e. characters in a string) to determine their relative order 
+  * In these algorithms, the number of comparisons made during the sorting process contributes significantly to the 
+    overall time complexity 
+  * Sorting algorithms are typically evaluated based on how their time complexity scales with the number of 
+    elements (N) they need to sort
+  * Algorithms that use comparisons to sort elements have a lower bound time complexity of **O(N log N)**
+  * This means that as you increase the number of elements to be sorted, the time it takes grows roughly 
+    in proportion to N multiplied by the logarithm of N
