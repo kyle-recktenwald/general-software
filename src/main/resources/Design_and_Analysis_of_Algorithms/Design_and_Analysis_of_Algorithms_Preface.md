@@ -1,6 +1,4 @@
-# Design & Analysis of Algorithms Notes:
-
-## Preface:
+# Design & Analysis of Algorithms - Preface Notes:
 
 ### Introduction:
 * The most valuable acquisitions in a scientific or technical education are the general-purpose mental tools which 
@@ -68,3 +66,46 @@
   * Toward thihs goal, thhe book includes applications to puzzles and puzzle-like games
   * Although using puzzles in teaching algorithms is certainly not a new idea, the book tries to do this systematically
     by going well beyond a few standard examples
+
+### Textbook Pedagogy:
+* My goal was to write a text that would not trivialize the subject, but would still be readable by most students on their own
+* Here are some of the things done toward this objective:
+  * Sharing the opinion of George Forsythe expressed above, I have sought to stress major ideas underlying the design
+    and analysis of algorithms
+    * In choosing specific algorithms to illustrate these ideas, I limited the number of covered algorithms to those
+      that demonstrate an underlying design technique or an analysis method most clearly
+    * Fortunately, most classic algorithms satisfy this criterion
+  * In chapter 2, which is dedvoted to efficiency analysis, the methods used for analyzing nonrecursive algorithms 
+    are separated from those typically used for analyzing recursive algorithms
+    * The chapter also includes sections devoted to empiracal analysis of algorithm visualization
+  * The narrative is systematically interrupted by questions to the reader
+    * Some of them are asked rhetorically, in anticipation of a concern or doubt, and are answered immediately
+    * The goal of the others is to prevent the reader from drifiting through the text without a satisfactory level of
+      comprehension
+  * Each chapter ends with a summary recapping the most important concepts and results discussed in the chapter
+  * The book contains over 600 exercises
+    * Some of them are drills;
+    * Other make important points about the material convered in the body of the text or introduce algorithms not
+      covered there at all
+    * A few exercises take advantage of internet resources
+    * More difficult problems, there are not many of them, are marked by special symbols in the Instructor's manual
+      * Because marking problems as difficult may discourage some students from trying to tackle them, problems are
+       not marked in the book itself
+    * Puzzles, games, and puzzle like questions are marked in the exercise with a special icon
+  * This book provides hints to all the exercises
+    * Detailed solutions, eexcept for the programming projects, are provided in the Instructor's manual,, availablee to 
+      qualified adopters through Pearson's Instructor Resource Center
+    * Please contact your local Pearson sales representative or go to www.personhighered.com/irc to access this material
+    * Slides in PowerPoint are available to all readers of this book via anonymous ftp at the CS Support site:
+      http://cssupport.pearsoncmg.com
+
+### Prerequisites:
+* The book assumess that a reader has gone through an introductory programming course and a standard course on discrete
+  structures
+* With such a background, he or she should be able to handle the book's material without undue difficulty
+* Still, fundamental data structures, necessary summation formulas, and recurrence relations are reviewed in Section 
+  1.4, Appendix A and Appendix B, respectively
+* Calculus iss used in only three sections (Section 2.2, 11.4, and 12.4), and to a very limited degree;
+  * If studentws lack calculus as an assured part of their background, the relevevant portions of these three sections 
+    can be omitted without hindering their understanding of the rest of the material
+
