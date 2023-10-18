@@ -8,9 +8,9 @@
 ### Core Data Structures, Algorithms, and Concepts:
 * **Data Structures:**
   * Linked Lists
-  * Trees, Tries, & Graphs
   * Stacks
   * Queues
+  * Trees, Tries, & Graphs
   * Heaps
   * Vectors
   * ArrayLists
@@ -27,5 +27,3 @@
   * Recursion
   * Dynamic Programming
   * Big O (Time & Space)
-
-
