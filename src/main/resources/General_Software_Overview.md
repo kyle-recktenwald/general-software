@@ -12,8 +12,7 @@
   * Queues
   * Trees, Tries, & Graphs
   * Heaps
-  * Vectors
-  * ArrayLists
+  * Vectors/ArrayLists
   * Hash Tables
 * **Algorithms:**
   * Breadth-First Search

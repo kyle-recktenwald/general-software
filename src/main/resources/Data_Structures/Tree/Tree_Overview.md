@@ -33,6 +33,7 @@
   * **Height:** 
     * The **height of a tree** is the **length** of the **longest path** from the **root to a leaf** node
     * It represents the **depth of the deepest node** in the tree
+    * <img src="images/Tree_Node_Height_Diagram.png" width="300">
   * **Binary Tree:**
     * A binary tree is a tree in which **each node has at most two children**, typically referred to as the **left child** and
       the **right child**
@@ -56,3 +57,25 @@
 * In a tree, the depth of a node **indicates its position** within the **hierarchy of nodes**, with **deeper nodes** 
   being **further away from the root**
 * <img src="images/Tree_Depth_Diagram.png" width="300">
+
+### Height of a Tree:
+* The **height** of a tree is a **measure of its depth** or **how many levels** it has **from the root node 
+  to the deepest leaf node**
+* It's an **important metric** because it **affects the efficiency** of various tree operations, such as **searching, 
+  insertion, and deletion**
+* There are two common ways to define the height of a tree:
+  * **Height of a Rooted Tree:**
+    * For a **rooted tree** (a tree with a **single designated root node**), the height is typically defined as the 
+      length of the **longest path from the root node to a leaf node**
+    * In other words, it's the **number of edges** in the **longest path from the root to a leaf**
+  * **Height of an Empty Tree:**
+    * For an **empty tree** (a tree with **no nodes**), the height is usually defined as **-1** or **0**, depending on 
+      the convention used
+* The height of a tree is a crucial factor in **determining the time complexity** of various tree operations
+  * In **balanced trees** like **binary search trees** (e.g., **AVL trees** or **Red-Black trees**), the **height is 
+    kept relatively small** to **maintain efficient operations**
+* In **unbalanced trees**, such as a **degenerate tree** (essentially a **linked list**), the **height can become very 
+  large**, leading to **inefficient operations**
+* Reducing the height of a tree is a common goal when designing and managing tree data structures to ensure that 
+  operations remain efficient
+* * <img src="images/Tree_Node_Height_Diagram.png" width="300">
