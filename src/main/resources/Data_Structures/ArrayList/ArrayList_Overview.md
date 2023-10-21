@@ -40,33 +40,33 @@
   middle of a large list**
 * <img src="images/ArrayList_Diagram.png" width="300">
 
-### `ArrayList`s vs. `Vector`s in Java:
-* In Java, both `ArrayList`s and `Vector`s and  are **dynamic array-like data structures** used to store and manage 
+### ArrayLists vs. Vectors in Java:
+* In Java, both ArrayLists and Vectors and  are **dynamic array-like data structures** used to store and manage 
   collections of elements
 * They have many similarities, but there are key differences between them:
   * **Synchronization:**
-      * Unlike **`ArrayList`s**, **`Vector`s** are **synchronized**, which means they are **inherently thread-safe**
-      * This ensures that **multiple threads** can **access and modify a `Vector` concurrently without external 
+      * Unlike **ArrayLists**, **Vectors** are **synchronized**, which means they are **inherently thread-safe**
+      * This ensures that **multiple threads** can **access and modify a Vector concurrently without external 
         synchronization**
       * However, this synchronization can introduce a **performance overhead** in **single-threaded applications**
   * **Performance:**
-      * `ArrayList`s, being un-synchronized, can offer **better performance** in **single-threaded** contexts
+      * ArrayLists, being un-synchronized, can offer **better performance** in **single-threaded** contexts
       * But in **multithreaded situations**, you need to take extra care to synchronize access or consider using a 
         thread-safe collection or synchronized block (**explicit synchronization**)
   * **Growth and Shrinkage:**
-    * **`Vector`:**
-      * `Vector`s **grow by a fixed amount** when they reach their capacity
+    * **Vector:**
+      * Vectors **grow by a fixed amount** when they reach their capacity
       * This can sometimes result in **memory wastage** because you **may allocate more space than necessary**
-    * **`ArrayList`:**
-      * `ArrayList`s **grow dynamically** by **doubling their size** when they **reach their capacity**
+    * **ArrayList:**
+      * ArrayLists **grow dynamically** by **doubling their size** when they **reach their capacity**
       * This **dynamic resizing** strategy is often **more memory-efficient**
   * **Legacy vs. Modern Usage:**
-    * **`Vector`:**
+    * **Vector:**
       * Vectors are considered **legacy collections** and are **less commonly used** in **modern Java programming**
     * **ArrayList:**
       * ArrayLists are the **preferred choice** for dynamic arrays in Java, **especially in single-threaded scenarios**
 * In summary, the primary difference between a Vector and an ArrayList in Java is that **Vectors** are **synchronized** and 
-  provide **built-in thread safety**, while `ArrayList`s are not synchronized by default and can offer better performance in 
+  provide **built-in thread safety**, while ArrayLists are not synchronized by default and can offer better performance in 
   single-threaded scenarios
 * For most modern Java applications, ArrayLists are often preferred due to their flexibility and efficiency
 * If you need thread safety, you can use **explicit synchronization** or **consider other thread-safe collection classes** 
