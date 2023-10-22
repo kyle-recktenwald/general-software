@@ -33,7 +33,7 @@
         * You can **insert or delete** elements with **O(1) time complexity**, provided you have a reference to the node
       * **No Fixed Memory Requirement:**
         * Linked lists **don't require contiguous memory allocation** like arrays
-        * They can be scattered in memory, which can be beneficial in systems with memory fragmentation
+        * They can be **scattered in memory**, which can be beneficial in systems with **memory fragmentation**
       * **No Need for a Predefined Size:** 
         * You **don't need to specify the size** of a linked list in advance
         * This contrasts with arrays, which require you to determine their size when creating them
