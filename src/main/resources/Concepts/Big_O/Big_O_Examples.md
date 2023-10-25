@@ -59,7 +59,7 @@ void printUnorderedPairs(int[] array) {
         * The second time, it's `N - 2` steps
         * Then `N - 3` steps, and so on
         * Therefore, the number of steps total is:
-        * The sum of 1 through `N - 1` is `N(N - 1) / 2` (See [Sum of integers 1 through N](../Advanced_Topics/Sum_of_Integers_1_Through_N.md)), so the runtime will be `O(N^2)`
+        * The sum of 1 through `N - 1` is `N(N - 1) / 2` (See [Sum of integers 1 through N](../../Advanced_Topics/Sum_of_Integers_1_Through_N.md)), so the runtime will be `O(N^2)`
 
 ```
 (N - 1) + (N - 2) + (N - 3) + ... 2 + 1
