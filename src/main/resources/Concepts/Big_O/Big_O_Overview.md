@@ -35,16 +35,40 @@
           runtimes
         * If your algorithm is in the form "do this **for each time** you do that" then you **multiply** the runtimes
 * **Amortized Time:**
-  * An `ArrayList`, or a dynamically resizing array, allows you to have the benefits of an array while offering 
-    flexibility in size
-  * You won't run out of space in the `ArrayList` since its capacity will grow as you insert elements
-  * An `ArrayList` is implemented with an array
-    * When the array hits capacity, the `Arraylist` class will create a new array with double the capacity and copy all 
-      the elements over to the new array
-  * Thus, determining the runtime of an insertion is difficult
-  * **Amortized time** allows us to describe that the worst case happens once in a while, but won't happen soon after
-  * Thus, the cost is **amortized**
-    * Amortized means to gradually write off the initial cost of (an asset) over a period
+  * **Amortized time complexity** is a way of **analyzing** the **average time complexity** of a **sequence of 
+    operations** performed on a **data structure or algorithm**, rather than focusing on the time complexity of 
+    **individual operations**
+  * It provides a **more realistic view** of the **overall efficiency** of an algorithm or data structure **over 
+    multiple operations**
+  * In amortized time complexity analysis:
+    * The **cost** of a **sequence of operations** is **distributed** or **"amortized" evenly** over **all the 
+      operations**, even if **some operations** are **more expensive** than others
+  * It accounts for **occasional costly operations** by **averaging them out** over a set of **cheaper operations**
+  * Amortized time complexity is **particularly useful** in situations where a data structure or algorithm has **some 
+    operations** with **high time complexity** but these operations are **offset** by **many other operations** that are 
+    much faster
+  * The most common types of amortized time complexity are:
+    * **Amortized Constant Time (O(1)):**
+      * This means that the **average cost** of an operation is **constant**, even if **some individual operations** 
+        may be **more expensive**
+    * **Amortized Linear Time (O(n)):**
+      * In this case, the **average cost** of an operation is **linear**, even if **some individual operations** may 
+        have **higher or lower costs**
+  * Amortized time complexity analysis is often used to describe the behavior of **dynamic data structures** like 
+    **dynamic arrays (e.g., ArrayList in Java)** and **hash tables**, where **resizing and rehashing operations** can 
+    be **relatively expensive**, but these costs are **spread over multiple insertions or lookups**
+  * <img src="images/Amortized_Time_Graph.png" width="400">
+  * **ArrayLists and Amortized Time:**
+    * An `ArrayList`, or a dynamically resizing array, allows you to have the benefits of an array while offering 
+      flexibility in size
+    * You won't run out of space in the `ArrayList` since its capacity will grow as you insert elements
+    * An `ArrayList` is implemented with an array
+      * When the array hits capacity, the `Arraylist` class will create a new array with double the capacity and copy all 
+        the elements over to the new array
+    * Thus, determining the runtime of an insertion is difficult
+    * **Amortized time** allows us to describe that the worst case happens once in a while, but won't happen soon after
+    * Thus, the cost is **amortized**
+      * Amortized means to gradually write off the initial cost of (an asset) over a period
 * **Log N Runtimes:**
   * `O(log N)` is commonly seen in runtimes
   * **Binary Search** is an example of `O(log N)`

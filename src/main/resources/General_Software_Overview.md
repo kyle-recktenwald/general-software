@@ -33,16 +33,18 @@
   * Big O (Time & Space)
 
 ### Further Topics to Cover:
+* Instantiating Data Structures in Java (High Level)
+* Differences Between HashMap and HashSet
+* Timsort
+* Bubble Sort
 * Continuous Integration / Continuous Delivery (CI/CD)
 * Sum of 1 through (N - 1)
 * SIG Bank Account Problem
 * AND / XOR Symbols
 * Stable Sorting in Merge Sort
-* Instantiating Data Structures in Java (High Level)
 * Overriding Equals and Hash Code
-* Differences Between HashMap and HashSet
-* Bubble Sort
 * Software Design Patterns
+* What is a double ended queue?
 
 ### Resources:
 * https://algorithm-visualizer.org/
