@@ -79,3 +79,70 @@
 * Reducing the height of a tree is a common goal when designing and managing tree data structures to ensure that 
   operations remain efficient
 * * <img src="images/Tree_Node_Height_Diagram.png" width="300">
+  
+### Red-Black Tree:
+* A red-black tree is a type of **self-balancing binary search tree (BST)** data structure
+* It was developed to ensure that the height of the tree remains approximately balanced, which, in turn, guarantees 
+  that search, insertion, and deletion operations have a logarithmic time complexity
+* Red-black trees are widely used in many programming languages and libraries to implement data structures such as sets 
+  and maps
+* Here are the key properties and rules that define a red-black tree:
+  * Node Color:
+    * Each node in the tree is assigned one of two colors: red or black
+  * Root Property:
+    * The root of the tree is always black
+  * Red Property:
+    * Red nodes cannot have red children
+    * In other words, a red node must have black children
+    * This property ensures that there are no adjacent red nodes along any path in the tree
+  * Black Height Property:
+    * The black height of a node is defined as the number of black nodes (including the node itself) from that node to 
+      any leaf in the tree
+    * All paths in the tree must have the same black height
+    * This property guarantees that the tree remains balanced, with a maximum height of approximately 2*log2(n), 
+      where n is the number of nodes
+  * Balancing Operations:
+    * When a node is inserted or removed from the tree, it may violate the red-black tree properties
+    * To maintain these properties, the tree is restructured using rotation and recoloring operations
+* Red-black trees are designed to ensure that the height of the tree remains balanced, which in turn keeps search, insertion, and deletion operations efficient. The logarithmic height of the tree ensures that these operations have a time complexity of O(log n), where n is the number of nodes in the tree.
+
+Red-black trees are used in various programming languages and libraries as the underlying data structure for implementing data types like sets, maps, and other ordered collections. They are also used in databases and file systems to maintain balanced indexes, making them a fundamental data structure in computer science.
+
+### Complete Binary Tree:
+* A **complete binary tree** is a **special type** of **binary tree** in which **all levels** of the tree are 
+  **completely filled** **except possibly for the last level**
+* In the **last level**, **all nodes are as left as possible**
+* This means that a complete binary tree is **filled from left to right on each level**, and **any level** with **less 
+  than the maximum number of nodes** is **filled starting from the left**
+* Here are some key characteristics of a complete binary tree:
+  * **All Levels Filled Except the Last:**
+    * **All levels** of the tree are **completely filled**, with the **possible exception** of the **last level**
+    * In the **last level**, **all nodes** are **as left as possible**
+  * **Balanced Structure:**
+    * It has a **balanced structure**, which means that **the height of the tree** is **minimized** **for the given 
+      number of nodes**
+  * **Efficient for Array-Based Storage:**
+    * Because of its **balanced structure**, a complete binary tree is often used for **array-based implementations** 
+      like **heaps**
+    * You can **efficiently store** a **complete binary tree** in an **array** **without wasting space**
+  * **Easily Traversable:**
+    * When **traversing the tree**, it is **easy to implement algorithms** that **move from one level to the next without 
+      having to backtrack**
+    * This makes it suitable for **breadth-first search (BFS) traversal**
+  * **Differences in Height Are at Most 1:**
+    * The **height** of the **left and right subtrees** of **any node differ by at most 1**
+* Here's an example of a complete binary tree with 7 nodes:
+```
+     1
+    / \
+   2   3
+  / \ /
+ 4  5 6
+```
+* In this example, **all levels are filled except the last level**, and **nodes are filled from left to right** in the 
+  **last level**
+* This tree is considered a **complete binary tree**
+* Complete binary trees are used in various applications, such as in the implementation of **priority queues**, 
+  **binary heaps**, and **efficient data storage structures**
+* The **balanced** and **easily traversable** nature of complete binary trees makes them a **valuable structure** in 
+  computer science and data processing

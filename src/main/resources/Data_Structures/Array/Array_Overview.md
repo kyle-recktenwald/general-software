@@ -139,3 +139,168 @@ do {
 * These time complexities are consistent with the general principles of algorithmic analysis and apply to Java arrays as 
 well
 * However, specific implementations and libraries may have optimizations that can affect the actual performance
+
+### Two-Dimensional Arrays:
+* In Java, a **two-dimensional** array is essentially an **array of arrays**
+* It's a **matrix** or **grid** with **rows and columns**
+* Each element in a 2D array is identified by **two indices**: **one** for the **row** and **one** for the **column**
+* **Declaration:**
+```
+// Syntax 1:
+dataType[][] arrayName;
+
+// Syntax 2:
+dataType arrayName[][];
+
+// Example:
+int[][] matrix;
+```
+* **Initialization:**
+```
+//During Declaration:
+int[][] matrix = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+//Separate Initialization:
+int[][] matrix = new int[3][3];
+matrix[0][0] = 1;
+matrix[0][1] = 2;
+matrix[0][2] = 3;
+// ... initialize other elements
+```
+**Accesssing Elements:**
+```
+// Access the element in the second row and third column:
+int value = matrix[1][2];  `
+```
+**Iteration:**
+```
+for (int i = 0; i < matrix.length; i++) {
+    for (int j = 0; j < matrix[i].length; j++) {
+        System.out.print(matrix[i][j] + " ");
+    }
+    System.out.println();  // Move to the next line after each row
+}
+```
+
+```java
+public class TwoDArrayExample {
+    public static void main(String[] args) {
+        int[][] matrix = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+
+        // Accessing elements
+        int value = matrix[1][2];
+        System.out.println("Value at matrix[1][2]: " + value);
+
+        // Iterating through the matrix
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();  // Move to the next line after each row
+        }
+    }
+}
+```
+### Iterating Through 2D Arrays:
+* **Using a for-each Loop:**
+```
+for (int[] row : matrix) {
+    for (int element : row) {
+      System.out.print(matrix[i][j] + " ");
+    }
+    System.out.println();  // Move to the next line after each row
+}
+```
+* **Using a Break Statement:**
+  * If you need to **stop iteration based on a condition**, consider using `break` to exit the loops
+```
+for (int i = 0; i < matrix.length; i++) {
+    for (int j = 0; j < matrix[i].length; j++) {
+        if (/* some condition */) {
+            // Process and break
+            break;
+        }
+    }
+}
+```
+* **Accessing Diagonal Elements:**
+  * **Accessing diagonal elements** in a 2D array involves **indexing both rows and columns** with the **same value**
+  * There are **two main diagonals** in a **square matrix**: the **primary diagonal** and the **secondary diagonal**
+* **Primary Diagonal:**
+  * The **primary diagonal** consists of elements where the **row index** is **equal** to the **column index**
+```
+for (int i = 0; i < matrix.length; i++) {
+    int diagonalElement = matrix[i][i];
+    System.out.println(diagonalElement);
+}
+```
+* **Secondary Diagonal:**
+  * The **secondary diagonal** consists of elements where the **row index** and **column index** **sum up to one less 
+    than the size of the matrix**
+```
+for (int i = 0; i < matrix.length; i++) {
+    int diagonalElement = matrix[i][matrix.length - 1 - i];
+    System.out.println(diagonalElement);
+
+}
+```
+* **Both Diagonals:**
+  * If you need to access both diagonals simultaneously, you can use a single loop:
+```
+for (int i = 0; i < matrix.length; i++) {
+    int primaryDiagonalElement = matrix[i][i];
+    int secondaryDiagonalElement = matrix[i][matrix.length - 1 - i];
+    // Process primaryDiagonalElement and secondaryDiagonalElement
+}
+```
+* **Example:**
+  * Here's an example method that **calculates** the **sum** of the **primary** and **secondary** **diagonals**:
+```java
+public class DiagonalExample {
+    public static void main(String[] args) {
+      int[][] matrix = {
+              {1, 2, 3},
+              {4, 5, 6},
+              {7, 8, 9}
+      };
+
+        int primaryDiagonalSum = 0;
+        int secondaryDiagonalSum = 0;
+
+        for (int i = 0; i < matrix.length; i++) {
+            primaryDiagonalSum += matrix[i][i];
+            secondaryDiagonalSum += matrix[i][matrix.length - 1 - i];
+        }
+
+        System.out.println("Sum of Primary Diagonal: " + primaryDiagonalSum);
+        System.out.println("Sum of Secondary Diagonal: " + secondaryDiagonalSum);
+    }
+}
+```
+* **Transposing a 2D Array:**
+  * To **transpose** a **square matrix** in **Java**, you need to **swap the elements across its main diagonal**
+  * The **main diagonal** is the line from the **top-left** to the **bottom-right** of the matrix
+  * Here's a simple algorithm to transpose a square matrix in-place:
+```
+public static void transposeMatrix(int[][] matrix) {
+        int n = matrix.length;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                // Swap elements across the main diagonal
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+    }
+```
+

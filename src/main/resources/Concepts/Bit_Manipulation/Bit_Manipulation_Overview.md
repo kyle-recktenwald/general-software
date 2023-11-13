@@ -31,3 +31,57 @@
   flags**, **packing and unpacking data structures**, and **solving specific algorithmic problems** that involve 
   **bitwise operations**
 * <img src="images/Bit_Manipulation_Diagram.png" width="500">
+
+### Flipping the Bits in a Number:
+* **Flipping all the bits** within a number means **changing each 0 bit to 1** and **each 1 bit to 0**
+* In Java, you can achieve this using the **XOR (`^`) operation with a bitmask**
+* Here's how it works step by step:
+  * **Create a Bitmask with All 1s:**
+    * To **create a bitmask with all 1s**, you can use the **left shift (`<<`) operator**
+    * For a **32-bit integer**, the bitmask can be created as follows:
+      * `long bitmask = (1L << 32) - 1;`
+  * This **shifts** the **binary representation of 1 32 positions to the left**, creating a bitmask with all 1s
+* **Use XOR Operation to Flip Bits:**
+  * The XOR (`^`) operation works by **toggling each bit**:
+    * `0 ^ 1` results in 1
+    * `1 ^ 0` results in 1
+    * `0 ^ 0` results in 0
+    * `1 ^ 1` results in 0
+  * XORing a number with the bitmask will flip all its bits:
+    * `long flippedNumber = originalNumber ^ bitmask;`
+```
+public static long flippingBits(long n) {
+        // Create a bitmask with all 1s
+        long bitmask = (1L << 32) - 1;
+
+        // Use XOR to flip all the bits
+        long flippedNumber = n ^ bitmask;
+
+        return flippedNumber;
+    }
+```
+
+### Using XOR to Find a Unique Integer in an Array:
+* To **find** a **unique element** in the **array** where **all elements occur more than once except one**, you can use 
+  the **XOR (exclusive OR) operation**
+* The **XOR of a number with itself is 0**, and **XORing any number with 0 gives the number itself**
+* So, if you **XOR all the elements in the array**, the **result will be the unique element**
+```
+public static int lonelyinteger(List<Integer> a) {
+        int result = 0;
+
+        // XOR all elements in the array
+        for (int num : a) {
+            result ^= num;
+        }
+
+        return result;
+    }
+```
+* The XOR-based approach for finding the unique element in an array would work with **any data type** that **supports 
+  the bitwise XOR operation**
+* This includes **integer types** (`byte`, `short`, `int`, `long`), characters (`char`), and boolean types (`boolean`)
+* However, it would **not work as-is** for **floating-point types** (`float` and `double`) because they **don't support 
+  bitwise operations in Java**
+* For floating-point types, you would need to use a different approach, such as **sorting the array** or using a data 
+  structure like `HashMap`
