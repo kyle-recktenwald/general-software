@@ -350,3 +350,246 @@ System.out.println("Absolute value of " + doubleValue + ": " + absDoubleValue);
     the **type of the result matches the type of the input**
   * If the **input** is an **integer**, the **result** is an **integer**; if the **input** is a **floating-point number**, 
     the **result** is a **floating-point number**
+
+### The Collections Class in Java:
+* The `java.util.Collections` class in Java is a **utility class** that provides **various static methods** for 
+  operating on **collections**, including **lists**, **sets**, and **maps**
+* It contains methods for **sorting**, **searching**, **shuffling**, and **synchronizing collections**, among other 
+  tasks
+* Here are some **common operations** and methods provided by the `Collections` class:
+  * **Sorting:**
+    * `sort(List<T> list)`:
+      * **Sorts** the specified list into **ascending order**
+    * `sort(List<T> list, Comparator<? super T> c)`:
+      * Sorts the specified list according to the **order induced by the specified comparator**
+  * **Searching:**
+    * `binarySearch(List<? extends Comparable<? super T>> list, T key)`:
+      * Searches for the specified element in the specified list using the **binary search algorithm**
+    * `binarySearch(List<? extends T> list, T key, Comparator<? super T> c)`:
+      * Searches for the specified object in the specified list using the **binary search algorithm**
+  * **Shuffling:**
+    * `shuffle(List<?> list)`:
+      * **Randomly permutes** the specified list
+    * `shuffle(List<?> list, Random rnd)`:
+      * Randomly permutes the specified list using the **specified source of randomness**
+  * **Finding Maximum:**
+    * `max(Collection<? extends T> coll)`:
+      * Returns the **maximum element** of the given collection, according to the **natural ordering** of elements
+    * `max(Collection<? extends T> coll, Comparator<? super T> comp)`:
+      * Returns the **maximum element** of the given collection, according to the order induced by the **specified 
+        comparator**
+  * **Finding Minimum:**
+    * `min(Collection<? extends T> coll)`:
+      * Returns the **minimum element** of the given collection, according to the **natural ordering** of elements
+    * `min(Collection<? extends T> coll, Comparator<? super T> comp)`:
+      * Returns the **minimum element** of the given collection, according to the order induced by the **specified comparator**
+  * **Synchronization:**
+    * `synchronizedCollection(Collection<T> c)`:
+      * Returns a **synchronized (thread-safe) view** of the specified collection
+    * `synchronizedList(List<T> list)`:
+      * Returns a **synchronized (thread-safe) list** backed by the specified list
+  * **Creating Immutable Collections:**
+    * `emptyList()`, `emptySet()`, `emptyMap()`:
+      * Returns an **empty, immutable list, set, or map**, respectively
+    * `singletonList(T o), singleton(T o)`:
+      * Returns an **immutable list or set** containing **only the specified object**
+    * `unmodifiableList(List<? extends T> list)`, `unmodifiableSet(Set<? extends T> s)`:
+      * Returns an **unmodifiable view** of the **specified list** or set
+  * **Filling and Copying:**
+    * `fill(List<? super T> list, T obj)`:
+      * **Replaces** all of the elements of the specified list with the **specified element**
+    * `copy(List<? super T> dest, List<? extends T> src)`:
+      * **Copies all of the elements** from **one list** into **another**
+* These are just a few examples of the many methods provided by the Collections class
+* It's a powerful utility class that simplifies common operations on collections and provides useful tools for working 
+  with them
+```java
+public class MaxMinExample {
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(3, 7, 1, 9, 4, 6, 8, 2, 5);
+
+        // Finding maximum element
+        Integer max = Collections.max(numbers);
+        System.out.println("Maximum element: " + max);
+
+        // Finding minimum element
+        Integer min = Collections.min(numbers);
+        System.out.println("Minimum element: " + min);
+
+        // Using a custom comparator for finding maximum
+        Integer maxWithComparator = Collections.max(numbers, Collections.reverseOrder());
+        System.out.println("Maximum element with reverse order comparator: " + maxWithComparator);
+    }
+}
+```
+
+### Modulo:
+* In Java, the **modulo operator** (`%`) returns the remainder of dividing the left operand by the right operand
+  * For example:
+    * `a % b` returns the remainder when `a` is divided by `b`
+    * `5 % 3` would evaluate to 2 because 5 divided by 3 is 1 with a remainder of 2
+* The modulo operation has various applications across different domains:
+  * **Remainder Calculation:**
+    * Modulo is often used to **find remainders** in arithmetic operations
+    * For instance, in programming, it's commonly used to determine **whether a number is even or odd** (`number % 2`)
+    * If the **result is 0**, it's **even**; otherwise, it's **odd**
+  * **Cycle and Wrapping:**
+    * In **array** or **circular buffer operations**, modulo helps in **wrapping around the indices**
+    * For example, when implementing a **circular queue** or **rotating elements** in an array, the modulo operation 
+      can be used to **ensure the indices remain within bounds**
+  * **Hashing:**
+    * In hash table implementations, modulo is used to **map a key to an index** in an **array**
+    * It's used as **part of the hash function** to **limit the output** to a **specific range of indices**
+  * **Time and Date Operations:**
+    * Modulo can be used in handling **time-related calculations**
+    * For instance, **converting seconds into minutes and seconds** (`seconds % 60` gives the **remaining seconds** 
+      after removing full minutes)
+  * **Encryption and Cryptography:**
+    * Modulo operations can be utilized in **encryption algorithms** for hashing or modular arithmetic in cryptography
+  * **Pattern Generation:**
+    * In computer graphics or algorithms related to repetitive patterns, modulo can be used to **create repeating 
+      patterns or cycles**
+  * **Data Distribution:**
+    * In parallel and distributed computing, modulo can help **distribute data across nodes or processes** by mapping 
+      data elements to specific ranges or partitions
+  * **Error Checking:**
+    * In various algorithms and protocols, modulo can be used for **error detection and correction**
+* In essence, the modulo operation is versatile and finds application in many computational tasks where **cyclic 
+  behavior**, **remainders**, or **bounded arithmetic** are involved
+
+### Using the Modulo for Cycle and Wrapping:
+* **Cycle:**
+  * In terms of **arrays** or **sequences**, a **cycle** refers to a **repeating pattern or sequence** of elements
+  * For instance, in a **circular queue** or **buffer**, **after reaching the end of the array**, the **next element** 
+    should be **considered as the first element**, creating a **cycle**
+  * Consider an array of size `N` and you want to **access elements** at positions `i + k` where `k` is **some integer**
+  * **Without any considerations**, this **could lead to an index out of bounds error**
+  * However, with the modulo operation, you can **ensure that the index stays within the range of the array**
+  * For example, let's say you have an array `arr` of length `N` and you want to access `arr[(i + k) % N]`
+  * This ensures that even if `i + k` exceeds the length of the array, the **modulo operation** will **"wrap around" 
+    the index**, making it valid and **ensuring** that it's **within the range** of **0 to `N - 1`**
+```java
+public class ClockSimulation {
+    public static void main(String[] args) {
+        int hours = 0;
+
+        // Simulating the clock running for 15 hours
+        for (int i = 0; i < 15; i++) {
+            int currentHour = hours % 12; // Using modulo to simulate the 12-hour cycle
+            System.out.println("Current hour: " + currentHour);
+
+            hours++; // Incrementing hours
+        }
+    }
+}
+```
+* **Wrapping:**
+  * **Wrapping**, often associated with **cyclic behavior**, refers to the idea of "**wrapping around**" or "**looping 
+    back**" to the **beginning** when an **operation reaches the end** of a range or sequence
+  * For instance, consider **rotating an array** to the right by `k` steps, where `k` **might be greater than the array 
+    length**
+  * In this scenario, you want the **elements that go beyond the end of the array** to **wrap around** and become the 
+    **first elements** of the **resulting array**
+  * The **modulo operation** plays a **crucial role** here
+  * If you have an **index `i`** and you want to **ensure it wraps around within the array bounds**, you can use `(i + 
+    k) % N`, where `N` is the size of the array
+  * This ensures that `i + k` remains within the range of the array indices, effectively **"wrapping" around the array**
+```java
+public class ArrayWrapping {
+    public static void main(String[] args) {
+        int[] arr = {10, 20, 30, 40, 50};
+
+        int index = 7; // Index that exceeds the array size
+
+        // Wrapping the index to stay within the array bounds
+        int wrappedIndex = index % arr.length;
+
+        System.out.println("Original Index: " + index);
+        System.out.println("Wrapped Index: " + wrappedIndex);
+        System.out.println("Value at Wrapped Index: " + arr[wrappedIndex]);
+        
+        // Original Index: 7
+        // Wrapped Index: 2
+        // Value at Wrapped Index: 30
+    }
+}
+```
+* These concepts are fundamental in scenarios where cyclic behavior or wrapping around data structures, such as arrays, 
+  queues, or circular buffers, is required
+* Modulo helps in maintaining continuity and preventing index out of bounds errors by ensuring the indices remain 
+  within a defined range
+
+### The String Class in Java:
+* **Overview:**
+  * In Java, the `String` class is a **fundamental** and **widely used class** that represents a **sequence of 
+    characters**
+  * It's part of the `java.lang` package and is **immutable**, meaning **once a ``String object` is created**, its 
+    **value cannot be changed**
+* **Key Features and Characteristics of Java's String Class:**
+  * **Immutable Nature:**
+    * Once a **`String` object** is **created**, its **value cannot be modified**
+    * Any operation that **seems to modify** a `String` **actually creates a new `String` object**
+  * **Sequence of Characters:**
+    * It represents a **sequence of characters** and provides various methods to perform operations on strings, such as 
+      **concatenation**, **substring extraction**, **comparison**, **searching**, and **manipulation**
+  * **Stored in String Pool:**
+    * Java maintains a **string pool** (also known as a **string constant pool**) for **storing string literals**
+    * This pool helps in **optimizing memory usage** by **reusing strings**
+  * **Instantiation:**
+    * Strings can be created using either **string literals** or the **`new` keyword**
+    * **Example:**
+      * `String str1 = "Hello"; // Using string literal`
+      * `String str2 = new String("World"); // Using new keyword`
+  * **Common Operations:**
+    * **String manipulation methods:**
+      * `length()`, `charAt()`, `substring()`, `concat()`, `indexOf()`, `startsWith()`, `endsWith()`, `toLowerCase()`, 
+        `toUpperCase()`, and more
+    * **String comparison:**
+      * `equals()`, `equalsIgnoreCase()`, `compareTo()`, `compareToIgnoreCase()`
+    * **String modification:**
+      * `replace()`, `replaceAll()`, `trim()`
+    * **Conversion to/from other types:**
+      * `valueOf()`, `toCharArray()`, `getBytes()`
+    * **Regular expressions:**
+      * `matches()`, `split()`
+  * **Supports Unicode:**
+    * Strings in Java are **based on the Unicode character set**, allowing **representation** of a **wide range** of 
+      **characters** from **various languages and scripts**
+  * **Used Heavily:**
+    * Strings are extensively used in Java programming for **text manipulation**, **file I/O**, **network 
+      communication**, and more
+* The String class plays a **pivotal role in Java programming** due to its **ubiquitous nature** and the wide range of 
+  functionalities it provides for working with **text** and **character** data
+* **Iterating Through a String:**
+* **Using a For Loop:**
+```
+String str = "Hello, world!";
+for (int i = 0; i < str.length(); i++) {
+    char ch = str.charAt(i);
+    System.out.println(ch);
+}
+```
+* **Using a For-Each Loop:**
+```
+String str = "Hello, world!";
+for (char ch : str.toCharArray()) {
+    System.out.println(ch);
+}
+```
+* **Using Java Streams:**
+```
+String str = "Hello, world!";
+str.chars().forEach(ch -> {
+    System.out.println(ch);
+});
+```
+* **Using Java 8+ String's codePoints() (for Unicode characters):**
+```
+String str = "Hello, world!";
+str.codePoints().forEach(codePoint -> {
+    char ch = (char) codePoint;
+    System.out.println(ch);
+});
+```
+* This method retrieves a stream of **Unicode code points** and allows you to perform actions for **each Unicode 
+  character** in the string

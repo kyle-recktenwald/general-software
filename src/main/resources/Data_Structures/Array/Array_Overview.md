@@ -304,3 +304,97 @@ public static void transposeMatrix(int[][] matrix) {
     }
 ```
 
+### Rotating an Array:
+* To "rotate an array" means to **shift** its elements **circularly** by a **certain number of steps** either to the 
+  **left or right**
+* This operation **changes the order of the elements** in the array while maintaining all the original elements
+* **Left Rotation:**
+  * In a **left rotation**, elements are **moved towards** the **beginning of the array**
+  * For example, if you have an array `[1, 2, 3, 4, 5]` and perform a left rotation by 2 steps, the resulting array 
+    would be `[3, 4, 5, 1, 2]`
+  * Elements wrap around from the beginning of the array to the end.
+* **Right Rotation:**
+  * In a **right rotation**, elements are shifted towards **the end of the array**
+  * For example, using the same array `[1, 2, 3, 4, 5]` and performing a **right rotation** by 2 steps would result in 
+    `[4, 5, 1, 2, 3]`
+  * Elements wrap around from the end of the array to the beginning
+* Rotating an array doesn't change the elements themselves, but it **rearranges their positions** in a **circular 
+  manner**
+* Depending on the direction and number of steps for rotation, elements move to new positions within the array
+* The rotation can be implemented using various techniques such as reversing elements, using auxiliary arrays, or 
+  applying modular arithmetic to wrap around indices
+* **Example 1: Through Reversing the Elements:**
+```
+public void rotateRight(int[] nums, int k) {
+    int n = nums.length;
+    k %= n; // To handle cases where k is greater than n
+
+    reverse(nums, 0, n - 1); // Reverse the entire array
+    reverse(nums, 0, k - 1); // Reverse the first k elements
+    reverse(nums, k, n - 1); // Reverse the remaining elements
+}
+
+public void rotateLeft(int[] nums, int k) {
+    int n = nums.length;
+    k %= n; // To handle cases where k is greater than n
+
+    reverse(nums, 0, n - 1); // Reverse the entire array
+    reverse(nums, 0, n - k - 1); // Reverse the first k elements
+    reverse(nums, n - k, n - 1); // Reverse the remaining elements
+}
+
+private void reverse(int[] nums, int start, int end) {
+    while (start < end) {
+        int temp = nums[start];
+        nums[start] = nums[end];
+        nums[end] = temp;
+        start++;
+        end--;
+    }
+}
+```
+* **Example 2: Using an Auxiliary Array:**
+```
+public void rotateArray(int[] nums, int k) {
+    int n = nums.length;
+    k = k % n; // Ensure effective rotations within the array length
+    
+    int[] rotated = new int[n];
+    for (int i = 0; i < n; i++) {
+        rotated[(i + k) % n] = nums[i];
+    }
+    
+    System.arraycopy(rotated, 0, nums, 0, n);
+}
+```
+
+### The `System.arraycopy` Method:
+* `System.arraycopy` is a method in Java used for copying elements from one array to another
+* It's a highly efficient way to perform array copying operations
+* Here's the signature of the `System.arraycopy` method:
+  * `public static void arraycopy(Object src, int srcPos, Object dest, int destPos, int length)`
+* **Parameters:**
+  * `src`: The source array from which elements will be copied
+  * `srcPos`: The starting position in the source array from where to start copying
+  * `dest`: The destination array where elements will be copied
+  * `destPos`: The starting position in the destination array where elements will be copied
+  * `length`: The number of elements to be copied from the source array to the destination array
+```
+int[] source = {1, 2, 3, 4, 5};
+int[] destination = new int[5];
+
+// Copying elements from source to destination starting from index 1
+System.arraycopy(source, 1, destination, 0, 4);
+// destination array will become {2, 3, 4, 5, 0}
+```
+* **Explanation:**
+  * In the above example, `source` is the **source array**, and `destination` is the **array where elements will be
+    copied**
+  * `srcPos` is 1, indicating that **copying will start** from **index 1** in the **source array**
+  * `destPos` is 0, indicating that **copying will start** from **index 0** in the **destination array**
+  * `length` is 4, indicating that **4 elements will be copied** **from the source array to the destination array**
+* This method is often used to efficiently copy elements between arrays in Java without having to iterate through
+  the elements manually
+* It's particularly useful when working with large arrays or when performance optimization is necessary
+
+
