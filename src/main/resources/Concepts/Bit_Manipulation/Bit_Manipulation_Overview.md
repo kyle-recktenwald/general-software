@@ -32,6 +32,56 @@
   **bitwise operations**
 * <img src="images/Bit_Manipulation_Diagram.png" width="500">
 
+### Bitmask:
+* A **bitmask** is a **sequence of bits** used for **various bitwise operations** to **manipulate or represent data**
+* It's a **technique** in computer science where **specific bits** within a **binary number** or **sequence** are used 
+  to **convey certain information**, **toggle settings**, or **perform logical operations**
+* **Key Points about Bitmasks:**
+  * **Bit-Level Operations:**
+    * Bitmasks allow you to work at the level of individual bits within binary numbers using bitwise operations
+  * **Flags and Settings:**
+    * Bitmasks are often used to represent settings or flags, where each bit represents a specific setting
+    * For example, in a system with multiple options, each bit might indicate the activation or deactivation of a 
+      particular feature
+  * **Logical Operations:**
+    * Bitwise AND, OR, XOR, and NOT operations are commonly applied using bitmasks to perform tasks like setting, 
+      clearing, or toggling specific bits
+  * **Efficient Memory Usage:**
+    * Bitmasks can be used to efficiently store multiple boolean flags or settings within a single integer or a
+      sequence of bits, saving memory compared to using separate variables for each setting
+  * **Bitwise Shifts:**
+    * Left and right shifts are often used with bitmasks to move bits left or right, effectively multiplying or 
+      dividing by powers of two
+* **Example Usage:**
+  * Let's consider a scenario where we use a bitmask to **represent different permission levels** in a system:
+```
+// Define permission levels using bitmasks
+int READ = 1;     // Binary: 0001
+int WRITE = 2;    // Binary: 0010
+int DELETE = 4;   // Binary: 0100
+
+// User permissions
+// Combined permission: READ and WRITE
+int userPermissions = READ | WRITE;  
+
+// Checking permissions using bitwise AND
+if ((userPermissions & READ) != 0) {
+    // User has READ permission
+}
+
+// Adding DELETE permission
+// Combined permission: READ, WRITE, and DELETE
+userPermissions |= DELETE;
+```
+* **In this example:**
+  * **Each permission level** is **represented** using a **different bit position within an integer**
+  * Bitwise `OR` (`|`) is used to **combine permissions** for a user
+  * Bitwise `AND` (`&`) is used to check if a user has a **specific permission**
+  * Bitwise `OR` assignment (`|=`) is used to **add a new permission** to the **user's existing permissions**
+* Bitmasks are **versatile** and **powerful** for **handling low-level operations**, **optimizing memory usage**, and 
+  managing **multiple settings** or **flags** within a **compact representation of bits**
+
+
 ### Flipping the Bits in a Number:
 * **Flipping all the bits** within a number means **changing each 0 bit to 1** and **each 1 bit to 0**
 * In Java, you can achieve this using the **XOR (`^`) operation with a bitmask**

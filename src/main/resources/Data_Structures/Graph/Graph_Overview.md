@@ -31,3 +31,89 @@
   more, based on the specific characteristics of their nodes and edges
 * They are widely used in computer science and various applications, including **data modeling**, **network analysis**, 
   and **algorithm design**
+
+### Java Implementation:
+```java
+public class Graph {
+  // Number of vertices
+  private int V;
+  // Adjacency list representation
+  private LinkedList<Integer> adjList[]; 
+
+  public Graph(int v) {
+      V = v;
+      adjList = new LinkedList[v];
+      for (int i = 0; i < v; ++i)
+          adjList[i] = new LinkedList<>();
+  }
+
+  // Function to add an edge to the graph
+  void addEdge(int v, int w) {
+      adjList[v].add(w); // Add w to v's list
+      adjList[w].add(v); // For undirected graph, add v to w's list
+  }
+
+  // Function to print the graph
+  void printGraph() {
+      for (int i = 0; i < V; ++i) {
+          System.out.println("Adjacency list of vertex " + i);
+          System.out.print("head");
+          for (Integer node : adjList[i]) {
+              System.out.print(" -> " + node);
+          }
+          System.out.println("\n");
+      }
+  }
+
+  public static void main(String args[]) {
+      int V = 4;
+      Graph graph = new Graph(V);
+
+      graph.addEdge(0, 1);
+      graph.addEdge(0, 2);
+      graph.addEdge(1, 2);
+      graph.addEdge(2, 3);
+
+      graph.printGraph();
+  }
+}
+```
+* **Implementation Steps:**
+  * Initialize variables for `int` vertices, and the adjacency list LinkedList<Integer> adjList[]
+
+### Adjacency List:
+* An adjacency list is a data structure used to represent graphs
+* It's a collection of linked lists or arrays where each element in the collection represents a vertex in the graph, 
+  and the list associated with a vertex stores its adjacent vertices or edges
+* In this representation:
+  * For a graph with `V` vertices, an array or a collection of size `V` is created
+  * Each element in this array represents a vertex in the graph
+  * For each vertex `v`, the associated list stores all the vertices adjacent to `v`
+* Here's a breakdown of the key components:
+  * Array or Collection:
+    * The outer structure is typically an array, a list, or a map where the indices or keys represent vertices in the 
+      graph
+  * Linked Lists or Arrays:
+    * Each element in the array or collection contains a linked list, array, or another appropriate data structure to 
+      store adjacent vertices
+    * For an unweighted graph, the list might contain adjacent vertices
+    * For a weighted graph, the list might store pairs of vertices and their edge weights
+  * Example:
+    * If you have a graph with vertices 0, 1, 2, and 3, and edges between 0-1, 0-2, 1-2, 2-0, 2-3, 3-3, the adjacency 
+      list representation might look like:
+```
+0 -> 1 -> 2
+1 -> 0 -> 2
+2 -> 0 -> 1 -> 3
+3 -> 2 -> 3
+```
+* Here, vertex 0 is connected to vertices 1 and 2, and so on
+* Each vertex maintains a list of its adjacent vertices
+* Advantages of Adjacency Lists:
+  * Efficient for sparse graphs (graphs with fewer edges)
+  * Require less memory compared to adjacency matrices for sparse graphs
+  * Allow easy iteration over neighbors of a vertex
+  * However, for dense graphs (graphs with many edges), adjacency matrices might be more efficient due to their 
+    constant-time edge lookup
+  * Adjacency lists are commonly used in graph algorithms, especially when memory efficiency is a concern or when 
+    dealing with graphs that don't have a large number of edges between vertices

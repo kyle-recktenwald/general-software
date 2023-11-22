@@ -178,6 +178,7 @@ int value = matrix[1][2];  `
 ```
 **Iteration:**
 ```
+int[][] matrix;
 for (int i = 0; i < matrix.length; i++) {
     for (int j = 0; j < matrix[i].length; j++) {
         System.out.print(matrix[i][j] + " ");
@@ -212,6 +213,7 @@ public class TwoDArrayExample {
 ### Iterating Through 2D Arrays:
 * **Using a for-each Loop:**
 ```
+int[][] matrix;
 for (int[] row : matrix) {
     for (int element : row) {
       System.out.print(matrix[i][j] + " ");
@@ -222,10 +224,11 @@ for (int[] row : matrix) {
 * **Using a Break Statement:**
   * If you need to **stop iteration based on a condition**, consider using `break` to exit the loops
 ```
+int[][] matrix;
 for (int i = 0; i < matrix.length; i++) {
     for (int j = 0; j < matrix[i].length; j++) {
         if (/* some condition */) {
-            // Process and break
+            System.out.print(matrix[i][j] + " ");
             break;
         }
     }
@@ -237,6 +240,7 @@ for (int i = 0; i < matrix.length; i++) {
 * **Primary Diagonal:**
   * The **primary diagonal** consists of elements where the **row index** is **equal** to the **column index**
 ```
+int[][] matrix;
 for (int i = 0; i < matrix.length; i++) {
     int diagonalElement = matrix[i][i];
     System.out.println(diagonalElement);
@@ -246,6 +250,7 @@ for (int i = 0; i < matrix.length; i++) {
   * The **secondary diagonal** consists of elements where the **row index** and **column index** **sum up to one less 
     than the size of the matrix**
 ```
+int[][] matrix;
 for (int i = 0; i < matrix.length; i++) {
     int diagonalElement = matrix[i][matrix.length - 1 - i];
     System.out.println(diagonalElement);
@@ -255,6 +260,7 @@ for (int i = 0; i < matrix.length; i++) {
 * **Both Diagonals:**
   * If you need to access both diagonals simultaneously, you can use a single loop:
 ```
+int[][] matrix;
 for (int i = 0; i < matrix.length; i++) {
     int primaryDiagonalElement = matrix[i][i];
     int secondaryDiagonalElement = matrix[i][matrix.length - 1 - i];

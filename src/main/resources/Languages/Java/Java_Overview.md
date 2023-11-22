@@ -593,3 +593,57 @@ str.codePoints().forEach(codePoint -> {
 ```
 * This method retrieves a stream of **Unicode code points** and allows you to perform actions for **each Unicode 
   character** in the string
+
+### Anonymous Function (Lambda):
+* In Java, an **anonymous function** is a function that **doesn't have a name** and is **defined without a formal 
+  declaration**
+* It's **also known as a lambda expression** when used with **functional interfaces**
+* Anonymous functions are primarily used to **create instances** of **functional interfaces** in a **more concise and 
+  readable way**
+* In Java, **anonymous functions** are commonly created using **lambda expressions**, which are a **shorthand way** to 
+  **represent an implementation** of a **functional interface**
+* Lambda expressions provide a way to **create an instance** of a **functional interface without explicitly defining a 
+  separate named method**
+* For instance, consider the following example of an anonymous function (lambda expression) that squares a number:
+```java
+// Defining a functional interface with 
+// a single abstract method:
+interface MyInterface {
+    int operate(int x);
+}
+
+public class Main {
+    public static void main(String[] args) {
+      // Creating an instance of 
+      // MyInterface using a lambda expression:
+        MyInterface square = (x) -> x * x;
+
+      // Using the anonymous function 
+      // to square a number
+        int result = square.operate(5); 
+        System.out.println("Result: " + result);
+      // This will result in 25
+    }
+}
+```
+* In the above example:
+  * `MyInterface` is a **functional interface** with a **single abstract method**, `operate`
+  * `(x) -> x * x;` is the lambda expression that implements the operate method by **squaring the input `x`**
+  * `square` is an instance of `MyInterface` created using the lambda expression
+* **Lambda Syntax:**
+  * **General Syntax:**
+    * `(parameters) -> { body }` or `(parameter1, parameter2, ...) -> { body }` 
+  * For example, a lambda expression that doubles a number:
+    * `Function<Integer, Integer> doubler = (num) -> num * 2;`
+  * The syntax for a lambda expression consists of the following parts:
+    * **Parameter List:**
+      * If the lambda expression **takes parameters**, they are **enclosed in parentheses**
+      * For example, `(int x, int y)` or just `(x, y)` **if the types can be inferred**
+    * **Arrow Operator:**
+      * It's represented by the `->` symbol, which **separates** the **parameter list from the body** of the lambda 
+        expression
+    * **Body:**
+      * The body of the lambda expression contains the **code** that **performs the action** of the **function**
+      * It can be a **single expression** or a **block of code enclosed in curly braces {}**
+      * If it's a **single expression**, it can **implicitly return the result**
+      * If it's a **block**, you **need to use a return statement explicitly**

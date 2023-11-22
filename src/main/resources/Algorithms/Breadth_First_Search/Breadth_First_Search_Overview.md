@@ -27,3 +27,67 @@
 * BFS is implemented using a **queue data structure**, and its **time complexity is typically `O(V + E)`**, where `V` 
   is the **number of vertices**, and `E` is the **number of edge**s in the graph
 * <img src="images/Breadth_First_Search_Diagram.png" width="500">
+
+### Java Implementation:
+* **Adjacency List:**
+  * An adjacency list is a data structure used to represent graphs
+  * It's a collection of linked lists or arrays where each element in the collection represents a vertex in the graph, 
+    and the list associated with a vertex stores its adjacent vertices or edges
+```java
+public class Graph {
+  // Number of vertices
+  private int V;
+  // Adjacency list representation
+  private LinkedList<Integer> adj[];
+
+  public Graph(int v) {
+      V = v;
+      adj = new LinkedList[v];
+      for (int i = 0; i < v; ++i)
+          adj[i] = new LinkedList();
+  }
+
+  // Function to add an edge to the graph
+  void addEdge(int v, int w) {
+      adj[v].add(w);
+  }
+
+  // Function to perform Breadth First Search
+  void BFS(int s) {
+      boolean visited[] = new boolean[V];
+
+      LinkedList<Integer> queue = new LinkedList<>();
+
+      visited[s] = true;
+      queue.add(s);
+
+      while (queue.size() != 0) {
+          s = queue.poll();
+          System.out.print(s + " ");
+
+          Iterator<Integer> i = adj[s].listIterator();
+          while (i.hasNext()) {
+              int n = i.next();
+              if (!visited[n]) {
+                  visited[n] = true;
+                  queue.add(n);
+              }
+          }
+      }
+  }
+
+  public static void main(String args[]) {
+      Graph g = new Graph(4);
+
+      g.addEdge(0, 1);
+      g.addEdge(0, 2);
+      g.addEdge(1, 2);
+      g.addEdge(2, 0);
+      g.addEdge(2, 3);
+      g.addEdge(3, 3);
+
+      System.out.println("Breadth First Traversal (starting from vertex 2): ");
+      g.BFS(2);
+  }
+}
+```
