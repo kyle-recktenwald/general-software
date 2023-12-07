@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Arrays {
-
-
     public int[] intersect(int[] nums1, int[] nums2) {
         HashMap<Integer, Integer> map1 = new HashMap<>();
         HashMap<Integer, Integer> map2 = new HashMap<>();
@@ -44,4 +42,20 @@ public class Arrays {
         return result;
     }
 
+    public static int[] plusOne(int[] digits) {
+        int n = digits.length;
+
+        for (int i = n - 1; i >= 0; i--) {
+            if (digits[i] < 9) {
+                digits[i]++;
+                return digits;
+            } else {
+                digits[i] = 0;
+            }
+        }
+
+        int[] result = new int[n + 1];
+        result[0] = 1;
+        return result;
+    }
 }

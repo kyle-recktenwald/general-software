@@ -123,6 +123,12 @@ hashMap.forEach((key, value) -> {
     * `V getOrDefault(Object key, V defaultValue)`
     * `key`: The **key** whose **associated value** is to be returned
     * `defaultValue`: The value to be returned **if the key is not present** in the map
+```
+Map<Integer, Integer> frequencyMap = new HashMap<>();
+for (int num : arr) {
+    frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+}
+```
   * **Example:**
     * Consider a scenario where you have a `Map` representing the **frequency of words in a document**
     * You want to get the **frequency** of a specific word, and **if the word is not present** in the map, you want to 

@@ -62,6 +62,38 @@
   to do it**
 * This approach often leads to **more concise**, **readable**, and **maintainable code**
 
+### Side Effects in Imperative Programming:
+* In **imperative programming**, a **side effect** refers to **any change** or **interaction** that **occurs beyond the 
+  scope** of a **function's return value**
+* Here's an example in Java that demonstrates a side effect by **modifying a variable external to the function**:
+```java
+public class SideEffectExample {
+  // This is external to any function
+  static int globalValue = 10;
+  
+  // Modifying the global variable
+  public static void modifyGlobalValue(int newValue) {
+      globalValue = newValue; 
+  }
+  
+  public static void main(String[] args) {
+      // Initial value
+      System.out.println("Initial globalValue: " + globalValue);
+      // Function call that modifies the global variable
+      modifyGlobalValue(20);
+      // Output after modification
+      System.out.println("Modified globalValue: " + globalValue); 
+  }
+}
+```
+* In this example, `modifyGlobalValue` is a **function** that **modifies** the `globalValue` **variable**, which 
+  **exists outside the scope of the function**
+* When `modifyGlobalValue` is called with an argument of 20, it **changes the value** of `globalValue` from 10 to 20
+* This **demonstrates a side effect** because the **function not only returns a value or performs a computation but also 
+  alters a variable external to its scope**
+* Side effects like this can make code **harder to reason about** and can **introduce unexpected behavior** in **larger 
+  systems**
+
 ### Imperative Programming:
 * **Imperative programming** is a **programming paradigm** that focuses on describing a **sequence of statements or 
   instructions** to be **executed by the computer** in order to **perform a task**

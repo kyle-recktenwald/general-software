@@ -185,3 +185,211 @@ public int[] intersect(int[] nums1, int[] nums2) {
       * `O(m + n)`
       * Additional space is used for the **list** to store the **intersections**
       * The output array for the **result**
+
+### Adding One to Array of Integers;
+* You are given a **large intege**r represented as an **integer array `digits`**, where each `digits[i]` is the `i`th 
+  digit of the integer
+* The digits are **ordered** from **most significant** to **least significant** in **left-to-right order**
+* The large integer **does not contain any leading 0's**
+* **Increment** the large integer **by one** and **return** the **resulting array** of **digits**
+```
+public static int[] plusOne(int[] digits) {
+  int n = digits.length;
+  
+  for (int i = n - 1; i >= 0; i--) {
+    if (digits[i] < 9) {
+      digits[i]++;
+      
+      return digits;
+    } else {
+      digits[i] = 0;
+    }
+  }
+  
+  int[] result = new int[n + 1];
+  result[0] = 1;
+  
+  return result;
+  }
+```
+* **Implementation Steps:**
+  * **Initialize `int n`** to the **length of the array**
+  * **Iterate backwards** through the array (`int i = n - 1; i >= 0; i--`)
+    * **If** the **current digit** is **less than 9**, **increment** it by **1**, and **return the array**
+    * **Else**, **set** the **current digit** to **0**
+  * If **all digits were 9**, **after the iteration**, create a **new array** of **size `n + 1`**
+  * Set the **first digit** to **1** with `result[0] = 1`
+  * **Return** the **new array**
+
+### Moving Zeroes to End of Array:
+* Given an **integer array** `nums`, **move all 0's** to the **end** of it while **maintaining** the **relative order** 
+  of the **non-zero elements**
+* Note that you must do this **in-place** without making a copy of the array
+* **Example 1:**
+  * Input: `nums = [0,1,0,3,12]`
+  * Output: `[1,3,12,0,0]`
+* **Example 2:**
+  * Input: nums = `[0]`
+  * Output: `[0]`
+```
+public static void moveZeroes(int[] nums) {
+  int j = 0;
+  for (int i = 0; i < nums.length; i++) {
+    if (nums[i] != 0) {
+      int temp = nums[j];
+      nums[j] = nums[i];
+      nums[i] = temp;
+      j++;
+    }
+  }
+}
+```
+* **Implementation Steps:**
+  * **Initialize** `j` to **0** to **represent** the **left**, **non-zero index**
+  * **Iterate** through the array:
+    * If the current number, `i` is **not equal to zero**:
+      * **Swap** the **current number** with `j`
+      * **Increment** `j`
+
+### Two Sum in an Array:
+* Given an **array** of **integers** `nums` and an **integer** `target`, return **indices of the two numbers** such that 
+  they **add up to `target`**
+* You may **assume** that **each input** would have **exactly one solution**, and you **may not use the same element 
+  twice**
+* You can return the answer in **any order**
+* **Example 1:**
+  * **Input:** `nums = [2,7,11,15], target = 9`
+  * **Output:** `[0,1]`
+  * **Explanation:** Because `nums[0] + nums[1] == 9`, we return `[0, 1]`
+* **Example 2:**
+  * **Input:** `nums = [3,2,4], target = 6`
+  * **Output:** `[1,2]`
+```
+public static int[] twoSum(int[] nums, int target) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            if (map.containsKey(complement)) {
+                return new int[]{map.get(complement), i};
+            }
+            map.put(nums[i], i);
+        }
+
+        throw new IllegalArgumentException("No two sum solution");
+    }
+```
+* **Implementation Steps:**
+  * Initialize a new `HashMap<Integer, Integer>`, `map`
+  * **Iterate through** the array
+    * Find and **store the current number's complement** to `target`
+      * `int complement = target - nums[i];`
+    * **If the map contains the key, `complement`:**
+      * Return a new int array containing the **complement value** and `i`
+        * `return new int[]{map.get(complement), i};`
+    * **Otherwise**, put the **current value**, and **its index** in the **map**:
+      * `map.put(nums[i], i);`
+  * If no solution is found, throw an `IllegalArgumentException`
+
+### Valid Sudoku:
+* Determine if a **9 x 9 Sudoku board** is **valid**
+* **Only the filled cells need to be validated** according to the following rules:
+  * **Each row must contain** the **digits 1-9 without repetition**
+  * **Each column must contain** the **digits 1-9 without repetition**
+  * **Each of the nine 3 x 3 sub-boxes** of the grid **must contain the digits 1-9 without repetition**
+* **Note:**
+  * A Sudoku board (partially filled) **could be valid** but is **not necessarily solvable**
+  * **Only the filled cells need to be validated** according to the mentioned rules
+```java
+public class ValidSudoku {
+
+    public static boolean isValidSudoku(char[][] board) {
+      for (int i = 0; i < 9; i++) {
+        boolean[] rowCheck = new boolean[9];
+        boolean[] colCheck = new boolean[9];
+        boolean[] boxCheck = new boolean[9];
+  
+        for (int j = 0; j < 9; j++) {
+          // Check rows
+          if (board[i][j] != '.' && rowCheck[board[i][j] - '1']) {
+            return false;
+          }
+          if (board[i][j] != '.') {
+            rowCheck[board[i][j] - '1'] = true;
+          }
+  
+          // Check columns
+          if (board[j][i] != '.' && colCheck[board[j][i] - '1']) {
+            return false;
+          }
+          if (board[j][i] != '.') {
+            colCheck[board[j][i] - '1'] = true;
+          }
+  
+          // Check 3x3 sub-boxes
+          int boxRowIndex = 3 * (i / 3);
+          int boxColIndex = 3 * (i % 3);
+          if (board[boxRowIndex + j / 3][boxColIndex + j % 3] != '.' &&
+                  boxCheck[board[boxRowIndex + j / 3][boxColIndex + j % 3] - '1']) {
+            return false;
+          }
+          if (board[boxRowIndex + j / 3][boxColIndex + j % 3] != '.') {
+            boxCheck[board[boxRowIndex + j / 3][boxColIndex + j % 3] - '1'] = true;
+          }
+        }
+      }
+      return true;
+    }
+
+    public static void main(String[] args) {
+        char[][] board1 = {
+            {'5','3','.','.','7','.','.','.','.'},
+            {'6','.','.','1','9','5','.','.','.'},
+            {'.','9','8','.','.','.','.','6','.'},
+            {'8','.','.','.','6','.','.','.','3'},
+            {'4','.','.','8','.','3','.','.','1'},
+            {'7','.','.','.','2','.','.','.','6'},
+            {'.','6','.','.','.','.','2','8','.'},
+            {'.','.','.','4','1','9','.','.','5'},
+            {'.','.','.','.','8','.','.','7','9'}
+        };
+        System.out.println("Output for Example 1: " + isValidSudoku(board1));
+
+        char[][] board2 = {
+            {'8','3','.','.','7','.','.','.','.'},
+            {'6','.','.','1','9','5','.','.','.'},
+            {'.','9','8','.','.','.','.','6','.'},
+            {'8','.','.','.','6','.','.','.','3'},
+            {'4','.','.','8','.','3','.','.','1'},
+            {'7','.','.','.','2','.','.','.','6'},
+            {'.','6','.','.','.','.','2','8','.'},
+            {'.','.','.','4','1','9','.','.','5'},
+            {'.','.','.','.','8','.','.','7','9'}
+        };
+        System.out.println("Output for Example 2: " + isValidSudoku(board2));
+    }
+}
+```
+**Implementation Steps:**
+* **Iterate** through numbers `1-9` as `i`
+  * **Initialize 3 boolean arrays** of **size 9**, `rowCheck`, `colCheck`, `boxCheck`
+    * `boolean[] rowCheck = new boolean[9];`
+    * Note that they will all be **filled with `false` values** by default
+  * **Iterate** through numbers `1-9` **within the initial loop, `j`**
+    * **To Check the Rows and Columns:**
+      * If the current value is **not empty** (**equal to '.'**) and the **current value - '1'** is marked `true` in 
+        `rowCheck`, **return** `false` for a **non-valid board**
+      * If the current value is **not empty** (**equal to '.'**), **mark** the **current value in `rowCheck` - '1'** as 
+        `true`;
+      * For `colCheck`, repeat the previous two steps with the row and column indexes swapped
+        * i.e. `board[j][i]`
+    * **For the 3x3 Sub-Boxes:**
+      * Calculate the current `boxRowIndex` as `3 * (i / 3)`
+      * Calculate the current `colRowIndex` as `3 * (i % 3)`
+        * * `i / 3` and `i % 3` represent the **offsets** for the **3x3 rows and columns**
+      * **If** `board[boxRowIndex + j / 3][boxColIndex + j % 3] != '.'` 
+        and `boxCheck[board[boxRowIndex + j / 3][boxColIndex + j % 3] - '1']`
+        * Return false for an invalid board
+      * **If** `board[boxRowIndex + j / 3][boxColIndex + j % 3] != '.'`
+        * `boxCheck[board[boxRowIndex + j / 3][boxColIndex + j % 3] - '1']` = `true`;
+* **Finally**, if **`false` is never returned**, the **board is valid**, return `true`

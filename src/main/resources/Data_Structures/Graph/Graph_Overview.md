@@ -79,7 +79,9 @@ public class Graph {
 }
 ```
 * **Implementation Steps:**
-  * Initialize variables for `int` vertices, and the adjacency list LinkedList<Integer> adjList[]
+  * Instance variables:
+    * `int` V
+    * `LinkedList<Integer> adjList[] adjacencyList;`
 
 ### Adjacency List:
 * An adjacency list is a data structure used to represent graphs

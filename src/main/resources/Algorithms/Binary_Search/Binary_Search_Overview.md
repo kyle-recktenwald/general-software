@@ -34,15 +34,15 @@ public class BinarySearch {
             int mid = left + (right - left) / 2;
 
             if (arr[mid] == target) {
-                return mid; // Element found
+                return mid;
             } else if (arr[mid] < target) {
-                left = mid + 1; // Search the right half
+                left = mid + 1;
             } else {
-                right = mid - 1; // Search the left half
+                right = mid - 1;
             }
         }
 
-        return -1; // Element not found
+        return -1;
     }
 
     public static void main(String[] args) {
@@ -52,18 +52,23 @@ public class BinarySearch {
         int result = binarySearch(sortedArray, target);
 
         if (result != -1) {
-            System.out.println("Element " + target + " found at index " + result);
+            System.out.println("Element " + target + 
+                    " found at index " + result);
         } else {
-            System.out.println("Element " + target + " not found in the array.");
+            System.out.println("Element " + target + 
+                    " not found in the array.");
         }
     }
 }
 ```
-* In this Java code, the `binarySearch` method takes a **sorted array** `arr` and a **target value** `target` as 
-  parameters
-* It then performs the binary search to **find the index of the target value in the array**
-* **If the element is found**, it **returns the index**; **otherwise**, it **returns -1** to indicate that the **element 
-  is not in the array**
-* The binary search algorithm works by **repeatedly dividing the search range in half** until it either **finds the target 
-  element** or determines that the element is **not in the array**
-* It takes advantage of the **sorted nature** of the array to **efficiently narrow down** the search space
+* **Implementation Steps:**
+  * Initialize `left` and `right` **index search boundaries**:
+    * `left = 0`, `right = arr.length - 1`
+  * While `left <= right`:
+    * Find the **middle index**:
+      * `int mid = left + (right - left) / 2;`
+    * **If** the **middle value** of the array **equals `target`**, **return the middle index**
+    * **Else, if** the **middle value** of the array is **less than the target**, set the **left index boundary to 
+      `mid + 1`**
+    * **Else**, set the **right index boundary to `mid - 1`**
+  * If the element is **not found**, **return -1**
