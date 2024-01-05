@@ -899,26 +899,28 @@ public class Person {
 * The `hashCode()` method **generates a hash code based on the object's contents** and is **used in hash-based 
   collections** like `HashMap`, `HashSet`, etc., for **efficient retrieval of objects**
 
-### The Java `hashCode` Method: - TODO
-* In Java, the hashCode() method is used to generate a hash code for an object
-* It's inherited from the Object class and serves as part of the contract for hashing-based collections like `HashMap`, 
-  `HashSet`, and others
-* The primary purpose of `hashCode()` is to provide a numerical representation of an object's contents
-* This numerical value is used by hash-based data structures to quickly determine potential equality and efficient 
-  storage or retrieval of objects in collections
+### The Java `hashCode` Method:
+* In Java, the **`hashCode()` method** is used to **generate a hash code** for an **object**
+* It's **inherited** from the **`Object` class** and **serves as part of the contract** for **hashing-based 
+  collections** like **`HashMap`**, **`HashSet`**, and others
+* The **primary purpose** of `hashCode()` is to provide a **numerical representation** of an **object's contents**
+* This **numerical value** is used by **hash-based data structures** to **quickly determine potential equality** and 
+* **efficient storage or retrieval** of **objects in collections**
 * Key points about `hashCode()`:
-  * Hash Code Contract:
-    * Objects that are equal according to the `equals()` method must have the same hash code
-    * However, objects with the same hash code are not necessarily equal
-  * Efficient Retrieval:
-    * Hash-based collections use hash codes to distribute objects across buckets, allowing for faster retrieval
-  * Overriding hashCode():
-    * It's often necessary to override hashCode() when you override the equals() method in your custom class
-    * This ensures that objects that are considered equal have the same hash code
-  * Implementation considerations:
-    * A good hashCode() implementation should distribute hash codes uniformly across the range of possible hash 
-      values to prevent excessive collisions
-* Here's a basic example of overriding hashCode() along with equals() in a custom class:
+  * **Hash Code Contract:**
+    * **Objects** that are **equal** according to the **`equals()` method** must have the **same hash code**
+    * However, **objects** with the **same hash code** are **not necessarily equal**
+  * **Efficient Retrieval:**
+    * **Hash-based collections** use **hash codes** to **distribute objects across buckets**, allowing for **faster 
+      retrieval**
+  * **Overriding `hashCode()`:**
+    * It's **often necessary** to **override `hashCode()` when you override the `equals()` method** in your **custom 
+      class**
+    * This ensures that **objects** that are **considered equal** have the **same hash code**
+  * **Implementation Considerations:**
+    * A **good `hashCode()` implementation** should **distribute hash codes uniformly across the range of possible hash 
+      values** to **prevent excessive collisions**
+* Here's a **basic example** of **overriding `hashCode()` along with `equals()`** in a custom class:
 ```java
 public class Person {
 private String name;
@@ -944,9 +946,9 @@ private int age;
     }
 }
 ```
-* In this example, the `hashCode()` method uses the Objects.hash() utility method to generate a hash code based on the 
-  name and age fields of the `Person` class
-* This ensures that objects with the same name and age will produce the same hash code
+* In this example, the `hashCode()` method uses the **`Objects.hash()` utility method** to **generate a hash code based 
+  on the name and age fields of the `Person` class**
+* This ensures that objects with the **same name and age** will produce the **same hash code**
 
 ### Overriding the `equals` and `hashCode` Methods in Java: - TODO
 * Overriding the `equals()` and `hashCode()` methods in Java is crucial for ensuring proper behavior when working 
