@@ -324,7 +324,7 @@ useEffect(() => {
     };
 }, [dependencies]);
 ```
-* Explanation:
+* **Explanation:**
   * `useEffect` is a **function** provided by React that **accepts a function** (often referred to as the **effect**) as 
     its **first argument**
   * The **function passed to `useEffect`** will be **executed after the component has been rendered**
@@ -366,13 +366,174 @@ export default DataFetchingComponent;
 ```
 * In this example, **`useEffect`** is used to **simulate data fetching** with a **delay of 2 seconds** using 
   `setTimeout`
-* The effect runs once (due to the empty dependency array []) after the component is mounted
-* Inside the effect, setData updates the data state after the timeout, triggering a re-render to display the fetched 
-  data
-* The optional cleanup function returned by `useEffect` is used to perform cleanup tasks, like unsubscribing from 
-  subscriptions or clearing timers, when the component unmounts or before re-executing the effect if dependencies change
-* `useEffect` is incredibly versatile, allowing you to handle various side effects in functional components, promoting 
-  clean and efficient code organization
+* The **effect runs once** (due to the **empty dependency array []**) **after the component is mounted**
+* **Inside the effect**, **`setData` updates the data state after the timeout**, **triggering a re-render** to **display 
+  the fetched data**
+* The **optional cleanup function returned by `useEffect`** is used to **perform cleanup tasks**, like **unsubscribing 
+  from subscriptions** or **clearing timers**, **when the component unmounts** or **before re-executing the effect if 
+  dependencies change**
+* `useEffect` is **incredibly versatile**, allowing you to **handle various side effects** in **functional components**, 
+  promoting **clean** and **efficient code organization**
+
+### The `useContext` Hook in React:
+* The **`useContext` hook** in React is used to **consume values** from the **React context API**
+* **Context** provides a way to **pass data through the component tree without having to pass props manually at 
+  every level**
+* It's **particularly useful** for passing down **global data**, like **themes**, **authentication status**, 
+  **language preferences**, etc., to **deeply nested components**
+* The `useContext` hook **allows functional components** to **access the value of a context**
+* It **takes the context object** created by `React.createContext()` as an **argument** and **returns** the **current 
+  context value**
+* **Here's a basic example:**
+```
+import React, { createContext, useContext } from 'react';
+
+// Create a context
+const MyContext = createContext();
+
+// Context provider
+const MyContextProvider = ({ children }) => {
+    const value = 'Hello from Context!'; // Value to be provided
+    return <MyContext.Provider value={value}>{children}</MyContext.Provider>;
+};
+
+// A component consuming the context value using useContext
+const MyComponent = () => {
+    const contextValue = useContext(MyContext);
+    return <div>{contextValue}</div>;
+};
+
+// Use the context provider in the component tree
+const App = () => {
+    return (
+        <MyContextProvider>
+            <MyComponent />
+        </MyContextProvider>
+    );
+};
+
+export default App;
+```
+* In this example, **`MyComponent`** uses the **`useContext(MyContext)` hook** to **access** the **value provided by 
+  `MyContextProvider`**
+* It **receives** and **displays** the **value within the `div`**
+
+### The `useReducer` Hook in React:
+* The `useReducer` hook in React is a **state management hook** that offers an **alternative to `useState`**
+* It's **particularly useful** when the **state logic is complex** and **involves multiple sub-values** or when **state 
+  transitions follow a clear pattern**
+* Here's an overview of how `useReducer` works:
+  * **State and Action:**
+    * The **`useReducer` hook manages state** by **taking in a reducer function** and an **initial state**
+    * The reducer function **receives two arguments**: the **current state** and an **action**
+    * The **action** is an object that **describes what should happen to the state**
+    * It typically **contains a type property** indicating the **action to perform** and **optionally other data 
+      related to that action**
+  * **Reducer Function:**
+    * The reducer function's purpose is to **determine how the state should change in response to the given action**
+    * **Based on the action type**, the **reducer function returns a new state or the unchanged state if the action 
+      doesn't require any changes**
+    * It **should be a pure function** (**no side effects**) that **relies only on its arguments** to **compute the next 
+      state**
+  * **Dispatching Actions:**
+    * To **update the state managed by `useReducer`**, you use the **`dispatch` function**
+    * **`dispatch` accepts an action object** and **triggers the execution of the reducer function**
+    * When **`dispatch` is called with an action**, React **calls the reducer function with the current state and the 
+      provided action**, and then **updates the state based on the returned value**
+  * **Usage:**
+    * You **invoke `useReducer`** by **providing the reducer function** and the **initial state**
+    * It **returns an array** containing the **current state** and a **dispatch function** that you can use to 
+      **dispatch actions** to **update the state**
+* The **main advantage** of `useReducer` over `useState` is that it's **more suitable** for **managing complex state 
+  logic**
+* It's often favored when **state transitions involve multiple sub-values** or when the **same state transition logic** 
+  is **reused across different parts of the application**
+```
+import React, { useReducer } from 'react';
+
+// Reducer function
+function reducer(state, action) {
+    switch (action.type) {
+        case 'INCREMENT':
+            return { count: state.count + 1 };
+        case 'DECREMENT':
+            return { count: state.count - 1 };
+        default:
+            return state;
+    }
+}
+
+function Counter() {
+    const [state, dispatch] = useReducer(reducer, { count: 0 });
+
+    return (
+        <div>
+            Count: {state.count}
+            <button onClick={() => dispatch({ type: 'INCREMENT' })}>Increment</button>
+            <button onClick={() => dispatch({ type: 'DECREMENT' })}>Decrement</button>
+        </div>
+    );
+}
+```
+* In this example, the **`Counter` component manages its state** (`{ count: 0 }`) using `useReducer`, and the **buttons 
+  dispatch actions** to **modify the count value** via the **`reducer` function**
+
+### The `useCallback` Hook in React:
+* The `useCallback` hook in React is used to **memoize functions**, primarily to **optimize performance** by **preventing 
+  unnecessary re-creations of functions** in situations where a **component's re-render** might lead to **unnecessary 
+  function reallocations**
+* Here are the key aspects of `useCallback`:
+  * **Memoization:**
+    * It **memoizes** (**caches**) the **provided function instance between renders**
+    * This means that as long as the **dependencies array** (**second argument of `useCallback`**) **remains the same**, 
+      the **same memoized function instance** is **returned on subsequent renders**
+  * **Dependency Array:**
+    * `useCallback` **accepts** a **dependencies array** as its **second argument**
+    * It **watches these dependencies** and **re-creates the function only if any of these dependencies change**
+  * **Optimizing Performance:**
+    * It's particularly useful when **passing callbacks to child components**
+    * Without `useCallback`, **passing down a new function reference** to **child components** on **every render** might 
+      cause **unnecessary re-renders** in those components
+  * **Usage:**
+    * The **typical use case** involves creating a **memoized callback function** and **passing it as a prop** to 
+      **child components** or **using it internally within a component**
+* **Example:**
+```
+import React, { useCallback, useState } from 'react';
+
+function MyComponent() {
+    const [count, setCount] = useState(0);
+
+    // Without useCallback
+    // const handleClick = () => {
+    //   setCount(count + 1);
+    // };
+
+    // With useCallback
+    const handleClick = useCallback(() => {
+        setCount(prevCount => prevCount + 1);
+    }, []);
+    // Empty dependency array as there are no external dependencies
+
+    return (
+        <div>
+            <p>Count: {count}</p>
+            <button onClick={handleClick}>Increment</button>
+        </div>
+    );
+}
+```
+* **In this example:**
+  * Initially, there's a **commented-out version** of **`handleClick` without `useCallback`**
+  * The **`handleClick` function increments the `count` state** when the **button is clicked**
+  * Using **`useCallback`**, the **function** is **memoized** with an **empty dependency array** since it **doesn't 
+    depend on any external variables or props**
+* **Remember:**
+  * `useCallback` is helpful for **optimizing performance** in **specific scenarios** where you want to **prevent 
+    unnecessary function re-creation**
+  * It's important to **use `useCallback` wisely** and **avoid overusing it**
+  * **Only memoize functions when necessary**, especially if they're **passed as dependencies to child components** or 
+    **used within `useEffect` hooks** to **avoid unnecessary re-renders**
 
 ### Props in React:
 * In React, "props" (short for **properties**) are a core concept used to pass data from one component to another

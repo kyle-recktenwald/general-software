@@ -218,6 +218,103 @@ const PI = 3.14;
 * Event handlers in JavaScript are essential for building interactive web applications
 * They enable you to respond to user actions and create dynamic behavior on web pages
 
+### Arrow Functions:
+* **Arrow functions** are a **concise way** to **write functions** in **JavaScript**, introduced in 
+  ES6 (ECMAScript 2015)
+* They provide a **more compact syntax** compared to **traditional function expressions**
+* Here's a breakdown of their syntax and behavior:
+* **Basic Syntax:**
+```
+// Arrow function with parameters
+(param1, param2) => {
+    // Function body
+};
+
+// Arrow function with a single parameter 
+// doesn't need parentheses around the parameter
+param => {
+    // Function body
+};
+
+// Arrow function with no parameters requires 
+// empty parentheses
+() => {
+    // Function body
+};
+```
+* **Implicit Return:**
+  * Arrow functions have an **implicit return** if the **function body** is a **single expression**
+  * In this case, the **curly braces `{}` are omitted**, and the **value of the expression** is **automatically returned**
+* **Example:**
+```
+// Arrow function with implicit return
+const double = x => x * 2;
+console.log(double(5)); // Output: 10
+```
+* **Behavior:**
+  * **Lexical `this` binding:**
+    * Arrow functions **do not have their own `this` context**
+    * Instead, they **inherit `this` from the surrounding code**
+    * This behavior **contrasts with regular functions**, which have their **`this` context based on how they are 
+      called**
+  * **No `arguments` object:**
+    * Arrow functions **do not have their own `arguments` object**
+    * If you need to **access arguments**, you should use **rest parameters (`...args`)** or **traditional functions**
+  * **No `new` keyword:**
+    * Arrow functions **cannot be used as constructors** to **create new instances of objects**
+    * They **lack their own `this` context**, so using **`new` with an arrow function** will **result in an error**
+* Arrow functions are commonly used for **short**, **concise functions**, especially when working with **array methods** 
+  like **`map`**, **`filter`**, and **`reduce`**, or for **functions** that **don't require their own `this` context**
+* However, they **might not be suitable** for **every scenario**, particularly when the **use of `this` is necessar**y 
+  or **when using the `arguments` object**
+
+### Rest Parameters:
+
+### Async/Await:
+* **`async`** and **`await`** are **features in JavaScript** that provide a **more straightforward** and **readable** 
+  way to work with **asynchronous code**
+* `async`:
+  * The **`async` keyword** is used to **declare** that a **function** will **operate asynchronously**
+  * Functions marked as `async` **always return a promise implicitly**
+  * Inside an **`async` function**, you can use the **`await` keyword**
+* `await`:
+  * The **`await` keyword** is used **inside an `async` function** to **pause the execution of the function until a 
+    promise is resolved**
+  * It can **only be used within an `async` function**
+  * When `await` is used, it **waits for the promise to resolve** and **returns the resolved value**
+* Here's an example to illustrate:
+```
+function resolveAfterSeconds(time) {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve(`Resolved after ${time} seconds`);
+        }, time * 1000);
+    });
+}
+
+async function asyncFunction() {
+    console.log("Start");
+
+    // Using await to pause execution until the promise resolves
+    const result1 = await resolveAfterSeconds(2);
+    console.log(result1); // Output: Resolved after 2 seconds
+
+    const result2 = await resolveAfterSeconds(3);
+    console.log(result2); // Output: Resolved after 3 seconds
+
+    console.log("End");
+}
+
+asyncFunction();
+```
+* In the above example, **`resolveAfterSeconds`** is a **function** that **returns a promise** that **resolves after a 
+  specified time**
+* Inside **`asyncFunction`**, **`await` is used** to **pause execution until the promises returned by 
+  `resolveAfterSeconds` are resolved**
+* This results in the **logged messages being printed in sequence** due to the **asynchronous behavior controlled by 
+  `await`**
+* **`async`/`await`** makes **asynchronous code** look **more like synchronous code**, making it **easier to read and 
+  understand** compared to **using callbacks** or **plain promises** for **handling asynchronous operations**
 
 
 

@@ -116,3 +116,224 @@ public class SideEffectExample {
 * While imperative programming provides **explicit control** over **how tasks are executed** and allows for **precise
   manipulation of the program state**, it can sometimes lead to code that is **more complex**, **harder to reason 
   about**, and potentially **prone to errors** related to **mutable state** and **side effects**
+
+### Callback:
+* In software development, a **callback** refers to a **function** that is **passed as an argument to another 
+  function**, with the **intention that it will be executed or "called back"** at a **later point in time** or **in 
+  response to an event**
+* Here are the key points about callbacks:
+  * **Passing Functions as Arguments:**
+    * In **languages** that support **higher-order functions** (**functions** that **can accept other functions as 
+      arguments**), callbacks are commonly used
+    * They allow you to **pass a function reference as an argument** to **another function**
+  * **Asynchronous Operations:**
+    * Callbacks are **often used in asynchronous operations**
+    * For example, when making an **HTTP request**, you might **provide a callback functio**n that **gets executed** 
+      once the **request is complete** or **returns a response**
+  * **Event Handling:**
+    * In **event-driven programming**, callbacks are used to **handle events**
+    * You can **register a callback function** to be called when a **particular event occurs** (such as a **button 
+      click**, **mouse movement**, or **data arrival**)
+  * **Error Handling:**
+    * Callbacks can be used for **error handling** in **asynchronous code**
+    * They often follow a convention where the **first argument** of the **callback function represents an error**, 
+      allowing developers to **handle errors gracefully**
+  * **Anonymous Functions or Named Functions:**
+    * Callbacks can be **defined** as **anonymous functions inline** or as **named functions defined elsewhere in the 
+      code**
+* Here's a JavaScript example demonstrating the use of a callback:
+```
+function fetchDataFromServer(callback) {
+    // Simulating an asynchronous operation (e.g., fetching data from a server)
+    setTimeout(() => {
+        const data = { name: 'John', age: 30 };
+        callback(data); // Callback function is invoked with the fetched data
+    }, 1000);
+}
+
+function processData(data) {
+    console.log('Received data:', data);
+}
+
+// Usage: Passing processData as a callback to fetchDataFromServer
+fetchDataFromServer(processData);
+```
+* In this example:
+  * **`fetchDataFromServer`** is a **function** that **simulates** an **asynchronous operation**
+  * It takes a **callback function** as an **argument** and, **after a timeout**, **invokes the callback with the 
+    fetched data**
+  * **`processData`** is **another function** that **processes the received data**
+  * **`processData`** is **passed as a callback** to `fetchDataFromServer`, and it **gets called with the fetched data** 
+    once the **operation is completed**
+* Callbacks are **fundamental** in **many programming paradigms**, especially in **asynchronous programming**, **event 
+  handling**, and **functional programming concepts** like **higher-order functions**
+* However, they can sometimes lead to **callback hell** or **complex nesting** when dealing with **multiple asynchronous 
+  operations**
+* This issue has led to the evolution of other patterns and techniques like **Promises**, **`async`/`await`**, and 
+  **functional composition** in **modern JavaScript**
+
+### ASCII:
+* **ASCII** stands for **American Standard Code for Information Interchange**
+* It's a **character encoding standard** used in **computers and communication equipment** to **represent text and
+  control characters**
+* ASCII uses a **7-bit binary code to represent each character**, allowing for **128 possible characters**, including
+  **letters**, **numbers**, **punctuation marks**, **control characters** like **line feed** and **carriage return**,
+  and **non-printable characters**
+* Originally developed for **telegraph communication**, ASCII has become a **fundamental encoding scheme** in
+  **computing**, serving as a **basis for encoding characters** in **various languages**
+* **Notable ASCII Decimal Values:**
+  * **Lowercase 'a':** 97
+  * **Uppercase 'A':** 65
+  * **Digits '0' to '9':** 48 to 57
+* To Acquire the ASCII Value of a Character in Java:
+  * `int decimalValue = (int) 'a';`
+
+### Unicode:
+* **Unicode** is a **universal character encoding standard** used in computing to **represent text** from **virtually 
+  all writing systems in the world**
+* It provides a **unique number** for **every character regardless of platform, program, or language**
+* This standard aims to **facilitate** the **consistent representation** and **handling of text** for **all writing 
+  systems** and **languages worldwide**
+* Key points about Unicode:
+  * **Multilingual Support:**
+    * Unicode **includes characters** for **almost every writing system**, covering a **vast range of languages**, 
+      **scripts**, **symbols**, and **emojis**
+    * It allows representation of characters used in languages like **English**, **Chinese**, **Arabic**, **Cyrillic**, 
+      etc.
+  * **Character Encoding:**
+    * Unicode **assigns each character** a **unique code point**, which is a **numerical value** that can be represented 
+      in different formats such as **UTF-8**, **UTF-16**, and **UTF-32**
+    * These **encoding formats** define **how the code points are stored in memory** or **transmitted over networks**
+  * **Backward Compatibility:**
+    * Unicode aims to **ensure compatibility** with **older character encoding standards**, allowing **conversion** 
+      between **Unicode** and various **legacy encodings**
+  * **Standardization:**
+    * Governed by the **Unicode Consortium**, which **periodically releases new versions**, **adding new characters** to 
+      accommodate additional **symbols**, **languages**, and **emoji**
+  * **Software and Development:**
+    * Unicode is **widely adopted** in software development for **processing**, **displaying**, and **storing text**
+    * **Most modern operating systems**, **programming languages**, and **applications support Unicode**, enabling 
+      **multilingual support** and **internationalization** in software
+  * **Emoji:**
+    * Unicode includes a large set of **emoji characters**, which have become widely used for **expressing emotions**, 
+      **objects**, **animals**, and more in **digital communication**
+* **Basic Latin Characters (ASCII Extension):**
+  * **Lowercase 'a':** 97
+  * **Uppercase 'A':** 65
+  * **Digits '0' to '9':** 48 to 57
+* Unicode's primary goal is to **eliminate the limitations** of **older character encodings** that supported only a 
+  **limited subset of characters** or **specific languages**
+* It provides a **comprehensive framework** for **representing text** in **any language** and **continues to evolve** to 
+  **accommodate new characters and symbols**
+
+### ASCII vs. Unicode:
+* **ASCII** (**American Standard Code for Information Interchange**) and **Unicode** are **both character encoding 
+  standards** used to **represent text** in **computers**, but they differ in several key aspects:
+  * **Character Set Size:**
+    * **ASCII:**
+      * Originally used **7 bits** to represent characters, allowing for **128 possible characters**, including 
+        **letters** (**both cases**), **digits**, **punctuation**, and **control characters**
+    * **Unicode:**
+      * Uses a variable-width encoding (commonly **UTF-8**, **UTF-16**, or **UTF-32**) and can represent a much 
+        **larger number of characters**
+      * Unicode can accommodate **over a million unique characters**, encompassing **scripts**, **symbols**, **emojis**, 
+        and **characters** from various languages
+  * **Range of Characters:**
+    * **ASCII:**
+      * Primarily focused on **English character**s and **control characters**, lacking support for characters from 
+        **other languages or scripts**
+    * **Unicode:**
+      * Comprehensive and includes characters from almost **all writing systems in the world**, covering a **vast array** of 
+        **languages**, **symbols**, **emojis**, **mathematical symbols**, and more
+  * **Encoding Scheme:**
+    * **ASCII:**
+      * Used **fixed-width encoding** with **7 bits per character** in its **original form**
+      * Later, extended versions like **ANSI** and **UTF-8** provided **some backward compatibility**
+    * **Unicode:**
+      * Employs **variable-width encoding** (**UTF-8**, **UTF-16**, **UTF-32**), where **different characters** can 
+        **occupy different numbers of bytes**
+      * **UTF-8** is **backward compatible with ASCII** (because the **first 128 characters of Unicode match ASCII**), 
+        making it **widely used** in **systems handling ASCII** and **international characters simultaneously**
+  * **Backward Compatibility:**
+    * **ASCII:**
+      * **Limited backward compatibility** with **other character encoding schemes** due to its **smaller character 
+        set**
+    * **Unicode:**
+      * Offers **extensive backward compatibility** and can **represent characters** from **most older character 
+        encoding systems** like **ASCII**, **ISO-8859**, and others
+  * **Scope and Internationalization:**
+    * **ASCII:**
+      * **Initially designed** for **English-based communication** and **lacked support for characters** from **other 
+        languages** or **scripts**
+    * **Unicode:**
+      * Designed for **internationalization** and aims to cover **all writing systems worldwide**, allowing support for 
+        **diverse languages** and **symbols** within a **single encoding scheme**
+* In summary, while **ASCII** was an **early** and **limited character encoding standard** suitable for **basic 
+  English-based text**, **Unicode** is a **comprehensive standard** that provides a **much broader** and **inclusive 
+  framework** for **representing text** from 
+  **multiple languages**, **scripts**, and **symbol systems**
+* **Unicode's flexibility** and **extensive character set** make it the **prevalent standard** for **modern software 
+  and communication**
+
+### UTF-8:
+* **UTF-8** (**Unicode Transformation Format 8-bit**) is a **variable-width character encoding standard** used to 
+  **represent Unicode characters**
+* It's one of the **most commonly used encoding schemes in computing** and is designed to be **efficient**, 
+  **backward-compatible with ASCII**, and **capable of representing the entire Unicode character set**
+* **Key features of UTF-8:**
+  * **Variable-width Encoding:**
+    * **UTF-8** uses **one to four bytes** to **represent a Unicode character**
+    * **Basic ASCII characters** (**code points 0 to 127**) are represented in a **single byte** (which is **compatible 
+      with ASCII**)
+    * Characters with **higher Unicode code points** use **multiple bytes**, allowing the encoding to handle a **vast 
+      range of characters** while **using space efficiently**
+  * **Compatibility with ASCII:**
+    * **UTF-8 maintains full compatibility** with the **ASCII character set**
+    * **ASCII characters** are **represented** using the **same byte values as in ASCII**, ensuring **backward 
+      compatibility** with **systems using ASCII** while also allowing representation of a **much larger set of 
+      characters**
+  * **Unicode Support:**
+    * **UTF-8** can represent the **entire Unicode character set**, covering **characters** from **various languages**, 
+      **symbols**, **emojis**, **mathematical symbols**, and more
+    * The **multi-byte structure** allows it to **encode characters beyond the ASCII range**
+  * **Efficiency:**
+    * For **text primarily in the ASCII character set**, **UTF-8 requires** the **same amount of memory as ASCII 
+      encoding** since it **uses single bytes for ASCII characters**
+  * **Wide Adoption:**
+    * UTF-8 is **widely adopted** in **software** and on the **web** due to its **efficiency**, **compatibility with 
+      ASCII**, and support for **multilingual text**
+* **In UTF-8:**
+  * **Basic ASCII characters** (**0-127**) are represented in a **single byte**
+  * Characters in the range of **128** to **2047** are represented using **two bytes**
+  * Characters in the range of **2048** to **65535** are represented using **three bytes**
+  * Characters in the range of **65536** to **1114111** are represented using **four bytes**
+* This **variable-width encoding** allows UTF-8 to **efficiently represent** a **diverse range of characters** while 
+  **ensuring compatibility** with **systems that use ASCII**
+* It's a **fundamental encoding** in **modern computing**, widely used for **text encoding**, **data interchange**, and 
+  **internationalization support** in software
+
+### Alphanumeric Definition:
+* In software, "**alphanumeric**" refers to data that consists of a **combination** of **alphabetical characters** 
+  (**A-Z**, **both uppercase and lowercase**) and **numeric digits** (**0-9**)
+* Alphanumeric data is a mix of these characters and **may also include other permissible characters** such as 
+  **punctuation marks** or **special symbols**, **depending on the context**
+* Alphanumeric data is commonly used for **various purposes** in software development:
+  * **User Input Validation:**
+    * When **validating user input**, systems often **accept alphanumeric characters** for **usernames**, **passwords**, 
+      or other text fields
+    * This validation ensures that the input contains a **mix of letters and numbers**, making it **more complex** and 
+      **secure**
+  * **Data Storage:**
+    * Alphanumeric data is **frequently used in databases** and **files** to **represent identifiers**, **codes**, or 
+      **keys**
+    * For example, **product codes**, **customer IDs**, or **unique alphanumeric strings** generated by systems
+  * **Text Processing:**
+    * **Algorithms** that **handle text** often work with **alphanumeric characters**
+    * For instance, **searching**, **parsing**, or **manipulating text data** might involve **recognizing and processing 
+      alphanumeric sequences** within **larger blocks of text**
+  * **Encryption and Hashing:**
+    * Alphanumeric characters are an **integral part** of **encryption keys**, **passwords**, and **hashed 
+      representations** used for security purposes
+* When **software specifications** mention "**alphanumeric**," they typically imply that the **data expected** or 
+  **processed** should contain a **mix of letters and numbers**, allowing a **wider range of possibilities** while 
+  **maintaining** a **structured format**
