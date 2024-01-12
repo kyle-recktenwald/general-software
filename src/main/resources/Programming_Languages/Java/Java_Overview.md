@@ -54,6 +54,78 @@
   much more
 * <img src="images/Java_Diagram.gif" width="400">
 
+### A Class in Java:
+* In Java, a **class** is a **blueprint** or **template** used to **create objects**
+* It serves as a **blueprint for objects**, **defining** their **structure**, **behavior**, and **attributes**
+* **Each object created from a class** is an **instance of that class**
+* Here are the key components of a class in Java:
+* **Class Declaration:**
+  * To **define a class** in Java, you use the `class` keyword followed by the **class name**
+  * The **class body** is **enclosed within curly braces `{}`**
+```java
+public class MyClass {
+    // Class members (fields, methods, constructors, etc.) go here
+}
+```
+* **Fields (Variables):**
+  * **Fields** are **variables declared within a class** to **represent its data or state**
+  * These can be **instance variables** (**belonging to each object**) or **static variables** (**shared across all 
+    instances**)
+```java
+public class MyClass {
+  // Instance variable
+  private int age;
+
+  // Static variable
+  public static String name;
+}
+```
+* **Methods:**
+  * Methods are **functions defined within a class** to **specify its behavior**
+  * They **perform operations** and **manipulate the data of the class**
+```java
+public class MyClass {
+  // Method
+  public void displayInfo() {
+      System.out.println("Information...");
+  }
+}
+```
+* **Constructors:**
+  * Constructors are **special methods** used to **initialize objects when they are created**
+  * They have the **same name as the class** and **may take parameters**
+```java
+public class MyClass {
+  // Constructor
+  public MyClass(int initialAge) {
+      this.age = initialAge;
+  }
+}
+```
+* **Access Modifiers:**
+  * Java allows the use of **access modifiers** (like **`public`**, **`private`**, **`protected`**) to **control the 
+    visibility of fields**, **methods**, and **constructors within a class or from outside**
+```java
+public class MyClass {
+  private int secretData; // Private field
+  
+  public void displayInfo() { // Public method
+    System.out.println("Information...");
+  }
+}
+```
+* **Class Members:**
+  * **Members of a class** in Java refer to the **various components** or **entities within a class** that **define 
+    its structure, behavior, and characteristics**
+  * These members include **fields (variables)**, **methods**, **constructors**, and **nested classes or interfaces**
+* Classes serve as the **foundation** for **object-oriented programming** in Java, providing a way to **model real-world 
+  entities** or **abstract concepts** by **encapsulating their data and behavior**
+* They **enable code reusability**, **maintainability**, and a **structured approach to software development** by 
+  **organizing related functionalities** into **coherent units**
+* **Instances** of **classes** (**objects**) can be **created**, allowing **manipulation** and **interaction** with 
+  their **defined attributes and behaviors**
+
+
 ### The String.split() Method:
 * The `String.split()` method in Java is used to **split a string into an array of strings** based on a **specified 
   delimiter**
@@ -351,6 +423,52 @@ System.out.println("Absolute value of " + doubleValue + ": " + absDoubleValue);
   * If the **input** is an **integer**, the **result** is an **integer**; if the **input** is a **floating-point number**, 
     the **result** is a **floating-point number**
 
+### The `static` Keyword in Java:
+* In Java, the `static` keyword is used to create **class-level variables and methods** (**members**) that **belong to 
+  the class itself rather than to instances (objects) of that class**
+* There are **two main usages** of `static`:
+  * **Static Variables (Class Variables):**
+    * When a **variable** is **declared as `static` within a class**, it becomes a **class-level variable shared by all 
+      instances (objects) of that class**
+    * These variables are **initialized only once**, at the **start of the program execution**, and **retain their 
+      values throughout the program's lifetime**
+  * **Static Methods:**
+    * When a **method** is **declared as `static`**, it becomes a **class-level method** that is **associated with the 
+      class rather than with instances of the class**
+    * Static methods can be **called using the class name without creating an object of that class**
+
+* **Static Method Example:**
+```java
+public class MyClass {
+public static void doSomething() { // Static method
+// Method logic
+}
+// Other class members...
+}
+```
+* You can call the `doSomething()` method using **`MyClass.doSomething()` without instantiating the `MyClass`**
+* **Static Variables Example:**
+```java
+public class MyClass {
+  public static int count = 0; // Static variable
+  // Other class members...
+}
+```
+* Here, `count` is a static variable that is **shared among all instances** of `MyClass` and can be **accessed using
+  `MyClass.count`**
+* **Key Points About Static:**
+  * **Static members (variables/methods)** can be **accessed directly** using the **class name**, **without the need to 
+    create an instance of the class**
+  * They are **initialized** when the **class is loaded by the Java Virtual Machine (JVM)** and **exist throughout the 
+    lifetime of the program**
+  * **Static members can access other static members of the class but cannot directly access instance variables or 
+    methods (non-static members) without an object reference**
+  * They are **often used** for **constants** (`static final`) and **utility methods** that **don't require 
+    instantiation** of the class
+  * However, it's important to **use `static` judiciously**, as **excessive use** of static variables and methods can 
+    lead to **issues** with **code maintainability**, **testability**, and can **limit flexibility** in some cases, 
+    especially when dealing with **inheritance** and **polymorphism**
+
 ### Static Variables in Java:
 * In Java, a **static variable** is a **class-level variable** that **belongs to the class itself**, rather than to 
   **any instance of the class**
@@ -399,20 +517,20 @@ public static int count = 0;
 * As it's a **static variable**, it is **accessed** using the **class name** (**`MyClass.count`**) rather than through 
   an **instance of the class**
 
-### Static Constants in Java: - TODO
-* A `static final` variable in Java is a constant variable that is both static (belongs to the class itself) and final 
-  (its value cannot be changed once initialized)
+### Static Constants in Java:
+* A **`static final` variable** in Java is a **constant variable** that is **both `static`** (**belongs to the class 
+  itself**) and **`final`** (its **value cannot be changed once initialized**)
 * Here are the key characteristics of a static final variable:
-  * Class-Level Constant:
-    * It's associated with the class, not with any instance of the class
-    * Therefore, its value remains the same across all instances of the class
-  * Cannot be Reassigned:
-    * Once initialized, its value cannot be modified
-    * It is effectively a constant, and any attempt to reassign its value will result in a compilation error
-  * Initialized at Compile Time or in a Static Block:
-    * A static final variable can be initialized at the time of declaration or within a static initialization block 
-      (which runs when the class is loaded into memory)
-* Here's an example demonstrating the usage of a static final variable:
+  * **Class-Level Constant:**
+    * It's **associated with the class**, **not with any instance of the class**
+    * Therefore, its value **remains the same across all instances of the class**
+  * **Cannot be Reassigned:**
+    * **Once initialized**, its value **cannot be modified**
+    * It is **effectively a constant**, and **any attempt to reassign its value** will result in a **compilation error**
+  * **Initialized at Compile Time or in a Static Block:**
+    * A **`static final` variable** can be **initialized at the time of declaration** or **within a static 
+      initialization block** (which **runs when the class is loaded into memory**)
+* Here's an example demonstrating the usage of a `static final` variable:
 ```java
 public class Constants {
 // Static final variable initialized at declaration
@@ -430,10 +548,52 @@ public static final int MAX_VALUE = 100;
     }
 }
 ```
-* In this example, `MAX_VALUE` is declared as a static final variable in the Constants class
-* It is initialized with a value of 100 and cannot be changed afterwards
-* Any attempt to reassign a value to `MAX_VALUE` will result in a compilation error due to its final nature
-* This constant variable can be accessed using the class name followed by the variable name (`Constants.MAX_VALUE`)
+* In this example, **`MAX_VALUE`** is declared as a **`static final` variable** in the **`Constants` class**
+* It is **initialized** with a value of **`100`** and **cannot be changed afterwards**
+* **Any attempt** to reassign a value to `MAX_VALUE` will result in a **compilation error** due to its `final` nature
+* This **constant variable** can be **accessed** using the **class name followed by the variable name** 
+  (**`Constants.MAX_VALUE`**)
+
+### Static Methods in Java:
+* In Java, a **static method** is a **method associated with a class rather than with instances (objects) of that 
+  class**
+* It's **denoted** by the **`static` keyword** in the **method declaration**
+* Here are the key characteristics of static methods:
+  * **Belongs to the Class:**
+    * Static methods are **associated** with the **class itself**, **not** with **individual instances** of the 
+      **class**
+    * They **can be invoked directly** using the **class name without needing to create an object** of that class
+  * **Accessing Static Methods:**
+    * You can **call a static method** using the **class name followed by the method name**, e.g., 
+      **`ClassName.methodName()`**
+  * **No Access to Instance Variables:**
+    * Static methods **cannot directly access instance variables or non-static methods** of the class **without an 
+      object reference** because they **don't belong to any particular instance**
+  * **Cannot be Overridden:**
+    * **Unlike instance methods**, static methods **cannot be overridden** in **subclasses**
+    * They are **resolved at compile-time** based on the **reference type** rather than the **actual object type**
+* **Example of a Static Method:**
+```java
+public class MyClass {
+private static int count = 0; // Static variable
+
+    public static void incrementCount() { // Static method
+        count++; // Modifies the static variable
+    }
+
+    public static int getCount() { // Another static method
+        return count; // Returns the static variable
+    }
+}
+```
+* In this example, **`incrementCount()`** and **`getCount()`** are **both static methods**
+* You can call these methods using **`MyClass.incrementCount()`** and **`MyClass.getCount()`** **without creating an 
+  instance** of `MyClass`
+* Static methods are **commonly used** for **utility methods**, **factory methods**, or **methods** that **perform 
+  operations related to the class as a whole**, **rather than dealing with specific instances**
+* However, it's essential to **use static methods appropriately** and **understand their implications**, such as their 
+  **inability to access instance-specific data** and their **compile-time binding behavior**
+
 
 ### The Collections Class in Java:
 * The `java.util.Collections` class in Java is a **utility class** that provides **various static methods** for 
@@ -950,42 +1110,721 @@ private int age;
   on the name and age fields of the `Person` class**
 * This ensures that objects with the **same name and age** will produce the **same hash code**
 
-### Overriding the `equals` and `hashCode` Methods in Java: - TODO
-* Overriding the `equals()` and `hashCode()` methods in Java is crucial for ensuring proper behavior when working 
-  with collections, particularly hash-based collections like `HashMap`, `HashSet`, etc
+### Overriding the `equals` and `hashCode` Methods in Java:
+* Overriding the `equals()` and `hashCode()` methods in Java is **crucial** for **ensuring proper behavior** when 
+  **working with collections**, particularly **hash-based collections** like **`HashMap`**, **`HashSet`**, etc.
 * Here's why it's essential:
-  * `equals()` method:
-    * Correct comparison of object equality:
-      * The default implementation of equals() in the Object class compares references, not the actual content of 
-        objects
-      * By overriding equals(), you define how two instances of your class should be considered equal based on your 
-        class's logic
-    * Use in collections:
-      * Collections like ArrayList, LinkedList, and others use equals() to determine whether an object is present in 
-        the collection or not
-      * If you want objects of your class to be compared based on their content, rather than their memory addresses, 
-        you need to provide a custom equals() method
-  * `hashCode()` method:
-    * Efficient hashing:
-      * Hash-based collections (`HashMap`, `HashSet`, etc.) use hash codes to distribute objects across buckets for 
-        efficient storage and retrieval
-      * If you override `equals()`, you must also override `hashCode()` to maintain the contract that equal objects 
-        must have the same hash code
-    * Consistency with equals():
-      * It ensures that objects that are considered equal according to `equals()` will produce the same hash code
-      * This consistency is crucial for hash-based collections to correctly identify and manage objects
-  * Relationship between `equals()` and `hashCode()`:
-    * Contract:
-      * If two objects are equal according to `equals()`, their `hashCode()` must be the same
-    * Performance:
-      * Good `hashCode()` implementations aim to distribute objects uniformly across hash buckets to minimize 
-        collisions, which can improve the performance of hash-based collections
-* Example:
-  * Imagine a scenario where you have a `Person` class with name and age attributes
-  * You want two `Person` objects to be considered equal if they have the same name and age
-  * Overriding `equals()` allows you to define this equality condition
-  * Overriding `hashCode()` ensures that objects that are equal (based on your `equals()` logic) generate the same hash 
-    code
-* By providing custom implementations for equals() and hashCode(), you maintain consistency and correctness when using 
-  instances of your class in collections, enabling proper comparison and storage based on the defined criteria for 
-  equality
+  * `equals()` Method:
+    * **Correct Comparison of Object Equality:**
+      * The **default implementation of `equals()`** in the `Object` class **compares references**, **not the actual 
+        content** of objects
+      * By **overriding `equals()`**, you **define** how **two instances of your class** should be **considered equal** 
+        based on your **class's logic**
+    * **Use in Collections:**
+      * **Collections** like **`ArrayList`**, **`LinkedList`**, and others use `equals()` to **determine whether an 
+        object is present in the collection or not**
+      * If you want **objects** of your class to be **compared based on their content**, **rather than their memory 
+        addresses**, you need to provide a **custom `equals()` method**
+  * **`hashCode()` Method:**
+    * **Efficient Hashing:**
+      * **Hash-based collections** (**`HashMap`**, **`HashSet`**, etc.) use **hash codes** to **distribute objects 
+        across buckets** for **efficient storage and retrieval**
+      * If you **override `equals()`**, you **must also override `hashCode()`** to **maintain the contract** that 
+        **equal objects must have the same hash code**
+    * **Consistency with `equals()`:**
+      * It ensures that **objects** that are **considered equal according to `equals()`** will **produce the same 
+        hash code**
+      * This **consistency is crucial** for **hash-based collections** to **correctly identify and manage objects**
+  * **Relationship between `equals()` and `hashCode()`:**
+    * **Contract:**
+      * If **two objects are equal according to `equals()`**, their **`hashCode()` must be the same**
+    * **Performance:**
+      * **Good `hashCode()` implementations** aim to **distribute objects uniformly across hash buckets** to **minimize 
+        collisions**, which can **improve the performance** of **hash-based collections**
+* By **providing custom implementations** for **`equals()`** and **`hashCode()`**, you **maintain consistency** and 
+  **correctness** when **using instances of your class** in **collections**, enabling **proper comparison** and 
+  **storage** based on the **defined criteria for equality**
+
+### Concurrency in Java:
+* **Concurrency** in Java refers to the **ability** of a **program** to **execute multiple tasks or processes 
+  simultaneously**
+* It allows **different parts of a program** to be **executed independently**, **potentially overlapping in time**, to 
+  **improve overall performance** and **responsiveness**
+* Key concepts related to concurrency in Java:
+  * **Threads:**
+    * In Java, **concurrency** is often **achieved using threads**
+    * A **thread** is the **smallest unit of execution within a process**
+    * Java **programs** can have **multiple threads running concurrently**, allowing **tasks** to **execute in 
+      parallel**
+  * **Multithreading:**
+    * Java supports **multithreading**, which involves creating **multiple threads** within a **single program** to 
+      **perform tasks concurrently**
+    * **Each thread operates independently**, **executing** its **instructions simultaneously with other threads**
+  * **Thread Synchronization:**
+    * When **multiple threads** access **shared resources** or **critical sections of code**, there can be issues such 
+      as **race conditions** or **data inconsistency**
+    * Thread synchronization mechanisms like **synchronized blocks**, **locks**, and **semaphores** are used to 
+      **control access** to **shared resources** and ensure **thread safety**
+  * **Concurrency Utilities:**
+    * Java provides **various classes and utilities** in the **`java.util.concurrent` package** to **facilitate 
+      concurrent programming**
+    * This includes **constructs** like **`ExecutorService`**, **`ThreadPoolExecutor`**, **`CountDownLatch`**, 
+      **`Semaphore`**, **`ConcurrentHashMap`**, etc., which help in **managing threads**, **synchronization**, and 
+      **concurrent data structures**
+  * **Thread States:**
+    * Threads in Java can be in **different states** such as **`NEW`**, **`RUNNABLE`**, **`BLOCKED`**, **`WAITING`**, 
+      **`TIMED_WAITING`**, and **`TERMINATED`**
+    * **Understanding these states** is **crucial** for **managing thread execution and synchronization**
+* Concurrency in Java enables the development of **responsive** and **efficient applications** by **leveraging** the 
+  **capabilities** of **modern multi-core processors**
+* However, writing concurrent programs requires **careful consideration** of **thread safety**, **synchronization**, and 
+  **potential issues** like **deadlock** and **livelock** to ensure **correct and efficient behavior**
+* The Java platform offers **various tools and constructs** to **assist developers** in creating **robust** and 
+  **efficient concurrent applications**
+
+### The `Thread` class in Java:
+* In Java, the **`Thread` class** is a **fundamental class** in the **`java.lang package`** that allows you to **create 
+  and control threads**
+* Threads represent **independent paths of execution within a program**
+* To **use the `Thread` class**, you can either **extend it** by **creating a subclass** or **use it directly** by 
+  **providing a `Runnable` object to its constructor**
+* Here's a brief overview:
+* **Extending the Thread Class:**
+```java
+class MyThread extends Thread {
+    public void run() {
+        // Code to be executed by the thread
+    }
+}
+```
+* You would then **create an instance** of this **subclass** and **call its `start()` method to begin execution**:
+```
+MyThread thread = new MyThread();
+thread.start();
+```
+* **Implementing Runnable Interface:**
+```java
+class MyRunnable implements Runnable {
+    public void run() {
+        // Code to be executed by the thread
+    }
+}
+```
+* Then, you can **create a `Thread` object** and **pass an instance of your `Runnable` implementation** to it:
+```
+MyRunnable myRunnable = new MyRunnable();
+Thread thread = new Thread(myRunnable);
+thread.start();
+```
+* The **`start()` method** is **crucial** as it **initiates the execution of the thread** by **calling its `run()` 
+  method**, where your **specific code logic** for that thread **resides**
+* Additionally, the `Thread` class **provides methods to control thread behavior** like **`sleep()`**, **`join()`**, 
+  **`interrupt()`**, etc., allowing you to **manage the flow of execution between multiple threads**
+* Remember, **starting multiple threads** should be **done with caution** to **prevent potential synchronization 
+  issues** and **race conditions**
+
+### The `Thread.sleep()` Method in Java:
+* In Java, `Thread.sleep()` is a **method** used to **pause the execution** of the **current thread** for a **specified 
+  amount of time**
+* It allows you to **introduce delays or pauses** in your code
+* This method can be helpful in various scenarios like **simulation**, **timing**, or **controlling the flow of 
+  execution**
+Here's the **basic syntax**:
+```
+try {
+    Thread.sleep(milliseconds);
+    // Sleep for the specified number of milliseconds
+} catch (InterruptedException e) {
+    // Handle InterruptedException if necessary
+}
+```
+* **`milliseconds`:**
+  * The **duration** for which the **thread should sleep**, specified in **milliseconds**
+  * This argument represents the **length of time** the **thread** should **remain inactive**
+* An **`InterruptedException` can be thrown** if **another thread interrupts the current thread while it's sleeping**
+* It's a **checked exception**, so you need to handle it using a **`try-catch` block**, as shown in the example above
+* For instance, to make a thread pause for **1 second**:
+```
+try {
+    Thread.sleep(1000);
+    // Sleep for 1000 milliseconds (1 second)
+} catch (InterruptedException e) {
+    // Handle InterruptedException if necessary
+}
+```
+* Remember that `Thread.sleep()` **might not always guarantee an exact duration of sleep** due to factors like **system 
+  load**, **scheduler decisions**, and **precision limitations**
+
+### The `Runnable` Interface in Java:
+* In Java, `Runnable` is an **interface** used to **represent** a **task** or **block of code** that can be **executed 
+  by a thread**
+* It's part of Java's **concurrency framework** and is **commonly used** to **create threads** or **specify** the 
+  **code to be executed** in a **separate thread**
+* The `Runnable` interface **defines** a **single method** called **`run()`**, which **contains the code that needs to 
+  be executed concurrently** when a **thread is started**
+* **Any class implementing** the **`Runnable` interface must provide** an **implementation** for the **`run()` method**
+* Here's the basic structure of the `Runnable` interface:
+```java
+public interface Runnable {
+    public abstract void run();
+}
+```
+* To use the `Runnable` interface, you typically **create a class** that **implements the `Runnable` interface** by 
+  providing an  **implementation** for the **`run()` method**
+* Then, you can **pass an instance** of this class to a **`Thread` object** to **execute the code** in a **separate 
+  thread**
+* **Example:**
+```java
+public class MyRunnable implements Runnable {
+  public class MyRunnable implements Runnable {
+    @Override
+    public void run() {
+      // Code to be executed concurrently
+      for (int i = 0; i < 5; i++) {
+        System.out.println("Hello from MyRunnable: " + i);
+      }
+    }
+  }
+
+  public class Main {
+    public static void main(String[] args) {
+      MyRunnable myRunnable = new MyRunnable();
+
+      // Create a Thread and pass the Runnable object
+      Thread thread = new Thread(myRunnable);
+
+      // Start the thread
+      thread.start();
+    }
+  }
+}
+```
+* In this example, **`MyRunnable`** **implements** the **`Runnable` interface** by **providing an implementation** for 
+  the **`run()` method**
+* An **instance** of **`MyRunnable`** is then **passed to a `Thread` object**, and the **`start()` method** of the 
+  **`Thread` class** is invoked to **start the execution** of the **`run()` method** in a **separate thread**
+* Using `Runnable` allows for **better separation of concerns** by **decoupling** the **task or code logic** (defined 
+  in the `run()` method) from the **thread management**, making the code more **flexible** and **easier to maintain**
+
+### The `Timer` Class in Java:
+* In Java, the **`Timer` class** is a **utility class** in the **`java.util` package** that allows **scheduling tasks to 
+  be executed** at **specified intervals or after a delay**
+* It's part of Java's **concurrency utilities** and is commonly used for **scheduling recurring tasks** or **one-time 
+  delayed tasks**
+* Key points about the `Timer` class:
+  * **Task Scheduling:**
+    * `Timer` allows you to **schedule tasks** (**`TimerTask` objects**) for **execution** at **specified times** or 
+      **after a specified delay**
+  * **Repetitive Tasks:**
+    * It can **schedule tasks** to be **executed repeatedly** at **fixed intervals**
+  * **Single Threaded:**
+    * **`Timer` internally uses** a **single background thread** for **scheduling tasks**
+    * While this **simplifies usage**, it's important to note that **if one task takes too long to execute**, it can 
+      **delay the execution of subsequent tasks**
+* Here's a basic usage example of Timer:
+```java
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class TimerExample {
+    public static void main(String[] args) {
+        Timer timer = new Timer();
+
+        // Schedule a task to run after a delay of 2 seconds
+        timer.schedule(new MyTask(), 2000);
+
+        // Schedule a task to run every 3 seconds after an initial delay of 1 second
+        timer.scheduleAtFixedRate(new MyRepetitiveTask(), 1000, 3000);
+    }
+
+    static class MyTask extends TimerTask {
+        @Override
+        public void run() {
+            System.out.println("Task executed after delay");
+        }
+    }
+
+    static class MyRepetitiveTask extends TimerTask {
+        @Override
+        public void run() {
+            System.out.println("Repetitive task executed");
+        }
+    }
+}
+```
+* In this example:
+  * **`MyTask`** is a **class** that **extends `TimerTask`** and **defines** the **task to be executed after a delay of 
+    2 seconds**
+  * **`MyRepetitiveTask`** is another class **extending `TimerTask`** that **defines a task** to be **executed 
+    repeatedly every 3 seconds after an initial delay of 1 second**
+* The `Timer` class provides methods like **`schedule()`**, **`scheduleAtFixedRate()`**, and **`cancel()`** for 
+  **scheduling tasks** and **managing the timer**
+* However, `Timer` has **some limitations**, such as the **inability** to **handle tasks** that **throw unchecked 
+  exceptions** and the **single-threaded nature** that **might affect** the **execution of tasks** if **one takes 
+  too long**
+* For **more complex** or **robust scheduling needs**, **`ScheduledExecutorService`** from the `java.util.concurrent` 
+  package is **often preferred** due to its **enhanced functionalities** and **flexibility**
+
+### The `ExecutorService` in Java:
+* In Java, **`ExecutorService`** is an **interface** provided by the **`java.util.concurrent` package** that represents 
+  an **asynchronous execution framework** for **managing and executing tasks concurrently** using a **pool of threads**
+* The **`ExecutorService` interface extends the `Executor` interface** and provides **additional functionalities** for 
+  **managing thread lifecycles**, **submitting tasks for execution**, **controlling task execution**, and **retrieving 
+  the results of tasks**
+* Some key features of `ExecutorService` include:
+  * **Task Execution:**
+    * It allows **submitting tasks for execution asynchronously** using **methods** like **`execute(Runnable)`** or 
+      **`submit(Callable<T>)`**
+    * These tasks can be **implemented as `Runnable` or `Callable` instances**
+  * **Thread Pool Management:**
+    * `ExecutorService` **manages a pool of threads**, **abstracting away** the complexities of **managing individual 
+      threads**
+    * It **provides methods** to **control the size of the thread pool**, such as **`newFixedThreadPool(int)`** or 
+      **`newCachedThreadPool()`**
+  * **Task Scheduling:**
+    * It offers methods for **scheduling tasks to run** after a **specific delay** or at a **fixed rate** using 
+      `schedule(Runnable, long, TimeUnit)` or `scheduleAtFixedRate(Runnable, long, long, TimeUnit)`
+  * **Control Over Shutdown:**
+    * `ExecutorService` provides methods like **`shutdown()`** and **`shutdownNow()`** to **gracefully shut down the 
+      executor service**, allowing **in-flight tasks to complete** or **abruptly terminating all tasks**, respectively
+
+```java
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class ExecutorServiceExample {
+    public static void main(String[] args) {
+        // Create an ExecutorService with a fixed-size thread pool
+        ExecutorService executorService = Executors.newFixedThreadPool(3);
+
+        // Submit tasks for execution
+        for (int i = 0; i < 5; i++) {
+            final int taskId = i;
+            executorService.submit(() -> {
+                System.out.println("Task " + taskId + " executed by thread: " 
+                        + Thread.currentThread().getName());
+            });
+        }
+
+        // Shutdown the ExecutorService after tasks are done
+        executorService.shutdown();
+    }
+}
+```
+* In this example, an **`ExecutorService`** is created with a **fixed-size thread pool** of **three threads** using 
+  `Executors.newFixedThreadPool(3)`
+* **Tasks** are **submitted for execution** using `submit()` method with a **lambda expression representing the task**
+* **After submitting tasks**, the **`shutdown()` method** is called to **initiate a graceful shutdown** of the executor 
+  service **after the tasks are completed**
+
+### Serialization / Deserialization:
+* **Serialization** in software refers to the process of **converting an object's state into a format that can be easily 
+  stored, transmitted, or reconstructed later**
+* It **allows objects** to be **converted into a byte stream**, which **can be saved to a file**, **sent over a 
+  network**, or **stored in a database**
+* The **reverse process** of **recreating objects from the serialized data** is called **deserialization**
+* The main purposes of serialization are:
+  * **Persistence:**
+    * **Saving the state of an object to disk** so that it can be **retrieved later**, even **after the program has 
+      stopped running**
+  * **Inter-Process Communication:**
+    * **Sending objects between different applications** or **across a network**
+  * **Caching:**
+    * **Storing objects in memory or on disk** for **faster access**
+* In **Java**, for instance, the **`Serializable` interface** is used to **mark classes as serializable**
+* When a class **implements `Serializable`**, it signifies that its **instances can be serialized**
+* It acts as a **marker interface** and **doesn't have any methods that need to be implemented**; rather, it **indicates 
+  that the class can be serialized** by **Java's default serialization mechanism**
+```java
+import java.io.*;
+
+class MyClass implements Serializable {
+    // Class members and methods
+}
+```
+* To **serialize an object of this class**, you can use **`ObjectOutputStream`**:
+```
+MyClass objectToSerialize = new MyClass();
+
+try {
+    FileOutputStream fileOut = new FileOutputStream("file.ser");
+    ObjectOutputStream out = new ObjectOutputStream(fileOut);
+    out.writeObject(objectToSerialize);
+    out.close();
+    fileOut.close();
+} catch (IOException e) {
+    e.printStackTrace();
+}
+```
+* And to **deserialize**:
+```
+try {
+    FileInputStream fileIn = new FileInputStream("file.ser");
+    ObjectInputStream in = new ObjectInputStream(fileIn);
+    MyClass deserializedObject = (MyClass) in.readObject();
+    in.close();
+    fileIn.close();
+} catch (IOException | ClassNotFoundException e) {
+    e.printStackTrace();
+}
+```
+* Serialization is a **powerful tool** but comes with **considerations** such as **versioning**, **security**, and 
+  **compatibility between different versions of serialized objects**
+* Additionally, **alternative serialization mechanisms or libraries** might be used in **different programming languages
+  or environments**, each with its **own features and optimizations**
+
+### Generics in Java:
+* Generics in Java allow you to **create classes**, **interfaces**, and **methods** that can **work with any data type**
+* They provide a way to create **flexible**, **reusable code** that is **not tied to a specific type**
+* The main purposes of generics are to:
+  * **Ensure Type Safety:**
+    * Generics enable the **detection of type errors at compile time rather than at runtime**, **reducing the chance of 
+      runtime errors** related to **incorrect data types**
+  * **Code Reusability:**
+    * Writing generic code allows you to **create classes**, **methods**, or **data structures** that can be **used with 
+      different types without duplicating code**
+* In Java, you can define a generic class using **angle brackets** and a **placeholder type parameter**
+* Here's a simple example of a generic class:
+```java
+public class Box<T> {
+    private T value;
+
+    public void setValue(T value) {
+        this.value = value;
+    }
+
+    public T getValue() {
+        return value;
+    }
+}
+```
+* In this example, **`T`** is a **placeholder** for a **type that will be specified** when **creating an instance of the 
+  `Box` class**
+* For instance:
+```
+Box<Integer> integerBox = new Box<>();
+integerBox.setValue(10);
+int value = integerBox.getValue();
+// No need for casting, value is of type Integer
+
+Box<String> stringBox = new Box<>();
+stringBox.setValue("Hello");
+String text = stringBox.getValue();
+// No need for casting, text is of type String
+```
+* Generics are **also used** with **methods** and **interfaces**
+* For instance, you can define a **generic method**:
+```
+public <T> void printArray(T[] array) {
+    for (T element : array) {
+        System.out.print(element + " ");
+    }
+    System.out.println();
+}
+```
+* And then use this method with **different types of arrays**:
+```
+Integer[] intArray = { 1, 2, 3, 4, 5 };
+String[] stringArray = { "Hello", "Generics", "Java" };
+
+printArray(intArray);
+// Output: 1 2 3 4 5
+printArray(stringArray);
+// Output: Hello Generics Java
+```
+* Generics provide **flexibility** and **type safety**, making Java code more **robust** and **adaptable** to **various 
+  data types** while **ensuring compile-time type checking**
+
+### Bounded Type Parameters in Java Generics:
+* the **`<T extends ...>` syntax** is used to **define bounded type parameters**
+* It allows you to r**estrict the types** that **can be used as parameters** in a **generic class**, **method**, or 
+  **interface**
+* The **`extends` keyword** in this context **doesn't only mean "extends" as in class inheritance**; it's **used more 
+  broadly** to **indicate** that the **specified type parameter must be a subtype** of a **particular type** or 
+  **implement a specific interface**
+* For example, consider a **generic method** that **accepts only types** that **implement the `Comparable` interface**:
+```
+public <T extends Comparable<T>> int compare(T obj1, T obj2) {
+    return obj1.compareTo(obj2);
+}
+```
+* In this case, `<T extends Comparable<T>>` specifies that **`T`** can be **any type** that **extends** (**or 
+  implements**) the **`Comparable<T>` interface**
+* This ensures that the method can **only accept objects of types that can be compared to themselves** (**`compareTo` 
+  method is available**), providing **type safety at compile time**
+* Another common use is **restricting a type parameter** to be a **subclass of a specific class**
+* For instance:
+```java
+class Vehicle {
+    // Vehicle properties and methods
+}
+
+class Car extends Vehicle {
+    // Car-specific properties and methods
+}
+
+class Garage<T extends Vehicle> {
+    private T vehicle;
+
+    public void park(T vehicle) {
+        this.vehicle = vehicle;
+    }
+
+    public T getVehicle() {
+        return vehicle;
+    }
+}
+```
+* Here, **`<T extends Vehicle>`** in the **`Garage` class** specifies that **`T` can only be a type** that **extends the 
+  `Vehicle` class** or **is a `Vehicle` itself**
+* This ensures that the **`Garage` class** can only store **instances of `Vehicle`** or its **subclasses**
+* Using **bounded type parameters** helps in writing **more generic** and **reusable code** while **maintaining type 
+  safety** and ensuring that **operations specific to certain types** are **supported within the generic context**
+
+### Regular Expressions in Java:
+* In Java, **regular expressions** (**regex**) are **sequences of characters** that **define a search pattern**
+* They are used for **pattern matching within strings**, allowing you to **search**, **manipulate**, and **validate 
+  text** based on **specific criteria**
+* Java's **`java.util.regex` package** provides **classes** and **methods** for **working with regular expressions**
+* The key classes involved are **`Pattern`** and **`Matcher`**
+* Here's a basic breakdown of how regular expressions are used in Java:
+* **Pattern Class:**
+  * The **`Pattern` class** represents a **compiled version of a regular expression**
+* **Creating a Pattern:**
+```
+import java.util.regex.Pattern;
+
+String regex = "pattern_to_match";
+Pattern pattern = Pattern.compile(regex);
+```
+* **Matcher Class:**
+  * The **`Matcher` class** is used to **match a `Pattern`** against a **specific input string**
+**Creating a Matcher and Matching:**
+```
+import java.util.regex.Matcher;
+
+String input = "input_string_to_search";
+Matcher matcher = pattern.matcher(input);
+
+if (matcher.find()) {
+    // Pattern found in the input string
+    // Further actions can be performed here
+}
+```
+* **Common Operations with Matchers:**
+  * **`find()`**:
+    * **Searches** for **occurrences of the pattern** in the **input string**
+  * **`matches()`**:
+    * Attempts to **match the entire input string against the pattern**
+  * **`group()`**:
+    * **Returns** the **matched substring**
+  * **`start()` and `end()`**:
+    * **Return** the **start and end indices** of the **matched substring**
+```
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
+// Regex to match any sequence of digits:
+String regex = "\\b\\d+\\b";
+String input = "123 Java 456 Regex";
+Pattern pattern = Pattern.compile(regex);
+Matcher matcher = pattern.matcher(input);
+
+while (matcher.find()) {
+    System.out.println("Found: " + matcher.group());
+}
+```
+* This example uses the **regex `\b\d+\b`** to **match sequences of digits in a string**, **printing out each found 
+  occurrence**
+* Regular expressions can be **quite powerful** but may have a **steep learning curve due** to their **syntax and 
+  complexity**
+* They are **used extensively** in **string manipulation**, **validation**, **parsing**, and **text search operations** 
+  in Java and many other programming languages
+
+### Regular Expression Syntax:
+* **Basic Matchers:**
+  * **`.` (dot):**
+    * Matches **any single character except newline**
+  * **`\d`:**
+    * Matches **any digit** (**equivalent to `[0-9]`**)
+  * **`\D`:**
+    * Matches **any non-digit character** (**equivalent to `[^0-9]`**)
+  * **`\w`:**
+    * Matches **any word character** (**alphanumeric and underscore**, **equivalent to `[a-zA-Z0-9_]`**)
+  * **`\W`:**
+    * Matches **any non-word character** (**equivalent to `[^a-zA-Z0-9_]`**)
+  * **`\s`:**
+    * Matches **any whitespace character** (**space**, **tab**, **newline**, etc.)
+  * **`\S`:**
+    * Matches **any non-whitespace character**
+  * **`[abc]`:**
+    * Matches **any one of the characters inside the brackets**
+  * **`[^abc]`:**
+    * Matches **any character except those inside the brackets**
+* **Quantifiers:**
+  * **`*`:**
+    * Matches **zero or more occurrences** of the **preceding pattern**
+  * **`+`:**
+    * Matches **one or more occurrences** of the **preceding pattern**
+  * **`?`:**
+    * Matches **zero or one occurrence** of the **preceding pattern**
+  * **`{n}`:**
+    * Matches **exactly `n` occurrences**
+  * **`{n,}`:**
+    * Matches **`n` or more occurrences**
+  * **`{n,m}`:**
+    * Matches **between `n` and `m` occurrences** (**inclusive**)
+* **Anchors:**
+  * **`^`:**
+    * Matches the **start of a line/string**
+  * **`$`:**
+    * Matches the **end of a line/string**
+  * **`\b`:**
+    * Matches a **word boundary**
+* **Grouping and Alternation:**
+  * **`()`:**
+    * **Groups patterns together**
+  * **`|`:**
+    * **Alternation**, matches **either the left or right side of the `|`**
+
+### Records in Java:
+* In Java, a **record** is a **new type of class** introduced in **Java 16**
+* A record is a **concise way** to **declare simple classes** for the purpose of **bundling together multiple fields** 
+  and **managing immutable data**
+* It's particularly useful when you need a **data carrier without additional functionality** beyond **storing and 
+  accessing the data**
+* Here's an example of **defining a record** in Java:
+```java
+public record Person(String name, int age) {
+    // This record automatically generates a constructor, 
+    // accessor methods, equals, hashCode, and toString
+    // Additional methods or fields can be added if necessary
+}
+```
+* In this example, `Person` is a **record** that has **two components**: **`name` (a `String`)** and **`age` (an 
+  `int`)**
+* With records, you **don't need to explicitly define getter methods**, **constructors**, **`equals()`**, 
+  **`hashCode()`**, or **`toString()`** methods
+* These are **automatically generated based on the components defined within the record**
+* Records are **immutable by default**, meaning their **fields cannot be changed after the record is created**
+* This immutability **ensures predictability** and helps in writing **more robust** and **error-resistant code**
+* You can **create instances of a record** and **access its components** as shown below:
+```java
+public class Main {
+    public static void main(String[] args) {
+        Person person = new Person("Alice", 30);
+        
+        // Accessing components
+        System.out.println("Name: " + person.name());
+        System.out.println("Age: " + person.age());
+        
+        // Records are immutable, so you can't modify their values
+        // person.setName("Bob");
+        // This would result in a compilation error
+    }
+}
+```
+* Records can **greatly simplify code** that involves **modeling data without adding unnecessary complexity**
+* They provide a **concise syntax** for **defining classes whose main purpose is to hold data**
+
+### Streams in Java:
+* In Java, streams represent a **sequence of elements** that you can **process in a declarative way**
+* Introduced in **Java 8** as part of the **Stream API** in the `java.util.stream package`, **streams** provide a 
+  **higher-level abstraction** for **working with collections of data**, allowing for **concise and functional-style 
+  operations**
+* Streams enable you to perform a **series of aggregate operations** (such as **filtering**, **mapping**, **sorting**, 
+  and **reducing**) on a **collection of data elements**
+* These **operations** can be **chained together** to **form a pipeline**, where **each operation is applied to the 
+  elements as they flow through the stream**
+* Key characteristics of Java streams include:
+  * **Declarative and Functional Approach:**
+    * Streams **support functional programming paradigms**, allowing you to **express operations on data** in a **declarative 
+      manner without explicitly handling iteration or mutable state**
+  * **Lazy Evaluation:**
+    * Many stream operations are **lazily evaluated**, meaning they are **executed only when necessary**
+    * This allows for **efficiency**, especially with **large datasets**, as **operations** are **performed on elements 
+      as they're needed in the pipeline**
+  * **Pipelines:**
+    * Streams enable you to **create pipelines** by **chaining multiple operations** (such as **`filter`**, **`map`**, 
+      **`reduce`**, **`collect`**, etc.) to **process data in a sequence**
+  * **Parallel Processing:**
+    * Streams can take advantage of **parallel processing** via the **`parallel()` method**, allowing operations to be 
+      **executed concurrently** on **multiple threads**, **potentially improving performance** for **certain types of 
+      tasks**
+* Example of using streams in Java:
+```java
+import java.util.Arrays;
+import java.util.List;
+
+public class StreamExample {
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+        // Example: Filter even numbers, square them, and find their sum
+        int sum = numbers.stream()
+                .filter(n -> n % 2 == 0) // Filter even numbers
+                .map(n -> n * n) // Square each number
+                .reduce(0, Integer::sum); // Sum the squared numbers
+
+        System.out.println("Sum of squares of even numbers: " + sum);
+    }
+}
+```
+* In this example, a **stream** is created **from a list of numbers**
+* The **stream operations** (**`filter`**, **`map`**, and **`reduce`**) are **chained together** to **filter even 
+  numbers**, **square them**, and **find their sum**
+* However, the **power of streams** comes from their ability to **chain multiple operations together**, making the code 
+  **concise**, **readable**, and **expressive** for **various data processing tasks**
+
+### The `SortedSet` Interface in Java:
+* In Java, a **`SortedSet`** is a **subtype of the `Set` interface** that **maintains its elements** in a **sorted 
+  order**
+* It **does not allow duplicate elements**
+* The elements in a `SortedSet` are **arranged** either according to their **natural ordering** (**if they implement the 
+  `Comparable` interface**) or by a **`Comparator` provided** at **set creation time**
+* Some important characteristics of a SortedSet in Java:
+  * **Sorted Order:**
+    * Elements are stored in a sorted order defined by their **natural ordering** or a **custom `Comparator`**
+  * **No Duplicates:**
+    * A `SortedSet` **does not allow duplicate elements**
+    * If you **try to add a duplicate**, the **method will return false**
+  * **Subsets and Views:**
+    * It supports methods for **obtaining subsets** of the `SortedSet` based on **ranges or specific elements**
+  * **Implements `Set` Interface:**
+    * It **inherits** the **methods** of the **`Set` interface** and **adds additional methods** for **navigation** and 
+      **retrieval** based on the **sorted order**
+* Here's an example of how you might create and use a `SortedSet` in Java:
+
+```java
+import java.util.*;
+
+public class SortedSetExample {
+    public static void main(String[] args) {
+        // Creating a TreeSet (implementation of SortedSet)
+        SortedSet<Integer> sortedSet = new TreeSet<>();
+
+        // Adding elements
+        sortedSet.add(5);
+        sortedSet.add(2);
+        sortedSet.add(8);
+        sortedSet.add(2);
+        // Won't be added since it's a duplicate
+
+        // Printing elements in sorted order
+        for (Integer element : sortedSet) {
+            System.out.println(element);
+        }
+        
+        // Using methods specific to SortedSet
+        System.out.println("First element: " + sortedSet.first());
+        System.out.println("Last element: " + sortedSet.last());
+
+        // Creating a subset based on a range
+        SortedSet<Integer> subset = sortedSet.subSet(2, 8);
+        // Elements from 2 (inclusive) to 8 (exclusive)
+        System.out.println("Subset: " + subset);
+    }
+}
+```
+* This code demonstrates the **basic usage** of a `SortedSet`, specifically a **`TreeSet`**, which is one of the 
+  implementations of `SortedSet` in Java

@@ -9,31 +9,46 @@
       **order** they were present in **`nums` initially**
     * The **remaining elements** of `nums` are **not important** as well as **the size of `nums`**
     * Return `k`
+* **Java Solution:**
 ```
 public int removeDuplicates(int[] nums) {
-  if (nums.length == 0) {
+  int n = nums.length;
+  
+  if (n == 0) {
     return 0;
   }
   
-  int uniqueIndex = 0;
+  int insertIndex = 1;
   
-  for (int i = 1; i < nums.length; i++) {
-    if (nums[i] != nums[uniqueIndex]) {
-      uniqueIndex++;
-      nums[uniqueIndex] = nums[i];
+  for (int i = 1; i < n; i++) {
+    if (nums[i] != nums[i - 1]) {
+      nums[insertIndex] = nums[i];
+      insertIndex++;
     }
   }
   
-  return uniqueIndex + 1;
+  return insertIndex;
 }
 ```
-* This method uses the concept of **maintaining a separate index** (`uniqueIndex`) to **track the unique elements**
-* It **iterates through the array** and whenever a different element is encountered, it's placed in the position 
-  indicated by `uniqueIndex`
-* The `uniqueIndex` is then **incremented to move forward**
-* Finally, it **returns the count** of **unique elements**, which is `uniqueIndex + 1`
-* This approach **modifies the array in place** and ensures that the **array's initial segment** **contains the unique 
-  elements**, with **duplicates removed**
+* **Explanation:**
+  * This method uses the concept of **maintaining a separate index** (`insertIndex`) to **track the unique element insert 
+    index**
+  * It is **guaranteed** that the **element in the first position** is **not a duplicate**, so we can **start both 
+    pointers at 1**
+  * It **iterates through the array** and whenever a unique element is encountered, it's placed in the position 
+    indicated by `insertIndex`
+  * The `insertIndex` is then **incremented to move forward**
+  * Finally, it **returns the count** of **unique elements**, which is `insertIndex`
+  * This approach **modifies the array in place** and ensures that the **array's initial segment** **contains the unique 
+    elements**, with **duplicates removed**
+* **Complexity Analysis:**
+  * Let `N` be the size of the input array
+  * **Time Complexity:**
+    * `O(N)`
+    * We **only have 2 pointers**, and both the pointers will **traverse the array at most once**
+  * **Space Complexity:**
+    * `O(1)`
+    * We are **not using any extra space**
 
 * **Best Time to Buy and Sell Stock:**
   * You are given an integer array `prices` where `prices[i]` is the price of a given stock on the `i`th day

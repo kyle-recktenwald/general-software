@@ -337,3 +337,23 @@ fetchDataFromServer(processData);
 * When **software specifications** mention "**alphanumeric**," they typically imply that the **data expected** or 
   **processed** should contain a **mix of letters and numbers**, allowing a **wider range of possibilities** while 
   **maintaining** a **structured format**
+
+### Script / Scripting Language:
+* In the context of computer programming and web development, a **script** refers to a **set of instructions or
+  commands** that are written in a **scripting language** and **executed by a computer**
+* A **scripting language** is a **type of programming language** that is **often interpreted rather than compiled**,
+  meaning that the **instructions** are **executed directly by an interpreter without the need for a separate
+  compilation step**
+* Scripts are **typically used** for **automating tasks**, **interacting with software or systems**, and **performing
+  various operations**
+* They are **commonly employed in web development** to **enhance the functionality of websites**, **handle user
+  interactions**, and **manipulate content dynamically**
+* For example, in the context of web development, **client-side scripting languages** like **JavaScript** are used to
+  create **interactive and dynamic features on web pages**
+* **JavaScript**, along with **HTML** and **CSS**, is a **fundamental component** in building **modern, interactive
+  websites**
+* On the **server side**, **scripting languages** like **Python**, **Ruby**, **PHP**, and others are used to **develop
+  server-side scripts** that handle tasks such as **processing form submissions**, **interacting with databases**, and
+  **generating dynamic content** to be **sent to the user's browser**
+* Overall, a script is a **sequence of instructions** written in a **scripting language** to **perform specific tasks**
+  or **automate processes**, making it a **versatile tool** in the realm of **programming and software development**

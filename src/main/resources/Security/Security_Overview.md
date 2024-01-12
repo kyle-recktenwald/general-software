@@ -46,7 +46,7 @@
   **granting access to third-party services** using protocols like **OAuth 2.0 with OpenID Connect** for 
   **authentication and authorization combined**
 
-### Scope in OAuth 2.0:
+### Scope in OAuth 2.0: - TODO
 * In OAuth 2.0, a "scope" is a parameter used to define the specific permissions and access rights requested by a 
   client application when it seeks authorization to access protected resources on behalf of a user
 * Scopes in OAuth 2.0:
@@ -110,7 +110,7 @@
 * Access decisions can be made by validating these claims against predefined policies or rules established by the
   resource server
 
-### OpenID:
+### OpenID: - TODO
 * OpenID is an **open standard** and **decentralized authentication protocol** that allows users to be **authenticated 
   by websites and applications** using a **single set of login credentials**
 * It enables users to use **one set of login credentials** (such as **username** and **password**) to **access multiple 
@@ -176,7 +176,7 @@
 * It's widely used by companies of varying sizes and industries to secure their applications and APIs while 
   providing a seamless user experience
 
-### JSON Web Token:
+### JSON Web Token: - TODO
 * JSON Web Token (JWT) is a type of token commonly used in authentication and authorization protocols, including 
   OAuth 2.0.
 * A JWT Access Token is a specific type of token that securely transmits information between two parties as a JSON 
@@ -212,3 +212,49 @@
       to access protected resources
     * The resource server validates the token's signature, checks its expiration, and verifies the claims to 
       authorize or deny access to the requested resources
+
+### SQL Injection:
+* **SQL injection** is a type of **security vulnerability** that occurs when an **attacker** is able to **manipulate or 
+  inject malicious SQL (Structured Query Language) code** into **input fields or parameters** of a **web application**
+* **SQL** is a **language** used for **managing and manipulating relational databases**, and it is **often employed** in 
+  the **backend of web applications** to **interact with databases**
+* When a **web application does not properly validate or sanitize user input before constructing SQL queries**, it 
+  **becomes susceptible to SQL injection attacks**
+* An attacker can **exploit this vulnerability** by **inserting malicious SQL code into input fields**, which may then 
+  be **executed by the database**
+* The **consequences** of a **successful SQL injection attack** can include **unauthorized access to sensitive data**, 
+  **manipulation of database records**, and sometimes even the ability to **execute administrative operations on the 
+  database**
+* To prevent SQL injection, it's crucial for developers to use **parameterized queries** or **prepared statements**, 
+  which **separate user input from the SQL query** and make it **much more difficult** for attackers to **inject 
+  malicious code**
+* Additionally, **input validation** and **proper user access controls** should be implemented to enhance overall 
+  security
+
+### Cross Site Scripting:
+* **Cross-Site Scripting (XSS)** is a type of **security vulnerability** that occurs when an **attacker** is able to 
+  **inject malicious scripts** into **web pages viewed by other users**
+* The attack **takes advantage of the trust** that a **user has** for a **particular website**, allowing the attacker to 
+  **execute scripts within the context of that trusted site**
+* There are generally **three main types** of XSS attacks:
+  * **Stored XSS (Persistent XSS):**
+    * In this type of attack, the **malicious script** is **permanently stored on the target server** (e.g., **in a 
+      database**) and is **served to users** whenever they **access a particular page**
+    * This can happen, for example, when **user input** is **not properly sanitized before being stored in a database** 
+      and **later displayed on a web page**
+  * **Reflected XSS:**
+    * In a **reflected XSS attack**, the **injected script** is **included in a URL** or **in the parameters of a 
+      request**, and the **server reflects it back to the user's browser without proper validation**
+    * This often occurs when a **web application includes user input in the response without sanitizing or validating 
+      it**
+  * **DOM-based XSS:**
+    * This variant involves the **manipulation** of the **Document Object Model (DOM)** of a web page by **injecting 
+      malicious scripts**
+    * The attack **takes place on the client side**, as the **manipulated DOM** can **lead to the execution of 
+      unauthorized actions** or the **theft of sensitive information**
+* The **consequences** of a **successful XSS attack** can include the **theft of user credentials**, **session 
+  hijacking**, **defacement of websites**, and the **delivery of malware to users**
+* To **prevent XSS attacks**, developers should implement **proper input validation**, **sanitize user input before 
+  displaying it on web pages**, use **secure coding practices**, and employ mechanisms such as **Content Security Policy 
+  (CSP)** to **mitigate the risks** associated with **script execution on web pages**
+* Additionally, **web browsers often include security features** to help **protect against XSS attacks**

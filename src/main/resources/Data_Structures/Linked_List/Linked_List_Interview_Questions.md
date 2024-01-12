@@ -69,29 +69,135 @@ class Solution {
     * **Space Complexity:**
       * `O(1)`, since we use **constant extra space** to **track the next node**
 
-### Reverse Linked List:
+### Remove Nth Node from a Linked List:
+* Given the **`head` of a linked list**, **remove the `n`th node** from the **end of the list** and **return its head**
+* <img src="images/Linked_List_Interview_Diagram_3.jpeg" width="300">
+```
+Example 1 (Diagram Above):
+Input: head = [1,2,3,4,5], n = 2
+Output: [1,2,3,5]
+
+Example 2:
+Input: head = [1], n = 1
+Output: []
+
+Example 3:
+Input: head = [1,2], n = 1
+Output: [1]
+```
+* **Constraints:**
+  * The number of nodes in the list is `size`
+  * 1 <= `L` <= 30
+  * 0 <= `Node.val` <= 100
+  * 1 <= `n` <= `L`
+* Follow up: Could you do this in **one pass**?
+
+**Solution:**
+* **Approach 1: Two Pass Algorithm:**
+  * **Explanatiion:**
+    * Find the **length, `L`** of the list, given `head`
+    * Handle the **edge case** where **length, `L`** and **node to be removed, `n`** are **one**
+    * Iterate to the **node before the `n`th node** (`L - n - 1`), and **remove it**
+  * **Time Complexity:**
+    * `O(L)`
+    * Specifically, **`O(2L)`**, because we iterate through the list **once to find the length**, then **again to 
+      remove the `n`th node**
+  * **Space Complexity:**
+    * `O(1)` (Constant)
+    * We **don't create** a **proportional number of data structures** for **any list of length `n`**
 ```java
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
 class Solution {
-    public ListNode reverseList(ListNode head) {
-        if(head == null || head.next == null) {
-            return head;
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+
+        // Find the length of the list:
+        ListNode currNode = head;
+        int length = 0;
+        
+        while(currNode != null){
+            currNode = currNode.next;
+            length++;
         }
 
-        ListNode reversedSublist = reverseList(head.next);
-        head.next.next = head;
-        head.next = null;
+        // Handle edge case where length and n are one:
+        if(length == n){
+            return head.next;
+        }
 
-        return reversedSublist;
+        // Remove nth node:
+        currNode = head;
+        int nodeBeforeRemovedIndex = length - n - 1;
+        for(int i = 0; i < nodeBeforeRemovedIndex; i++){
+            currNode = currNode.next;
+        }
+
+        currNode.next = currNode.next.next;
+
+        return head;
     }
 }
 ```
+* **Approach 2: One Pass Approach:**
+  * **Explanation:**
+    * **Maintain references** for the **current node**, and a **trailing node `n` steps behind the current node**
+    * Remember to **handle the edge case** where **`n`** and the **size of the list, `L`** are **1**
+    * Remember that we only need the current node to **iterate to the last node**, so we **stop at `currNode.next
+      != null`**
+  * **Time Complexity:**
+    * `O(L)`
+    * The algorithm makes **one traversal** of the list of **`L` nodes**
+  * **Space Complexity:**
+    * `O(1)` (Constant)
+    * For **any size of list, `L`**, we keep track of the **same number of nodes**
+```java
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        // Move currNode n steps into the list
+        ListNode currNode = head;
+
+        for(int i = 0; i < n; i++){
+            currNode = currNode.next;
+        }
+
+        // Handle edge case where n and length are 1
+        if(currNode == null){
+            return head.next;
+        }
+
+        // Move both pointers until currNode reaches the 
+        // last node
+        ListNode nodeBeforeRemoved = head;
+
+        while(currNode.next != null){
+            currNode = currNode.next;
+            nodeBeforeRemoved = nodeBeforeRemoved.next;
+        }
+
+        // Remove nth node:
+        nodeBeforeRemoved.next = nodeBeforeRemoved.next.next;
+
+        return head;
+    }
+}
+```
+
+### Reverse Linked List:
+* Given the `head` of a singly linked list, reverse the list, and return the reversed list
+* **Example 1:**
+* <img src="images/Linked_List_Interview_Diagram_4.jpeg" width="300">
+```
+Input: head = [1,2,3,4,5]
+Output: [5,4,3,2,1]
+```
+* **Constraints:**
+  * The number of nodes in the list is the range `[0, 5000]`
+  * -5000 <= `Node.val` <= 5000
+* **Follow up:**
+  * A linked list can be reversed either iteratively or recursively
+  * Could you implement both?
+
+
+
+
+
+
+

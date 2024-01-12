@@ -34,3 +34,37 @@
   examples of **distributed computing paradigms** used to **address complex computational problems** by harnessing the 
   **collective power** of **multiple computing resources**
 * <img src="images/Distributed_Computing_Diagram.png" width="500">
+
+### The CAP Theorem:
+* The **CAP theorem**, also known as **Brewer's theorem**, states that in a **distributed computer system**, it is 
+  **impossible** to **simultaneously guarantee all three** of the following:
+  * **Consistency (C):**
+    * **Every read receives** the **most recent write** or an **error**
+    * In other words, **all nodes in the system** see the **same data** at the **same time**, **ensuring consistency 
+      across the system**
+  * **Availability (A):**
+    * **Every request gets a response**, even if **some nodes in the system have failed**
+    * It ensures that the **system remains responsive despite failures** and **continues to serve requests**
+  * **Partition tolerance (P):**
+    * The system **continues to operate despite network partitions** or **communication failures between nodes**
+    * This means the system can **handle** and **recover** from **network failures without failing the entire system**
+* The CAP theorem asserts that in the event of a **network partition (P)**, a **trade-off must be made** between 
+  **consistency (C)** and **availability (A)**
+* In other words, in a **network partition**, if there is a **network failure** and **nodes are unable to communicate**, 
+  you have to choose between:
+    * **Consistency over Availability:**
+      * You **prioritize consistency** by **sacrificing availability**
+      * This means that **during a partition**, the **system may become unavailable until the network is restored**, 
+        ensuring that **all nodes have consistent data**
+    * **Availability over Consistency:**
+      * You **prioritize availability** by **sacrificing consistency**
+      * This means the **system remains available**, possibly **providing stale or divergent data** to **different 
+        nodes** during the partition, but it **continues to function**
+* It's important to note that the CAP theorem **doesn't imply** that you can **only choose one of the three properties 
+  all the time**
+* Instead, it **highlights** the **inherent trade-offs** that **must be considered** when **designing distributed 
+  systems**
+* **Different systems** may **prioritize consistency**, **availability**, or **partition tolerance differently** based 
+  on their **specific requirements** and **use cases**
+* Various distributed database systems employ **different strategies** and **trade-offs**, aiming to **balance these 
+  properties** according to their application needs
