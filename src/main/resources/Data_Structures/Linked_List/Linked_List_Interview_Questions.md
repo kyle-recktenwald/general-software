@@ -194,10 +194,168 @@ Output: [5,4,3,2,1]
 * **Follow up:**
   * A linked list can be reversed either iteratively or recursively
   * Could you implement both?
+* **Solutions:**
+* **Approach 1: Iterative:**
+  * **Explanation:**
+    * Iterate through the list, setting the current node's pointer from the next to the previous node
+    * We need to maintain a reference to the current node's previous node, as well as it's next node
+    * Remember to handle edge cases where list is empty, and `n` = 1
+  * **Complexity Analysis:**
+    * **Time Complexity:**
+      * `O(n)`
+      * Where `n` is the list's length
+    * **Space Complexity:**
+      * `O(1)`
+      * We are **not creating a copy of data** that's **proportional in size to the list**
+```java
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        // Initialize references for the current
+        // and previous nodes:
+        ListNode currNode = head;
+        ListNode prevNode = null;
+        
+        // Handle edge cases where list is empty,
+        // and n = 1
+        if(head == null || head.next == null){
+            return head;
+        }
+        
+        // Iterate through the list:
+        while(currNode != null){
+            // Maintain reference to next node:
+            ListNode nextNode = currNode.next;
+            
+            // Set current node's pointer to 
+            // previous node:
+            currNode.next = prevNode;
+            
+            // Reassign previous node to current 
+            // node, and current node to next node:
+            prevNode = currNode;
+            currNode = nextNode;
+        }
+        
+        // Return the previous node (last node and 
+        // new head):
+        return prevNode;
+    }
+}
+```
+* **Approach 2: Recursive:**
+```java
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        // * Base case indicating that `head` is the last node
+        // * Also the edge case for an empty list (`head == null`)
+        if (head == null || head.next == null) {
+            return head;
+        }
 
+        // * Recursively call `reverseList(ListNode head)` with 
+        //   `head.next`
+        // * After the base case is reached, the last node 
+        //   is returned and assigned to `reversedSublistHead`
+        ListNode reversedSublistHead = reverseList(head.next);
 
+        // * Set the `head` / second to last node's `next` node's 
+        //   `next `reference (the last node) to point to itself
+        head.next.next = head;
 
+        // * Set the `head` node's `next` reference to `null`
+        head.next = null;
 
+        // * Return the `reversedSublistHead` node to the 
+        //   preceding recursive call
+        return reversedSublist;
+    }
+}
+```
+  * **Explanation:**
+    * **Recursively** call **`reverseList(ListNode head)`** with **`head.next`** until the **base case** is reached 
+      where **`head.next == null`**
+    * When the **base case is reached (`head.next == null`)**, that indicates that **`head`** is the **last node in the 
+      list**
+    * The **`head`** / **last node** is **returned to the previous stack frame** and **assigned to `ListNode 
+      reversedSublistHead`**
+    * In the **previous stack frame**, the **`head` references** the **second to last node**
+    * Set the **`head` / second to last node's `next` node's `next `reference** (the **last node**) to **point to 
+      itself**
+    * Set the **`head` node's `next` reference** to **`null`**
+    * **Return** the **`reversedSublistHead` node** to the **preceding recursive call**, and **repeat** with **all 
+      preceding recursive calls**
+    * Note **`reversedSublistHead`** is **assigned only once**, but **`head` moves backwards through the list** with 
+      **each return** to the **previous stack frame**
+  * **Complexity Analysis:**
+    * **Time Complexity:**
+      * `O(n)`
+      * We have to traverse over every node in the list
+    * **Space Complexity:**
+      * `O(n)`
+      * Each recursive function call takes place on the stack frame
+      * For a list of length `n`, we make `n` recursive calls
 
+### Merge Two Sorted Lists:
+* You are given the **heads** of **two sorted linked lists** **`list1`** and **`list2`**
+* **Merge the two lists** into **one sorted list**
+* The list should be made by **splicing together the nodes of the first two lists**
+* **Return** the **head** of the **merged linked list**
+* **Example 1:**
+  * <img src="images/Linked_List_Interview_Diagram_5.jpg" width="400">
+```
+Input: list1 = [1,2,4], list2 = [1,3,4]
+Output: [1,1,2,3,4,4]
+```
+* **Example 2:**
+```
+Input: list1 = [], list2 = []
+Output: []
+```
+* **Example 3:**
+```
+Input: list1 = [], list2 = [0]
+Output: [0]
+```
+* **Constraints:**
+  * The number of nodes in both lists is in the range `[0, 50]`
+  * -100 <= `Node.val` <= 100
+  * Both `list1` and `list2` are **sorted** in **non-decreasing order**
+* **Solutions:**
+* **Recursive Approach:**
+```java
+class Solution {
+    public ListNode mergeTwoLists(ListNode list1, 
+                                  ListNode list2) {
+        if(list1 == null){
+            return list2;
+        } else if (list2 == null){
+            return list1;
+        }
+        
+        ListNode head;
 
+        if(list1.val < list2.val){
+            head = list1;
+            list1 = list1.next;
+        } else {
+            head = list2;
+            list2 = list2.next;
+        }
 
+        head.next = mergeTwoLists(list1, list2);
+
+        return head;
+    }
+}
+```
+  * * **Complexity Analysis:**
+    * **Time Complexity:**
+      * `O(m + n)`
+      * Where `m` and `n` are the **number of nodes** in **each list**
+      * In **worst case**, we need to **iterate over all the nodes** in **each list**, and **add them to the returned 
+        list**
+    * **Space Complexity:**
+      * `O(m + n)`
+      * Every **recursive function call takes up space** on the **call stack**
+      * We have **at most `m + n` calls**, because **for each call** we are **comparing** the **next node of one list** 
+        to **a node from the other list**

@@ -99,3 +99,64 @@ public class VisitorPatternExample {
   visit each shape**
 * When you run this example, it will demonstrate how the **`AreaCalculator` visitor calculates the area for each shape 
   in the `ShapeCollection`**
+* **Problematic Approach Not Using Visitor:**
+  * Here's an example without using the Visitor pattern:
+```java
+// Shape interface
+interface Shape {
+    void draw();
+}
+
+// Concrete shape classes
+class Circle implements Shape {
+    @Override
+    public void draw() {
+        System.out.println("Drawing Circle");
+    }
+
+    // Additional circle-specific methods...
+}
+
+class Square implements Shape {
+    @Override
+    public void draw() {
+        System.out.println("Drawing Square");
+    }
+
+    // Additional square-specific methods...
+}
+
+// Client code
+public class DrawingApp {
+    public static void main(String[] args) {
+        Shape circle = new Circle();
+        Shape square = new Square();
+
+        // Performing operations without the Visitor pattern
+        performOperation(circle);
+        performOperation(square);
+    }
+
+    // Method to perform operations based on shape types
+    private static void performOperation(Shape shape) {
+        if (shape instanceof Circle) {
+            // Perform circle-specific operation
+            System.out.println("Calculating Circle Area");
+            // ...
+        } else if (shape instanceof Square) {
+            // Perform square-specific operation
+            System.out.println("Resizing Square");
+            // ...
+        }
+        // More instanceof checks for other shape types...
+    }
+}
+```
+* **Issues with this Approach:**
+  * **Code Smells:**
+    * The **use of `instanceof` checks** in the `performOperation` method **can lead to code smells**, making the code 
+      **less maintainable and readable**
+  * **Violation of Open/Closed Principle:**
+    * **Adding a new shape** or **introducing a new operation** requires **modifying the existing code**, **violating 
+      the Open/Closed Principle**, which states that **a class should be open for extension but closed for 
+      modification**

@@ -1,5 +1,30 @@
 # Programming Language Overview:
 
+### Object-Oriented Programming:
+* **Object-oriented programming** (**OOP**) is a **programming paradigm** that uses **objects**, which are **instances 
+  of classes**, to **design and organize code**
+* It is based on the concept of "**objects**," which can **contain data** in the form of **fields** (**attributes** or 
+  **properties**), and **code** in the form of **procedures** (**methods** or **functions**)
+* **The 4 Pillars of Object-Oriented Programming Include:**
+  * **Encapsulation:**
+    * **Objects encapsulate data and the methods that operate on that data** within a **single unit**
+    * This helps in **hiding the internal details** of an object and **exposing only what is necessary**
+  * **Inheritance:**
+    * **Inheritance** allows a **class** (**subclass** or **derived class**) to **inherit the properties and behaviors of 
+      another class** (**superclass** or **base class**)
+    * This promotes **code reuse** and helps in creating a **hierarchy of classes**
+  * **Polymorphism:**
+    * **Polymorphism** allows objects to be treated as **instances of their parent class**, even if they are **actually 
+      instances of a subclass**
+    * This enables flexibility and extensibility in code
+  * **Abstraction:**
+    * **Abstraction** involves **simplifying complex systems** by **modeling classes** based on the **essential features 
+      they share**
+    * It focuses on **what an object does** rather than **how it achieves its functionality**
+* These principles contribute to the **modularity**, **maintainability**, and **reusability** of code
+* Object-oriented programming is **widely used in software development**, and many programming languages, such as 
+  **Java**, **C++**, and **Python**, support OOP concepts
+
 ### Functional Programming:
 * **Functional programming** is a **programming paradigm** that **treats computation** as the **evaluation of 
   mathematical functions** and **avoids changing-state and mutable data**
@@ -33,6 +58,80 @@
   on **immutability** and **statelessness**, which can **reduce bugs** related to **shared mutable state** in 
   concurrent systems
 * <img src="images/Functional_Programming_Diagram.png" width="500">
+
+### Object Oriented Programming vs. Functional Programming:
+* **Differences:**
+  * **Data Handling:**
+    * **FP:**
+      * **Emphasizes immutable data** and **avoids shared state**
+      * **Functions operate on data without modifying it**
+    * **OOP:**
+      * **Encapsulates data within objects**, allowing for **both data and behavior** to be **manipulated together**
+  * **State:**
+    * **FP:**
+      * Favors **statelessness** and **immutability**
+      * **Functions are pure**, with **no side effects**
+    * **OOP:**
+      * Involves **stateful objects** where **data can change over time**
+  * **Functions:**
+    * **FP:**
+      * **Functions** are **first-class citizens**, meaning they **can be passed around and composed**
+    * **OOP:**
+      * **Methods** are **tied to objects** and **invoked on instances of classes**
+  * **Modularity:**
+    * **FP:**
+      * Achieves **modularity** through **small**, **composable functions**
+    * **OOP:**
+      * **Organizes code** into **classes** and **objects**, **promoting encapsulation for modularity**
+  * **Inheritance:**
+    * **FP:**
+      * Typically **relies on composition** and **higher-order functions rather than classical inheritance**
+    * **OOP:**
+      * **Supports inheritance**, **allowing one class to inherit properties and behaviors from another**
+  * **Typing:**
+    * **FP:**
+      * Often has a **strong emphasis** on **static typing**
+    * **OOP:**
+      * Supports **both static** and **dynamic typing** depending on the language
+* **Choosing a Paradigm:**
+  * **Problem Domain:**
+    * **FP:**
+      * Well-suited for problems where **immutability** and **mathematical functions** are **crucial**
+      * Ideal for **data transformations**, **parallel processing**, and **mathematical computations**
+    * **OOP:**
+      * Fits well when **modeling real-world entities** with **behaviors** and **interactions**
+      * Good for **systems with changing states**
+  * **Concurrency:**
+    * **FP:**
+      * Generally **easier to reason about in concurrent and parallel programming** due to **immutability**
+    * **OOP:**
+      * **May face challenges** with **shared mutable state** in **concurrent scenarios**
+  * **Team Expertise:**
+    * **FP:**
+      * If the **team** is **more comfortable** with **mathematical reasoning** and **functional concepts**
+    * **OOP:**
+      * When the team is more familiar with **object modeling** and **encapsulation**
+  * **Language Support:**
+    * **FP:**
+      * Choose a language with **strong support** for **functional constructs** (e.g., **Haskell**, **Scala**, or 
+        **Clojure**)
+    * **OOP:**
+      * Select a language with **strong OOP features** (e.g., **Java**, **C++**, or **Python**)
+  * **Project Size and Complexity:**
+    * **FP:**
+      * May be preferable for **smaller**, **highly modular projects** where **immutability aids in code understanding**
+    * **OOP:**
+      * Often chosen for **larger projects** where **encapsulation** and **object-oriented design principles** can 
+        **help manage complexity**
+  * **Interoperability:**
+    * **FP:**
+      * Some projects may require **integration with existing OOP code**, and **certain functional languages provide 
+        good interoperability**
+    * **OOP:**
+      * When the project involves working with **existing OOP systems or libraries**
+* Ultimately, the **decision** may involve a **combination of these factors**, and **many modern languages offer a mix 
+  of functional and object-oriented features**, allowing developers to **choose the paradigm** that **best fits their 
+  specific needs**
 
 ### Declarative Programming:
 * **Declarative programming** is a **programming paradigm** that **emphasizes expressing the logic of a computation 
@@ -116,6 +215,32 @@ public class SideEffectExample {
 * While imperative programming provides **explicit control** over **how tasks are executed** and allows for **precise
   manipulation of the program state**, it can sometimes lead to code that is **more complex**, **harder to reason 
   about**, and potentially **prone to errors** related to **mutable state** and **side effects**
+
+### Statically Typed Language:
+* A **statically typed language** (**Strongly Typed**) is a **programming language** in which the **type of a variable** is **known at 
+  compile time**
+* This means that **you**, **as a programmer**, **must specify the data type** of **each variable when you declare it**, 
+  and **the compiler checks** that the **usage of variables** is **consistent with their declared types**
+* In a statically typed language, the **type of a variable** is **typically determined at the time the code is 
+  written**, and **any type-related errors are caught during the compilation phase rather than at runtime**
+* This can help in **detecting and preventing certain classes of errors early in the development process**
+* Examples of statically typed languages include **Java**, **C++**, and **Swift**
+* In **contrast**, **dynamically typed languages**, like **Python** and **JavaScript**, **determine the variable type at 
+  runtime**, which **provides more flexibility** but can lead to **type-related errors during execution**
+
+### Dynamically Typed Language:
+* A **dynamically typed language** (**Weakly Typed**) is a **programming language** in which **the type of a variable** is **interpreted at 
+  runtime**, **rather than being explicitly declared by the programmer at compile time**
+* In dynamically typed languages, the **data type of a variable** is **associated with the variable value**, and **this 
+  association can change during the execution of the program**
+* In other words, in a dynamically typed language, you **don't have to explicitly specify the data type of a variable 
+  when you declare it**
+* The **type of a variable** is **determined at runtime based on the value it is currently holding**
+* This **flexibility** allows for **more concise** and **expressive code**, but it also means that **type-related 
+  errors** may **not be discovered until the program is executed**
+* Examples of dynamically typed languages include **Python**, **JavaScript**, **Ruby**, and **PHP**
+* These languages provide **more flexibility** and are often associated with **rapid development** and **easier code 
+  maintenance** due to **reduced verbosity in type declarations**
 
 ### Callback:
 * In software development, a **callback** refers to a **function** that is **passed as an argument to another 
