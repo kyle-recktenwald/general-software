@@ -98,6 +98,96 @@ public class UserService {
 * This ensures that these methods execute within a transactional context, and **any operations** they perform are either 
   **committed together** or **rolled back as a single unit**, based on the **transactional configuration provided**
 
+### The `@Cacheable` Annotation:
+* The **`@Cacheable` annotation** is part of the **Spring Framework**, and it is used to **indicate** that the **result 
+  of a method can be cached**
+* When this annotation is applied to a method, the **Spring framework** will **check the cache before executing the 
+  method**
+* If the **method has been called before** with the **same arguments**, the **cached result is returned instead of 
+  re-executing the method**
+* Here's a brief overview of how to use `@Cacheable`:
+* **Annotation Declaration:**
+```
+@Cacheable(value = "cacheName")
+```
+* **Parameters**:
+  * `value`:
+    * Specifies the **name of the cache** in which the **result is stored**
+    * **Multiple cache names can be specified**
+* **Example**:
+```java
+import org.springframework.cache.annotation.Cacheable;
+
+public class MyService {
+
+    @Cacheable(value = "myCache")
+    public String getData(String key) {
+        // * This method will be cached based on the value of 'key'
+        // * If the method is called with the same 'key' again, 
+        //   the cached result will be returned.
+        // * If not found in the cache, the method will be executed, 
+        //   and the result will be cached.
+        // * Subsequent calls with the same 'key' will retrieve the 
+        //   result from the cache.
+        return expensiveOperation(key);
+    }
+
+    private String expensiveOperation(String key) {
+        // Simulating a time-consuming operation
+        // ...
+        return "Result for " + key;
+    }
+}
+```
+* In this example, the **`getData` method** is **annotated with `@Cacheable("myCache")`**
+* The **result of this method will be cached** in the **"myCache" cache**
+* **If the method is called with the same key again**, the **cached result will be returned without executing the 
+  method**
+* It's important to note that **caching needs to be configured in your Spring application**, and you **need to have a 
+  caching provider** (e.g., **EhCache**, **Redis**) on the classpath for `@Cacheable` to work
+* Additionally, **proper eviction** and **expiration policies** may **need to be configured** based on your 
+  **application requirements**
+
+### The `@CachePut` Annotation:
+* The **`@CachePut` annotation** is part of the **Spring Framework** and is used to **instruct Spring** to **always 
+  invoke a method and update the cache with its result**
+* Unlike `@Cacheable`, which **skips the method invocation** if the **data is already present in the cache**, 
+  **`@CachePut` ensures** that the **method is executed**, and its **result** is **stored** or **updated in the cache**
+* Here's a brief overview of how to use `@CachePut`:
+* **Annotation Declaration:**
+```
+@CachePut(value = "cacheName", key = "cacheKeyExpression")
+```
+* **Parameters:**
+  * `value`:
+    * Specifies the **name of the cache** where the **result will be stored**
+  * `key`:
+    * Specifies the **key used for caching**
+    * It can be a **simple string** or a **SpEL (Spring Expression Language) expression**
+* **Example:**
+```java
+import org.springframework.cache.annotation.CachePut;
+
+public class MyService {
+
+    @CachePut(value = "myCache", key = "#key")
+    public String updateCache(String key, String newData) {
+        // * This method will always be executed, and its 
+        //   result will be stored or updated in the cache
+        // * Subsequent calls with the same 'key' will 
+        //   retrieve the updated result from the cache
+        return newData;
+    }
+}
+```
+* In this example, the **`updateCache` method** is **annotated with `@CachePut(value = "myCache", key = "#key")`**
+* This means that **every time this method is called**, it **will be executed**, and **its result will be stored or 
+  updated in the "myCache" cache under the specified key**
+* **Subsequent calls** with the **same key** will **retrieve the updated result from the cache**
+* Just like with **`@Cacheable`**, **caching needs to be configured in your Spring application**, and you need to have a 
+  **caching provider** (e.g., **EhCache**, **Redis**) **on the classpath for `@CachePut` to work**
+* **Proper eviction** and **expiration policies** may also **need to be configured** based on **your application 
+  requirements**
 
 
 

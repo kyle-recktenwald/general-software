@@ -324,16 +324,54 @@ Output: [0]
 * **Recursive Approach:**
 ```java
 class Solution {
+    /**
+     * Merges two sorted linked lists into a single sorted linked list.
+     * This method employs a recursive approach to efficiently merge the lists.
+     *
+     * @param list1 The head of the first sorted linked list.
+     * @param list2 The head of the second sorted linked list.
+     * @return The head of the merged sorted linked list.
+     *
+     * <p>
+     * The method compares the values of the heads of the input lists and selects
+     * the smaller value as the head of the merged list. It then moves the head
+     * of the selected list to the next node. This process is repeated recursively
+     * until the end of one of the lists is reached. The merged list is built in
+     * reverse order, and the head of each recursive call is returned to construct
+     * the final merged list.
+     * </p>
+     *
+     * <p>
+     * Base Case: If either list1 or list2 is null, the method returns the rest of
+     * the other list. The merged list is constructed by comparing and selecting
+     * the smaller values from the heads of the input lists.
+     * </p>
+     */
     public ListNode mergeTwoLists(ListNode list1, 
                                   ListNode list2) {
+        /*
+         * * Base Case: If list1 or list2 is null,
+         *   return the rest of the other list
+         */
         if(list1 == null){
             return list2;
         } else if (list2 == null){
             return list1;
         }
         
+        /*
+         * * Initialize a new head for each recursive
+         *   call to hold the next element in the merged
+         *   list
+         */
         ListNode head;
 
+        /*
+         * * Compare the head of each list, and set head 
+         *    to the lesser value
+         * * Then move the list containing the lesser 
+         *    value's head to the next node
+         */
         if(list1.val < list2.val){
             head = list1;
             list1 = list1.next;
@@ -342,8 +380,19 @@ class Solution {
             list2 = list2.next;
         }
 
+        /*
+         * * Recursively call mergeTwoLists until the end 
+         *   of one of the lists has been reached 
+         * * Once the end of one of the lists has been 
+         *   reached, the rest of the other list is 
+         *   returned, and set as the head's next node
+         */
         head.next = mergeTwoLists(list1, list2);
 
+        /* 
+         * * The head from each recursive case is returned, 
+         *   building the merged list essentially in reverse
+         */
         return head;
     }
 }
@@ -359,3 +408,13 @@ class Solution {
       * Every **recursive function call takes up space** on the **call stack**
       * We have **at most `m + n` calls**, because **for each call** we are **comparing** the **next node of one list** 
         to **a node from the other list**
+* **Iterative Approach:**
+  * **Complexity Analysis:**
+    * **Time Complexity:**
+      * `O(m + n)`
+      * We are performing the **same comparison operation** on **every node** from **each list**
+    * **Space Complexity:**
+      * `O(1)` - Constant
+      * All we are doing is **manipulating the pointers** that **already exist** with the **nodes in the list provided**
+      * At most, **we use memory** for **our pointer's head and tail**, but the **space used by them does not grow in 
+        proportion** to the **number of nodes in the list**

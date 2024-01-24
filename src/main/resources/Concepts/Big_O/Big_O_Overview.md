@@ -1,8 +1,49 @@
 # Big O Overview:
 
 ### Overview:
+* **Big O Notation** is a **mathematical notation** used in **computer science** to **describe the performance or complexity 
+  of an algorithm**
+* It provides an **upper bound on the growth rate** of the **running time** or **space requirements** of an **algorithm 
+  in terms of the input size**
+* In simpler terms, Big O Notation helps to **analyze how the time or space requirements of an algorithm scale as the 
+  size of the input data increases**
+* The **notation** is expressed using the **letter "O" followed by a function**, where the **function** represents the 
+  **upper bound** or **worst-case scenario** of the **algorithm's performance**
+* **Common examples** include **`O(1)`** for **constant time complexity**, **`O(log n)`** for **logarithmic time 
+  complexity**, **`O(n)`** for **linear time complexity**, **`O(n^2)`** for **quadratic time complexity**, and so on
+* Big O Notation is particularly useful for **comparing and classifying algorithms** based on their **efficiency** and 
+  **scalability without getting into specific implementation details**
 
-* Big O time is the language and metric we use to describe the efficiency of algorithms
+### Common Big O Complexities:
+* **`O(1)` - Constant Time Complexity:**
+  * **Examples:**
+    * **Accessing an element** in an **array by index**
+    * **Basic arithmetic operations**
+* **`O(log n)` - Logarithmic Time Complexity:**
+  * **Examples:**
+    * **Binary search** in a **sorted array**
+    * Certain **divide-and-conquer algorithms**
+* **`O(n)` - Linear Time Complexity:**
+  * **Examples:**
+    * **Iterating** through an **array**
+    * **Finding** the **maximum element** in an **unsorted list**
+* **`O(n log n)` - Linearithmic Time Complexity:**
+  * **Examples:**
+    * **Merge sort**
+    * **Heap sort**
+    * Some **efficient sorting algorithms**
+* **`O(n^2)` - Quadratic Time Complexity:**
+  * **Examples:**
+    * **Simple nested loops**
+    * **Bubble sort**
+    * **Insertion sort**
+* **`O(2^n)` - Exponential Time Complexity:**
+  * **Examples:**
+    * **Recursive algorithms without memoization**
+    * Solving the **Tower of Hanoi problem**
+* **`O(n!)` - Factorial Time Complexity:**
+  * **Examples:**
+    * Solving the **traveling salesman problem** using **brute force**
 
 ### Time Complexity:
 
