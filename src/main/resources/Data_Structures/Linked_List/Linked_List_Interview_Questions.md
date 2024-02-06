@@ -409,6 +409,55 @@ class Solution {
       * We have **at most `m + n` calls**, because **for each call** we are **comparing** the **next node of one list** 
         to **a node from the other list**
 * **Iterative Approach:**
+```java
+class Solution {
+    public ListNode mergeTwoListsIteratively(ListNode list1,
+                                             ListNode list2) {
+
+        /*
+         * * Initialize an empty preHead node to maintain
+         *   a reference to the head
+         * * Initialize another node that points to the 
+         *   empty node to maintain a reference to the tail 
+         *   of the merged lists
+         */
+        ListNode preHead = new ListNode();
+        ListNode tail = preHead;
+
+        /*
+         * * While neither list is null, indicating the end
+         *   of a list, compare the heads of each list
+         * * Set tail.next to the lesser value, and move
+         *   that list's head to the next node
+         * * Then point tail to that next node
+         */
+        while (list1 != null && list2 != null) {
+            if (list1.val <= list2.val) {
+                tail.next = list1;
+                list1 = list1.next;
+            } else {
+                tail.next = list2;
+                list2 = list2.next;
+            }
+            tail = tail.next;
+        }
+
+        /*
+         * * Determine which list has reached its end,
+         *   and assign tail.next to the rest of the
+         *   other list
+         */
+        tail.next = list1 == null ? list2 : list1;
+
+
+        /*
+         * * Return the head of the merged list via
+         *   the maintained preHead reference
+         */
+        return preHead.next;
+    }
+}
+```
   * **Complexity Analysis:**
     * **Time Complexity:**
       * `O(m + n)`
@@ -418,3 +467,258 @@ class Solution {
       * All we are doing is **manipulating the pointers** that **already exist** with the **nodes in the list provided**
       * At most, **we use memory** for **our pointer's head and tail**, but the **space used by them does not grow in 
         proportion** to the **number of nodes in the list**
+
+* **Palindrome Linked List:**
+* **Problem:**
+  * Given the **`head`** of a **singly linked list**, **return `true`** if it is a **palindrome** or **`false` 
+    otherwise**
+* **Example 1:**
+* <img src="images/Palindrome_Linked_List_Diagram_1.jpeg" width="300">
+```
+Input: head = [1,2,2,1]
+Output: true
+```
+* **Example 2:**
+* <img src="images/Palindrome_Linked_List_Diagram_2.jpeg" width="150">
+```
+Input: head = [1,2]
+Output: false
+```
+* **Constraints:**
+  * The **number of nodes in the list** is in the **range** `[1, 105]`
+  * `0 <= Node.val <= 9`
+* **Follow Up:**
+  * Could you do it in `O(n)` time and `O(1)` space?
+* **Approach 1: Reverse Second Half In-Place:**
+```java
+class Solution {
+  public boolean isPalindromeInPlace(ListNode head) {
+    /*
+     * * Handle the edge case where list is empty
+     */
+    if (head == null) {
+      return true;
+    }
+
+    /*
+     * * Find the last node of the first half of
+     *   the list using fast and slow pointers (2x)
+     * * Note that if the list has an odd number
+     *   of elements, the first half will have
+     *   the extra element
+     */
+    ListNode firstHalfEnd = findEndOfFirstHalf(head);
+
+    /*
+     * * Reverse the second half of the list, using
+     *   the end of the first half's next node as
+     *   the head
+     */
+    ListNode secondHalfStart = 
+            reverseList(firstHalfEnd.next);
+
+    /*
+     * * Initialize pointers that start at the
+     *   head and the second half of the list
+     * * The secondHalf pointer is necessary
+     *   to return the list to its original
+     *   state
+     */
+    ListNode firstHalf = head;
+    ListNode secondHalf = secondHalfStart;
+
+    /*
+     * * Initialize a boolean result set to true
+     */
+    boolean result = true;
+
+    /*
+     * * Iterate through the first and second
+     *   half of the list, comparing values
+     *   for equality
+     * * This loop continues until either
+     *   an inequality is found, or the
+     *   secondHalf pointer is null
+     * * The second half pointer is used
+     *   because the first half could contain
+     *   the middle element, which wouldn't
+     *   affect it's reflective state
+     */
+    while (result && secondHalf != null) {
+      if (firstHalf.val != secondHalf.val) {
+        result = false;
+      }
+
+      firstHalf = firstHalf.next;
+      secondHalf = secondHalf.next;
+    }
+
+    /*
+     * * Restore the second half of the list 
+     *   and return the result
+     */
+    firstHalfEnd.next = 
+            reverseList(secondHalfStart);
+
+    return result;
+  }
+
+  /**
+   * * Finds the end of the first half of a 
+   *   linked list using the two-pointer technique
+   * * This method uses two pointers, 'fast' (2 
+   *   steps) and 'slow' (1 step), to traverse 
+   *   the linked list
+   * * When the 'fast' pointer reaches the end 
+   *   of the list, the 'slow' pointer will be 
+   *   at the middle of the list or the end of 
+   *   the first half
+   */
+  private ListNode findEndOfFirstHalf(ListNode head) {
+    ListNode fast = head;
+    ListNode slow = head;
+
+    while (fast.next != null && fast.next.next != null) {
+      fast = fast.next.next;
+      slow = slow.next;
+    }
+
+    return slow;
+  }
+
+  private ListNode reverseList(ListNode head) {
+    ListNode prev = null;
+    ListNode curr = head;
+    while (curr != null) {
+      ListNode nextTemp = curr.next;
+      curr.next = prev;
+      prev = curr;
+      curr = nextTemp;
+    }
+
+    return prev;
+  }
+}
+```
+* **Explanation:**
+  * The **downside of this approach** is that in a **concurrent environment** (**multiple threads** and **processes 
+    accessing the same data**), **access to the Linked List** by **other threads or processes** would **have to be 
+    locked while this function is running**, because the **Linked List** is **temporarily broken**
+  * This is a **limitation** of **many in-place algorithms** though
+* **Complexity Analysis:**
+  * **Time Complexity:**
+    * `O(n)`
+    * Where n is the number of nodes in the Linked List
+  * **Space Complexity:**
+    * `O(1)`
+    * We are changing the next pointers for half of the nodes
+    * This was all **memory** that had **already been allocated**, so we are **not using any extra memory**
+* **Approach 2: Copy into a Stack, Then Use Two-Pointer Technique:**
+```java
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        ListNode currNode = head;
+        ListNode tail = head;
+        
+        if(head.next == null){
+            return true;
+        }
+        
+        Deque<ListNode> stack = new ArrayDeque<ListNode>();
+        
+        while(currNode != null){
+            stack.push(currNode);
+            currNode = currNode.next;
+        }
+        
+        currNode = head;
+        
+        for(ListNode stackNode : stack){
+            if(stackNode.val != currNode.val){
+                return false;
+            }
+            currNode = currNode.next;
+        }
+        
+        return true;
+    }
+}
+```
+* **Complexity Analysis:**
+  * **Time Complexity:**
+    * **`O(n)`**
+    * Where `n` is the **number of nodes** in the **Linked List**
+  * **Space Complexity:**
+    * **`O(n)`**
+    * We need to **create a stack**, and **add `n` values to it**
+* **Approach 3: Using Recursion:**
+```java
+public class LinkedListIsPalindromeRecursive {
+    /*
+     * * Initialize a frontPointer reference to maintain
+     *   a reference to the first node until the end of
+     *   the list is reached recursively
+     */
+    private ListNode frontPointer;
+
+    public boolean isPalindrome(ListNode head) {
+        frontPointer = head;
+
+        return recursivelyCheck(head);
+    }
+    
+    private boolean recursivelyCheck(ListNode currentNode) {
+      /*
+       * * Recursively call recursivelyCheck until the currentNode
+       *   is null (end of list)
+       * * Return true when currentNode is null, then compare the 
+       *   currentNode value with the frontPointer value
+       * * Move the frontPointer up one node, then return true
+       *   to the previous stack frame, where the currentNode
+       *   is moved back
+       * * If the frontPointer makes it to the end, and the
+       *   currentNode makes it to the beginning without 
+       *   any inequalities, true is returned
+       */
+        if (currentNode != null) {
+            if (!recursivelyCheck(currentNode.next)){
+                return false;
+            }
+            if (currentNode.val != frontPointer.val){
+                return false;
+            }
+
+            frontPointer = frontPointer.next;
+        }
+
+        return true;
+    }
+}
+```
+* **Complexity Analysis:**
+  * **Time Complexity:**
+    * **O(n)**
+    * where `n` is the number of nodes in the Linked List
+    * The **recursive function** is **run once** for **each of the `n` nodes**, and the **body of the recursive 
+      function** is **`O(1)`**
+    * Therefore, this gives a total of `O(n)`
+  * **Space Complexity:**
+    * `O(n)`
+    * **Each time** a **function is called within a function**, the **computer needs to keep track** of **where it is 
+      up to** (and the **values of any local variables**) in the **current function before it goes into the called 
+      function**
+    * It does this by **putting an entry** on something called the **runtime stack**, called a **stack frame**
+    * Once it has created a **stack frame** for the **current function**, it can then **go into the called function**
+    * Then once it is **finished with the called function**, it **pops the top stack frame** to **resume the function 
+      it had been in before the function call was made**
+    * **Before doing any palindrome checking**, the **above recursive function creates `n` of these stack frames** 
+      because the **first step of processing a node** is to **process the nodes after it**, which is done with a 
+      **recursive call**
+    * Then **once it has the `n` stack frames**, it **pops them off one-by-one to process them**
+    * So, the **space usage** is **on the runtime stack** because we are **creating `n` stack frames**
+    * Not only is this approach **still using `O(n)` space**, it is **worse than the copying, 2 pointer approach** 
+      because in **many languages** (such as **Python**), **stack frames are large**, and there's a **maximum runtime 
+      stack depth of 1000** (you **can increase it**, but you risk causing **memory errors** with the **underlying 
+      interpreter**)
+    * With **every node creating a stack frame**, this will **greatly limit** the **maximum Linked List size** the 
+      **algorithm can handle**

@@ -1,25 +1,25 @@
 package com.krecktenwald.generalsoftware.data_structures.model.impl;
 
 import com.krecktenwald.generalsoftware.ListNode;
-import com.krecktenwald.generalsoftware.interview_questions.LinkedList.LinkedLists;
-import org.junit.jupiter.api.BeforeAll;
+import com.krecktenwald.generalsoftware.interview_questions.linked_list.LinkedListUtil;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class LinkedListImplTest {
+public class LinkedListsUtilTest {
 
-    LinkedLists linkedLists;
+    LinkedListUtil linkedListUtil;
 
-    @BeforeAll
+    @BeforeEach
     public void setup(){
-        linkedLists = new LinkedLists();
+        linkedListUtil = new LinkedListUtil();
     }
 
     @Test
     public void testReverseList() {
         ListNode head1 = new ListNode(1, new ListNode(2, new ListNode(3, null)));
-        ListNode reversedList1 = linkedLists.reverseList(head1);
+        ListNode reversedList1 = linkedListUtil.reverseListRecursively(head1);
         assertListValues(reversedList1, 3, 2, 1);
     }
 
@@ -27,7 +27,7 @@ public class LinkedListImplTest {
     public void testMergeTwoListsRecursively_Simple() {
         ListNode list1 = new ListNode(1, new ListNode(2, null));
         ListNode list2 = new ListNode(1, null);
-        ListNode mergedList = linkedLists.mergeTwoListsRecursively(list1, list2);
+        ListNode mergedList = linkedListUtil.mergeTwoListsRecursively(list1, list2);
         assertListValues(mergedList, 1, 1, 2);
     }
 
@@ -35,7 +35,7 @@ public class LinkedListImplTest {
     public void testMergeTwoListsRecursively() {
         ListNode list1 = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, null))));
         ListNode list2 = new ListNode(1, new ListNode(3, null));
-        ListNode mergedList = linkedLists.mergeTwoListsRecursively(list1, list2);
+        ListNode mergedList = linkedListUtil.mergeTwoListsRecursively(list1, list2);
         assertListValues(mergedList, 1, 1, 2, 3, 3, 4);
     }
 
@@ -49,6 +49,18 @@ public class LinkedListImplTest {
     }
 
     @Test
+    public void testMergeTwoListsIteratively_Small() {
+        ListNode list1 = createLinkedList(new int[]{1, 2});
+        ListNode list2 = createLinkedList(new int[]{1});
+
+        ListNode expectedResult = createLinkedList(new int[]{1, 1, 2});
+
+        ListNode result = linkedListUtil.mergeTwoListsIteratively(list1, list2);
+
+        assertLinkedListEquals(expectedResult, result);
+    }
+
+    @Test
     public void testMergeTwoListsIteratively() {
         // Create two sorted linked lists
         ListNode l1 = createLinkedList(new int[]{1, 3, 5});
@@ -58,10 +70,15 @@ public class LinkedListImplTest {
         ListNode expectedResult = createLinkedList(new int[]{1, 2, 3, 4, 5, 6});
 
         // Call the method to merge the lists
-        ListNode result = linkedLists.mergeTwoListsIteratively(l1, l2);
+        ListNode result = linkedListUtil.mergeTwoListsIteratively(l1, l2);
 
         // Compare the merged result with the expected result
         assertLinkedListEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testIsPalindromeInPlace(){
+        linkedListUtil.isPalindromeInPlace(createLinkedList(new int[]{1, 2, 3, 2, 1}));
     }
 
     // Helper method to create a linked list from an array of values
