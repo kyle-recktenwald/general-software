@@ -722,3 +722,139 @@ public class LinkedListIsPalindromeRecursive {
       interpreter**)
     * With **every node creating a stack frame**, this will **greatly limit** the **maximum Linked List size** the 
       **algorithm can handle**
+
+### Linked List Cycle:
+* Given **`head`**, the **head of a linked list**, determine if the linked list **has a cycle in it**
+* There is a cycle in a linked list if there is **some node in the list** that **can be reached again** by 
+  **continuously following the `next` pointer**
+* **Internally**, **`pos`** is used to **denote the index of the node that tail's `next` pointer is connected to**
+* Note that **`pos`** is **not passed as a parameter**
+* **Return `true`** if there **is a cycle** in the linked list, **otherwise, return `false`**
+* **Example 1:**
+  * <img src="images/Linked_List_Cycle_Example_1.png" width="300">
+```
+Input: head = [3,2,0,-4], pos = 1
+Output: true
+Explanation: There is a cycle in the linked list, where the 
+  tail connects to the 1st node (0-indexed)
+```
+* **Example 2:**
+  * <img src="images/Linked_List_Cycle_Example_2.png" width="150">
+```
+Input: head = [1,2], pos = 0
+Output: true
+Explanation: There is a cycle in the linked list, where the 
+  tail connects to the 0th node.
+```
+* **Example 3:**
+  * <img src="images/Linked_List_Cycle_Example_3.png" width="50">
+```
+Input: head = [1], pos = -1
+Output: false
+Explanation: There is no cycle in the linked list.
+```
+* **Constraints:**
+  * The **number of the nodes** in the list is in the range `[0, 104]`
+  * -105 <= `Node.val` <= 105
+  * **`pos`** is **-1** or a **valid index** in the linked-list
+* **Follow Up:**
+  * Can you solve it using **O(1) (i.e. constant) memory**?
+* **Approach 1: Hash Table (Hash Set)**
+```java
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        Set<ListNode> nodesSeen = new HashSet<>();
+        ListNode currNode = head;
+        
+        while (currNode != null) {
+            if (nodesSeen.contains(currNode)) {
+                return true;
+            }
+            nodesSeen.add(currNode);
+            currNode = currNode.next;
+        }
+        
+        return false;
+    }
+}
+```
+* **Complexity Analysis:**
+  * **Time Complexity:**
+    * **`O(n)`**
+    * Where `n` is the **total number of nodes** in the list
+    * We **visit each of the `n` elements** in the list **at most once**
+    * Adding a node to the hash table costs only O(1) time
+  * **Space Complexity:**
+    * **`O(n)`**
+    * The **space depends** on the **number of elements added to the hash table**, which contains **at most n elements**
+* **Approach 2: Floyd's Cycle Finding Algorithm:**
+  * **Explanation:**
+    * This method uses the **Floyd's Tortoise and Hare algorithm** to **detect a cycle** in the linked list
+    * It **initializes two pointers**, **slow** and **fast**, **initially pointing** to the **head** and the **next node,
+      respectively**
+    * The **slow pointer moves one node at a time**, while the f**ast pointer moves two nodes at a time**
+    * If there **is a cycle** in the linked list, the **two pointers will eventually meet**
+```java
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        /*
+         * * Handle the edge case where the list
+         *   is empty
+         */
+        if (head == null) {
+            return false;
+        }
+
+        /*
+         * * Initialize a slow pointer at the head, 
+         *   and a fast pointer at head.next 
+         */
+        ListNode slow = head;
+        ListNode fast = head.next;
+        
+        /*
+         * * While slow and fast are not equal (which would
+         *   indicate a cycle), if the fast pointer, or
+         *   its next pointer are null, return false,
+         * * Otherwise, move the slow pointer one step, 
+         *   and the fast pointer two steps
+         * * If the slow and fast pointers meet (found to 
+         *   be equal), exit the while loop and return true
+         */
+        while (slow != fast) {
+            if (fast == null || fast.next == null) {
+                return false;
+            }
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        
+        return true;
+    }
+}
+```
+* **Complexity Analysis:**
+  * **Time complexity:**
+    * `O(n)`
+    * Where `n` is the **total number of nodes** in the **linked list**
+    * To **analyze its time complexity**, we **consider** the **following two cases separately**:
+      * **List Has No Cycle:**
+        * The **fast pointer reaches the end first** and the **run time depends** on the **list's length**, which is 
+          **`O(n)`**
+      * **List Has a Cycle:**
+        * We break down the **movement of the slow pointer** into **two steps**, the **non-cyclic part** and the 
+          **cyclic part**:
+          * The **slow pointer** takes **`non-cyclic length` steps** to **enter the cycle**
+            * At this point, the **fast pointer** has **already reached the cycle**
+            * `Number of iterations = non-cyclic length = N`
+          * **Both pointers** are **now in the cycle**
+            * Consider **two runners running in a cycle** - the **fast runner** moves **2 steps** while the **slow 
+              runner moves 1 steps** at a time
+            * Since the **speed difference** is **1**, it takes **`distance between the 2 runners / difference of 
+              speed` loops** for the **fast runner** to **catch up with the slow runner**
+            * As the **distance** is **at most `cyclic length K`** and the **speed difference** is **1**, we conclude 
+              that **`Number of iterations = almost "cyclic length K"`**
+          * Therefore, the **worst case time complexity** is **`O(N + K)`**, which is **`O(n)`**
+  * **Space Complexity:**
+    * `O(1)`
+    * We **only use two nodes** (**slow** and **fast**)
