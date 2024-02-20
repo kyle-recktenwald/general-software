@@ -258,3 +258,67 @@
   displaying it on web pages**, use **secure coding practices**, and employ mechanisms such as **Content Security Policy 
   (CSP)** to **mitigate the risks** associated with **script execution on web pages**
 * Additionally, **web browsers often include security features** to help **protect against XSS attacks**
+
+### Asymmetric / Public Key Cryptography:
+* **Asymmetric cryptography**, also known as **public key cryptography**, is a **cryptographic system** that **uses a 
+  pair of mathematically related keys** for **secure communication**
+* **Unlike symmetric cryptography**, where the **same key is used for both encryption and decryption**, asymmetric 
+  cryptography involves **two different but related keys**: a **public key** and a **private key**
+* Here's a breakdown of the **key components**:
+  * **Public Key:**
+    * The **public key** is **shared openly** and is used for **encrypting messages or data**
+    * **Anyone can use the public key** to **encrypt information intended for the owner of the corresponding private 
+      key**
+    * It is **commonly distributed or published** to **facilitate secure communication** with **multiple parties**
+  * **Private Key:**
+    * The **private key** is **kept secret** and is **known only to the key's owner**
+    * It is **used for decrypting messages** that were **encrypted with the corresponding public key**
+    * The private key **must be kept secure** to **maintain the confidentiality** and **integrity of the communication**
+  * **Key Pair:**
+    * The **public key** and **private key together** form a **key pair**
+    * **Information encrypted** with **one key of the pair** can **only be decrypted by the other key of the pair**
+  * **Use Cases:**
+    * **Encryption:**
+      * The **public key** is used to **encrypt sensitive data**, and **only the corresponding private key can decrypt 
+        it**
+    * **Digital Signatures:**
+      * The **private key** is used to **generate a digital signature**, and the **public key** is used to **verify the 
+        authenticity of the signature**
+      * This is often used for **data integrity and authentication**
+  * **Advantages:**
+    * **Security:**
+      * **Even if the public key is known**, it is **computationally infeasible** to **derive the private key**, 
+        ensuring a **high level of security**
+    * **Key Distribution:**
+      * Asymmetric cryptography helps **solve the key distribution problem in a network** by **allowing users** to 
+        **publish their public keys** while **keeping their private keys confidential**
+* Popular asymmetric cryptographic algorithms include **RSA (Rivest-Shamir-Adleman)**, **ECC (Elliptic Curve 
+  Cryptography)**, and **DSA (Digital Signature Algorithm)**
+* Asymmetric cryptography plays a **crucial role** in **securing online communication**, **digital signatures**, and 
+  **other cryptographic applications**
+
+### Using an RSA Key Pair to SSH into a Server:
+* **Step 1: Generate RSA Key Pair on Local Machine:**
+  * **Generate** an **RSA key pair** using the **`ssh-keygen` command**:
+    * `ssh-keygen -t rsa -b 2048`
+  * You will be prompted to **provide a location** to save the keys
+  * Press Enter to save them in the **default location** (**`~/.ssh/id_rsa`**)
+  * You **may also set a passphrase** for additional security **or leave it empty**
+  * Your **public key** will be **saved in `~/.ssh/id_rsa.pub`**
+* **Step 2: Copy Public Key to Server:**
+  * **Copy the public key to the server** using the **`ssh-copy-id` command**
+  * Replace **`user`** with **your username** and **`server`** with **your server's address**:
+    * `ssh-copy-id user@server`
+  * You will be prompted to **enter your user password on the server**
+  * If **`ssh-copy-id` is not available** on your system, you can **manually copy the public key**:
+    * `cat ~/.ssh/id_rsa.pub | ssh user@server 'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys'`
+* **Step 3: SSH into the Server**
+  * Now, you can **SSH into the server** using your **private key**:
+    * `ssh -i ~/.ssh/id_rsa user@server`
+  * You should be able to **log in without entering a password**
+* **Step 4: Verify Key-Based Authentication:**
+  * On the server, check the **`auth.log`** or **secure log** to **ensure key-based authentication is successful**
+  * Open a terminal on the server and run:
+    * `tail -f /var/log/auth.log  # or /var/log/secure on some systems`
+  * In another terminal, try **SSHing into the server again**
+  * You should see a **message indicating successful key-based authentication** in the first terminal
