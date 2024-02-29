@@ -387,3 +387,94 @@ print(response)
   * **AWS Website:** [Multi-Factor Authentication for IAM](https://aws.amazon.com/iam/features/mfa/)
   * **AWS Reference Guide:** [Tasks That Require Root User Credentials](https://docs.aws.amazon.com/accounts/latest/reference/root-user-tasks.html)
 
+### AWS Identity and Access Management:
+* **Authentication and Authorization:**
+  * When you **configure access** to **any account**, two terms come up frequently: **authentication** and 
+    **authorization**
+  * Although these terms might seem basic, you must fully understand them to **properly configure access management** on 
+    AWS
+* **Authentication:**
+  * When you **create your AWS account**, you use the **combination** of an **email address** and a **password** to 
+    **verify your identity**
+    * If a **user** types in the **correct email address and password**, the system assumes the user is **allowed to enter** and 
+      **grants them access**
+    * This is the process of **authentication**
+  * Authentication **ensures** that the **user is who they say they are**
+  * **User names** and **passwords** are the **most common types of authentication**
+    * But you might also work with other forms, such as **token-based authentication** or **biometric data**, like a 
+      **fingerprint**
+  * Authentication simply answers the question, **“Are you who you say you are?”**
+* **Authorization:**
+  * **After you’re authenticated** and **in your AWS account**, you might be curious about **what actions you can take**
+    * This is where authorization comes in
+  * **Authorization** is the process of **giving users permission** to **access AWS resources and services**
+  * Authorization determines **whether a user can perform certain actions**, such as **read**, **edit**, **delete**, or 
+    **create resources**
+  * Authorization answers the question, “**What actions can you perform?**”
+* **What is IAM?**
+  * **AWS Identity and Access Management (IAM)** is an **AWS service** that helps you **manage access to your AWS 
+    account and resources**
+  * It also provides a **centralized view** of **who** and **what are allowed inside your AWS account** 
+    (**authentication**), and **who** and **what have permissions** to **use** and **work** with your **AWS resources 
+    (authorization)**
+  * With IAM, you can **share access to an AWS account and resources without sharing your set of access keys or 
+    password**
+  * You can also provide **granular access** to **those working in your account**, so **people** and **services only 
+    have permissions to the resources that they need**
+  * For example, to provide a user of your AWS account with **read-only access** to a **particular AWS service**, you 
+    can **granularly select which actions** and **which resources in that service that they can access**
+* **IAM Features:**
+  * **Global:**
+    * IAM is **global** and **not specific to any one region**
+    * You can **see** and **use** your **IAM configurations from any region** in the **AWS Management Console**
+  * **Integrated with AWS Services:**
+    * IAM is **integrated with many AWS services by default**
+  * **Shared Access:**
+    * You can **grant other identities permission** to **administer and use resources in your AWS account without 
+      having to share your password and key**
+  * **Multi-Factor Authentication:**
+    * IAM **supports MFA**
+    * You can **add MFA to your account** and to **individual users** for **extra security**
+  * **Identity Federation:**
+    * IAM **supports identity federation**, which allows users with **passwords elsewhere**, like your **corporate 
+      network** or **internet identity provider**, to get **temporary access to your AWS account**
+  * **Free to Use:**
+    * **Any AWS customer can use IAM**; the service is offered at **no additional charge**
+* **IAM User:**
+  * An **IAM user represents** a **person** or **service** that **interacts with AWS**
+  * You **define the user** in your **AWS account**
+  * **Any activity done by that user** is **billed to your account**
+  * When you **create a user**, that user can **sign in to gain access to the AWS resources inside your account**
+  * You can also **add more users to your account as needed**
+  * For example, for your **cat photo application**, you could **create individual users** in your AWS account that 
+    **correspond to the people who are working on your application**
+  * **Each person** should have their **own login credentials** to **prevent sharing credentials between users**
+* **IAM User Credentials:**
+  * An **IAM user** **consists of a name** and a **set of credentials**
+  * When you **create a user**, you can provide them with the **following types of access**:
+    * Access to the **AWS Management Console**
+    * **Programmatic access** to the **AWS CLI** and **AWS API**
+  * To **access the console**, provide the user with a **user name** and **password**
+  * For **programmatic access**, **AWS generates** a **set of access keys** that **can be used with the AWS CLI and 
+    AWS API**
+  * I**AM user credentials** are considered **permanent**, which means that they **stay with the user until there’s a 
+    forced rotation by admins**
+  * When you **create an IAM user**, you **can grant permissions directly** at the **user level**
+    * This can **seem like a good idea** if you have **only one or a few users**
+    * However, **as the number of users increases**, **keeping up with permissions can become more complicated**
+    * For example, if you have **3,000 users** in your AWS account, **administering access** and getting a **top-level 
+      view** of **who can perform what actions on which resources can be challenging**
+    * Fortunately, **you can group IAM users** and **attach permissions at the group level**
+* **IAM Groups:**
+  * An **IAM group** is a **collection of users**
+  * **All users in the group inherit the permissions assigned to the group**
+  * This makes it possible to **give permissions to multiple users at once**
+  * It’s a more **convenient** and **scalable** way of **managing permissions** for users in your AWS account
+  * This is why **using IAM groups** is a **best practice**
+  * If you have an application that you’re trying to build and you have multiple users in one account working on the 
+    application, you might organize the users by job function
+  * For example, you might organize your IAM groups by developers, security, and admins
+  * You could then place all your IAM users into their respective groups
+  * This provides a way to see who has what permissions in your organization
+  * It also helps you scale when new people join, leave, and change roles in your organization
+

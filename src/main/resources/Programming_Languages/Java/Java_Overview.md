@@ -1148,3 +1148,9 @@ public class SortedSetExample {
 ```
 * This code demonstrates the **basic usage** of a `SortedSet`, specifically a **`TreeSet`**, which is one of the 
   implementations of `SortedSet` in Java
+
+### Ternary Operator:
+* In Java, the **ternary operator** is a **shorthand way** of **writing an if-else statement** in a **single line**
+* It is **also known as the conditional operator**
+* The **syntax** of the ternary operator is as follows:
+  * `result = (condition) ? valueIfTrue : valueIfFalse;`

@@ -325,4 +325,45 @@ public class TreeSetExample {
   * The output will **display the elements** of the `TreeSet` in **sorted order** based on their **natural ordering**
     (**lexicographical order** for strings)
   * `TreeSet` provides a convenient way to **maintain a sorted collection** of **unique elements**
-  * It's **especially useful** when elements need to be stored in **sorted order** and **duplicates need to be avoided**
+  * It's **especially useful** when elements need to be stored in **sorted order** and **duplicates need to be avoided**Re
+
+### Traversing a Binary Tree Recursively with Depth First Search in Java:
+```java
+public class Solution(){
+  private static void dfsTraversal(TreeNode root) {
+    if (root != null) {
+      System.out.println(root.val);
+
+      dfsTraversal(root.left);
+      dfsTraversal(root.right);
+    }
+  }
+}
+```
+### Traversing a Binary Tree Using a Stack with Depth First Search in Java:
+```java
+public class BinaryTreeTraversal {
+  public static void printBinaryTree(TreeNode root) {
+    if (root == null) {
+      System.out.println("Tree is empty.");
+      return;
+    }
+
+    Deque<TreeNode> stack = new ArrayDeque<>();
+    stack.push(root);
+
+    while (!stack.isEmpty()) {
+      TreeNode node = stack.pop();
+      System.out.print(node.val + " ");
+
+      if (node.right != null) {
+        stack.push(node.right);
+      }
+
+      if (node.left != null) {
+        stack.push(node.left);
+      }
+    }
+  }
+}
+```
