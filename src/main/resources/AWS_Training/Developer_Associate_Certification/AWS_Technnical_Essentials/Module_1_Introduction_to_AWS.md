@@ -471,10 +471,146 @@ print(response)
   * This makes it possible to **give permissions to multiple users at once**
   * It’s a more **convenient** and **scalable** way of **managing permissions** for users in your AWS account
   * This is why **using IAM groups** is a **best practice**
-  * If you have an application that you’re trying to build and you have multiple users in one account working on the 
-    application, you might organize the users by job function
-  * For example, you might organize your IAM groups by developers, security, and admins
-  * You could then place all your IAM users into their respective groups
-  * This provides a way to see who has what permissions in your organization
-  * It also helps you scale when new people join, leave, and change roles in your organization
-
+  * If you have an application that you’re trying to build and you have **multiple users** in **one account** working 
+    on the application, you might **organize the users by job function**
+  * For example, you might organize your IAM groups by **developers**, **security**, and **admins**
+  * You could then place **all your IAM users** into their **respective groups**
+  * This provides a way to see **who has what permission**s in your organization
+  * It also helps you **scale** when **new people join**, **leave**, and **change roles** in your organization
+  * Consider the following **examples**:
+    * A **new developer** joins your **AWS account** to **help with your application**
+      * You **create a new user** and **add them to the developer group**, **without thinking** about **which 
+        permissions they need**
+    * A **developer changes jobs** and becomes a **security engineer**
+      * Instead of **editing the user’s permissions directly**, you **remove them from the old group** and **add them 
+        to the new group** that **already has** the **correct level of access**
+    * Keep in mind the following **features of groups**:
+      * **Groups** can have **many users**
+      * **Users** can belong to **many groups**
+      * **Groups cannot belong to groups**
+    * The **root user** can **perform all actions** on **all resources inside an AWS account by default**
+      * This is **in contrast** to **creating new IAM users**, **new groups**, or **new roles**
+    * To allow an **IAM identity** to **perform specific actions** in AWS, such as **implement resources**, you must 
+      **grant the IAM user** the **necessary permissions**
+    * The way you **grant permissions** in **IAM** is by using **IAM policies**
+* **IAM Policies:**
+  * To **manage access** and **provide permissions** to **AWS services and resources**, you **create IAM policies** and 
+    **attach them to an IAM identity**
+  * Whenever an **IAM identity makes a request**, **AWS evaluates** the **policies associated with them**
+  * For example, if you have a **developer** inside the **developers group** who **makes a request** to an **AWS 
+    service**, AWS **evaluates any policies attached** to the **developers group** and **any policies attached** to the 
+    **developer user** to **determine if the request should be allowed or denied**
+* **IAM Policy Examples:**
+  * **Most policies** are **stored in AWS** as **JSON documents** with **several policy elements**
+  * The following example provides **admin access** through an **IAM identity-based policy**:
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+    "Effect": "Allow",
+    "Action": "*",
+    "Resource": "*"
+  }]
+}
+```
+* This policy has **four major JSON elements**: **Version**, **Effect**, **Action**, and **Resource**
+  * The **Version** element defines the **version of the policy language**
+    * It specifies the **language syntax rules** that are **needed by AWS** to **process a policy**
+    * To **use all the available policy features**, include "Version": "2012-10-17" before the "Statement" element in your 
+      policies
+  * The **Effect** element **specifies whether the policy** will **allow** or **deny access**
+    * In this policy, the Effect is "**Allow**", which means you’re **providing access** to a **particular resource**
+  * The **Action** element describes the **type of action** that **should be allowed or denied**
+    * In the example policy, the **action** is **"*"**
+    * This is called a **wildcard**, and it is used to **symbolize every action inside your AWS account**
+  * The **Resource** element specifies the **object** or **objects** that the **policy statement covers**
+    * In the policy example, the resource is the wildcard "*"
+    * This represents **all resources inside your AWS console**
+* Putting this information together, you have a policy that allows you to **perform all actions** on **all resources** 
+  in your AWS account
+  * This is what we refer to as an **administrator policy**
+* The next example shows a **more granular IAM policy:**
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DenyS3AccessOutsideMyBoundary",
+      "Effect": "Deny",
+      "Action": [
+        "s3:*"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringNotEquals": {
+          "aws:ResourceAccount": [
+            "222222222222"
+          ]
+        }
+      }
+    }
+  ]
+}
+```
+* This policy uses a **Deny effect** to **block access** to **Amazon S3 actions**, unless the **Amazon S3 resource** 
+  that's **being accessed** is **in account 222222222222**
+* This ensures that **any Amazon S3 principals** are **accessing only the resources** that are **inside of a trusted 
+  AWS account**
+* **IAM Roles:**
+  * Most policies are **stored in AWS** as **JSON documents** with **several policy elements**
+* **IAM Best Practices:**
+  * Throughout this lesson, you have learned about some IAM best practices
+  * This section summarizes some of the most important IAM best practices that you must be familiar with before 
+    building solutions in AWS
+    * **Lock down the AWS root user:**
+      * The **root user** is an **all-powerful** and **all-knowing identity** in your **AWS account**
+      * If a **malicious user** were to **gain control of root-user credentials**, they would be able to **access every 
+        resource in your account**, including **personal and billing information**
+      * To **lock down the root user**, you can do the following:
+        * **Don’t share the credentials associated with the root user**
+        * **Consider deleting the root user access keys**
+        * **Activate MFA** on the root account
+    * **Follow the principal of least privilege**
+      * **Least privilege** is a **standard security principle** that advises you to **grant only the necessary 
+        permissions** to do a **particular job** and **nothing more**
+      * To **implement least privilege** for **access control**, **start with the minimum set of permissions** in an 
+        **IAM policy** and **then grant additional permissions as necessary** for a **user**, **group**, or **role**
+    * **Use IAM Appropriately:**
+      * **IAM** is used to **secure access** to your **AWS account and resources**
+      * It provides a way to **create and manage users**, **groups**, and **roles** to **access resources** in a 
+        **single AWS account**
+      * IAM is **not used for website authentication and authorization**, such as providing **users of a website** with 
+        **sign-in and sign-up functionality**
+      * IAM also **does not support security controls** for **protecting operating systems** and **networks**
+    * **Use IAM Roles when Possible:**
+      * **Maintaining roles** is **more efficient than maintaining users**
+      * When you **assume a role**, IAM **dynamically provides temporary credentials** that **expire after a defined 
+        period of time**, between 15 minutes and 36 hours
+      * **Users**, on the other hand, have **long-term credentials** in the form of **user name and password 
+        combinations** or a set of **access keys**
+      * **User access keys only expire** when **you** or the **account admin rotates the keys**
+      * **User login credentials expire** if you applied a **password policy** to your account that **forces users to 
+        rotate their passwords**
+    * **Consider Using an Identity Provider:**
+      * If you decide to make your **cat photo application** into a **business** and begin to have **more than a handful 
+        of people working on it**, consider **managing employee identity information** through an **identity provider 
+        (IdP)**
+      * Using an **IdP**, whether it's with an **AWS service** such as **AWS IAM Identity Cente**r (**successor** to 
+        **AWS Single Sign-On**) or a **third-party identity provider**, provides a **single source of truth** for **all
+        identities in your organization**
+      * You **no longer have to create separate IAM users** in AWS
+      * You can instead use **IAM roles** to **provide permissions to identities** that are **federated from your IdP**
+      * **Being federated** is a process that allows for the **transfer of identity and authentication information 
+        across a set of networked systems**
+      * For example, your **employee Martha** has access to **multiple AWS accounts**
+        * Instead of **creating and managing multiple IAM users** named Martha in each of those AWS accounts, you could 
+          **manage Martha in your company’s IdP**
+        * If Martha **moves in the company** or **leaves the company**, Martha can be **updated in the IdP rather than 
+          in every AWS account in the company**
+    * **Regularly Review and Remove Unused Users, Roles, and Other Credentials:**
+      * You might have **IAM users**, **roles**, **permissions**, **policies**, or **credentials** that you are **no 
+        longer using** in your account
+      * IAM provides **last accessed information** to help you **identify irrelevant credentials** that you no longer 
+        need so that you can **remove them**
+      * This helps you **reduce** the **number of users, roles, permissions, policies, and credentials** that you have 
+        to monitor
