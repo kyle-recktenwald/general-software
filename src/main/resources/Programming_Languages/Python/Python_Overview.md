@@ -29,6 +29,12 @@
 * Python's **simplicity** and **readability** make it an **excellent choice for beginners**, while its **vast 
   capabilities** and **strong community support** make it a favorite among **seasoned developers**
 
+### Working in the Python Virtual Environment:
+* **To Activate a Project's Virtual Environment in the Terminal:**
+```
+source ~/Desktop/Repositories/Python/python-projects/flask_app_postgres/.venv/bin/activate
+```
+
 ### Functions in Python:
 * In Python, **functions** are **blocks of organized, reusable code** used to **perform a single, related action**
 * They allow you to **break down your code** into **smaller, manageable parts**, making it **easier to read, debug, and 
