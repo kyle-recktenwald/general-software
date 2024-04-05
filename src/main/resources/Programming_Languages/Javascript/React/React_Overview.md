@@ -658,3 +658,10 @@ const [count, setCount] = useState(0);
     behavior within your React application
   * State should be used for data that belongs to a single component and is subject to change during the component's 
     lifetime
+
+### Using JSON Server to Mock a Server Call:
+```
+npm install json-server
+json-server --watch --port 4000 ./_data/db.json
+```
+

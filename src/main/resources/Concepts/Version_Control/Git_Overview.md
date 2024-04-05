@@ -19,4 +19,3 @@ git commit -m "Initial commit"
 ```
 * Open Github Desktop, select `File` -> `Add Local Repository`
 * Publish the Repository
-

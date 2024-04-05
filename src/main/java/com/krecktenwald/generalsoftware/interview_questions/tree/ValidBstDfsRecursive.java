@@ -8,7 +8,6 @@ public class ValidBstDfsRecursive {
             System.out.printf("Current Root Value: %d, ", root.val);
         }
         System.out.printf("Current Range: %d - %d%n", low, high);
-
         if (root == null) {
             return true;
         }
