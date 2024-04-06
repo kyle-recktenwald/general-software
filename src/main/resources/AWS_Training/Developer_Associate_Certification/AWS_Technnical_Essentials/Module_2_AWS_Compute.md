@@ -318,82 +318,88 @@
         * Dedicated Hosts can be **purchased on demand (hourly)**
         * Dedicated Hosts can be **purchased as a Reservation** for **up to 70 percent off the On-Demand price**
 * **Container Services:**
-  * AWS offers a broad spectrum of compute offerings that give you the flexibility to choose the right tool for the job
-  * As mentioned earlier, the three main categories of compute are virtual machines (VMs), containers, and serverless
-  * No one-size-fits-all compute service exists because it depends on your needs
-  * The key is to understand what each option offers
-  * Then you can build an appropriate cloud architecture for your use case
-  * In this section, you will learn about containers and how to run them
-  * Containers can host a variety of different workloads, including web applications, lift and shift migrations, 
-    distributed applications, and streamlining of development, test, and production environments
+  * AWS offers a **broad spectrum** of **compute offerings** that give you the **flexibility** to choose the **right 
+    tool for the job**
+  * As mentioned earlier, the **three main categories of compute** are **virtual machines (VMs)**, **containers**, and 
+    **serverless**
+  * **No one-size-fits-all compute service exists** because it **depends on your needs**
+  * The key is to **understand what each option offers**
+  * Then you can build an **appropriate cloud architecture** for **your use case**
+  * In this section, you will learn about **containers** and **how to run them**
+  * Containers can **host a variety of different workloads**, including **web applications**, **lift and shift 
+    migrations**, **distributed applications**, and **streamlining of development**, **test**, and **production 
+    environments**
   * **Containers:**
-    * Although containers are often referred to as a new technology, the idea started in the 1970s with certain UNIX 
-      kernels (the central core of the operating system) having the ability to separate their processes through 
-      isolation
-    * At the time, this was configured manually, making operations complex
-    * With the evolution of the open-source software community, containers evolved
-    * Today, containers are used as a solution to problems of traditional compute, including the issue of getting 
-      software to run reliably when it moves from one compute environment to another
-    * A container is a standardized unit that packages your code and its dependencies
-    * This package is designed to run reliably on any platform, because the container creates its own independent 
-      environment
-    * With containers, workloads can be carried from one place to another, such as from development to production or 
-      from on-premises environments to the cloud
-    * An example of a containerization platform is Docker
-    * Docker is a popular container runtime that simplifies the management of the entire operating system stack 
-      required for container isolation, including networking and storage
-    * Docker helps customers create, package, deploy, and run containers
+    * Although containers are **often referred to** as a **new technology**, the idea started in the **1970s** with 
+      **certain UNIX kernels** (the **central core of the operating system**) having the ability to **separate their 
+      processes through isolation**
+    * At the time, this was **configured manually**, making **operations complex**
+    * With the **evolution** of the **open-source software community**, **containers evolved**
+    * Today, containers are used as **a solution** to **problems of traditional compute**, including **the issue of 
+      getting software to run reliably when it moves from one compute environment to another**
+    * A container is a **standardized unit** that **packages your code and its dependencies**
+    * This package is designed to **run reliably** on **any platform**, because the **container creates** its **own 
+      independent environment**
+    * With containers, **workloads** can be **carried from one place to another**, such as **from development to 
+      production** or **from on-premises environments to the cloud**
+    * An **example** of a **containerization platform** is **Docker**
+    * **Docker** is a **popular container runtime** that **simplifies the management** of the **entire operating system 
+      stack required for container isolation**, including **networking** and **storage**
+    * Docker **helps customers create**, **package**, **deploy**, and **run containers**
   * **Difference Between VMs and Containers:**
-    * Containers share the same operating system and kernel as the host that they exist on
-    * But virtual machines contain their own operating system
-    * Each virtual machine must maintain a copy of an operating system, which results in a degree of wasted resources
-    * A container is more lightweight
-    * Containers spin up quicker, almost instantly
-    * This difference in startup time becomes instrumental when designing applications that must scale quickly during 
-      I/O bursts
-    * Containers can provide speed, but virtual machines offer the full strength of an operating system and more 
-      resources, like package installation, dedicated kernel, and more
+    * **Containers share** the **same operating system and kernel as the host that they exist on**
+    * But **virtual machines contain their own operating system**
+    * **Each virtual machine must maintain a copy of an operating system**, which results in a **degree of wasted 
+      resources**
+    * A **container** is **more lightweight**
+    * **Containers spin up quicker**, **almost instantly**
+    * This **difference in startup time** becomes **instrumental** when designing applications that **must scale quickly 
+      during I/O bursts**
+    * **Containers** can provide **speed**, but **virtual machines offer** the **full strength of an operating system** 
+      and **more resources**, like **package installation**, **dedicated kernel**, and more
   * **Orchestrating Containers:**
-    * In AWS, containers can run on EC2 instances
-    * For example, you might have a large instance and run a few containers on that instance
-    * Although running one instance is uncomplicated to manage, it lacks high availability and scalability
-    * Most companies and organizations run many containers on many EC2 instances across several Availability Zones
-    * If you’re trying to manage your compute at a large scale, you should consider the following:
-      * How to place your containers on your instances
-      * What happens if your container fails
-      * What happens if your instance fails
-      * How to monitor deployments of your containers
-    * This coordination is handled by a container orchestration service
-    * AWS offers two container orchestration services: Amazon Elastic Container Service (Amazon ECS) and Amazon Elastic 
-      Kubernetes Service (Amazon EKS)
+    * In AWS, **containers can run on EC2 instances**
+    * For example, you might have a **large instance** and **run a few containers on that instance**
+    * Although **running one instance** is **uncomplicated to manage**, it **lacks high availability** and 
+      **scalability**
+    * **Most companies and organizations** run **many containers** on **many EC2 instances** across **several 
+      Availability Zones**
+    * If you’re trying to **manage your compute** at a **large scale**, you should **consider the following**:
+      * **How to place** your **containers** on your **instances**
+      * What happens if your **container fails**
+      * What happens if your **instance fails**
+      * How to **monitor deployments** of your **containers**
+    * This coordination is handled by a **container orchestration service**
+    * **AWS offers two container orchestration services**: **Amazon Elastic Container Service (Amazon ECS)** and 
+      **Amazon Elastic Kubernetes Service (Amazon EKS)**
   * **Managing Containers with Amazon ECS:**
-    * Amazon ECS is an end-to-end container orchestration service that helps you spin up new containers
-    * With Amazon ECS, your containers are defined in a task definition that you use to run an individual task or a 
-      task within a service
-    * You have the option to run your tasks and services on a serverless infrastructure that's managed by another AWS 
-      service called AWS Fargate
-    * Alternatively, for more control over your infrastructure, you can run your tasks and services on a cluster of 
-      EC2 instances that you manage
-    * If you choose to have more control by running and managing your containers on a cluster of Amazon EC2 instances, 
-      you will also need to install the Amazon ECS container agent on your EC2 instances
-    * Note that an EC2 instance with the container agent installed is often called a container instance
-    * This container agent is open source and responsible for communicating to the Amazon ECS service about cluster 
-      management details
-    * You can run the agent on both Linux and Windows AMIs
-    * When the Amazon ECS container instances are up and running, you can perform actions that include, but are not 
-      limited to, the following:
-      * Launching and stopping containers
-      * Getting cluster state
-      * Scaling in and out
-      * Scheduling the placement of containers across your cluster
-      * Assigning permissions
-      * Meeting availability requirements
-    * To prepare your application to run on Amazon ECS, you create a task definition
-    * The task definition is a text file, in JSON format, that describes one or more containers
-    * A task definition is similar to a blueprint that describes the resources that you need to run a container, such 
-      as CPU, memory, ports, images, storage, and networking information
-    * Here is a simple task definition that you can use for your corporate directory application
-    * In this example, this runs on the Nginx web server
+    * **Amazon ECS** is an **end-to-end container orchestration service** that helps you **spin up new containers**
+    * With Amazon ECS, your **containers are defined** in a **task definition** that you use to **run an individual 
+      task** or a **task within a service**
+    * You have the option to **run your tasks and services** on a **serverless infrastructure** that's **managed by 
+      another AWS service** called **AWS Fargate**
+    * Alternatively, for **more control over your infrastructure**, you can **run your tasks and services** on a 
+      **cluster of EC2 instances that you manage**
+    * If you choose to have **more control** by **running and managing your containers** on a **cluster of Amazon EC2 
+      instances**, you will **also need to install** the **Amazon ECS container agent** on your EC2 instances
+    * Note that **an EC2 instance** with the **container agent installed** is often called a **container instance**
+    * This **container agent** is **open source** and **responsible for communicating to the Amazon ECS service** about 
+      **cluster management details**
+    * You can **run the agent** on both **Linux** and **Windows AMIs**
+    * When the **Amazon ECS container instances** are **up and running**, you can **perform actions** that include, but 
+      are not limited to, the following:
+      * **Launching** and **stopping containers**
+      * Getting **cluster state**
+      * **Scaling in and out**
+      * **Scheduling** the **placement of containers across your cluster**
+      * Assigning **permissions**
+      * Meeting **availability requirements**
+    * To **prepare your application** to **run on Amazon ECS**, you create a **task definition**
+    * The **task definition** is a **text file**, in **JSON format**, that **describes one or more containers**
+    * A **task definition** is **similar to a blueprint** that **describes the resources that you need** to **run a 
+      container**, such as **CPU**, **memory**, **ports**, **images**, **storage**, and **networking information**
+    * Here is a **simple task definition** that you can use for your **corporate directory application**
+    * In this example, this runs on the **Nginx web server**
 ```json
 {
   "family": "webserver",
@@ -414,18 +420,20 @@
 }
 ```
 * **Using Kubernetes with Amazon EKS:**
-  * Kubernetes is a portable, extensible, open-source platform for managing containerized workloads and services
-  * By bringing software development and operations together by design, Kubernetes created a rapidly growing ecosystem 
-    that is very popular and well established in the market
-  * If you already use Kubernetes, you can use Amazon EKS to orchestrate the workloads in the AWS Cloud
-  * Amazon EKS is a managed service that you can use to run Kubernetes on AWS without needing to install, operate, and 
-    maintain your own Kubernetes control plane or nodes
-  * Amazon EKS is conceptually similar to Amazon ECS, but with the following differences:
-    * In Amazon ECS, the machine that runs the containers is an EC2 instance that has an ECS agent installed and 
-      configured to run and manage your containers. This instance is called a container instance. In Amazon EKS, the 
-      machine that runs the containers is called a worker node or Kubernetes node.
-    * An ECS container is called a task, while An EKS container is called a pod
-    * Amazon ECS runs on AWS native technology, while Amazon EKS runs on Kubernetes
-  * If you have containers running on Kubernetes and want an advanced orchestration solution that can provide 
-    simplicity, high availability, and fine-grained control over your infrastructure, Amazon EKS could be the tool for 
-    you
+  * **Kubernetes** is a **portable**, **extensible**, **open-source platform** for **managing containerized workloads 
+    and services**
+  * By **bringing software development and operations together by design**, Kubernetes created a **rapidly growing 
+    ecosystem** that is **very popular** and **well established** in the market
+  * If you **already use Kubernetes**, you can use **Amazon EKS** to **orchestrate the workloads** in the **AWS Cloud**
+  * **Amazon EKS** is a **managed service** that you can use to **run Kubernetes on AWS without needing to install, 
+    operate, and maintain your own Kubernetes control plane or nodes**
+  * Amazon EKS is **conceptually similar to Amazon ECS**, but with the **following differences**:
+    * In **Amazon ECS**, the **machine that runs the containers** is an **EC2 instance** that has an **ECS agent 
+      installed and configured** to **run and manage your containers**
+    * This instance is called a **container instance**
+    * In **Amazon EKS**, the **machine that runs the containers** is called a **worker node** or **Kubernetes node**
+    * An **ECS container** is called a **task**, while An **EKS container** is called a **pod**
+    * **Amazon ECS runs on AWS native technology**, while **Amazon EKS runs on Kubernetes**
+  * If you have **containers running on Kubernetes** and want an **advanced orchestration solution** that can provide 
+    **simplicity**, **high availability**, and **fine-grained control over your infrastructure**, **Amazon EKS** could 
+    be **the tool for you**
