@@ -437,3 +437,171 @@
   * If you have **containers running on Kubernetes** and want an **advanced orchestration solution** that can provide 
     **simplicity**, **high availability**, and **fine-grained control over your infrastructure**, **Amazon EKS** could 
     be **the tool for you**
+* **Introduction to Serverless:**
+  * Removing the Undifferentiated Heavy Lifting:
+    * If you **run your code** on **Amazon EC2**, **AWS is responsible** for the **physical hardware**
+    * **You** are **still responsible** for the **logical controls**, such as the **guest operating system**, **security 
+      and patching**, **networking**, **security**, and **scaling**
+    * As covered in the previous Container Services lesson, **you choose to have more control** by **running** and 
+      **managing your containers** on **Amazon ECS** and **Amazon EKS**
+    * By doing so, **AWS** is **still responsible** for more of the **container management**, such as **deploying 
+      containers across EC2 instances** and **managing the container cluster**
+    * However, **when running Amazon ECS** and **Amazon EKS on Amazon EC2**, you are **still responsible for maintaining 
+      the underlying EC2 instances**
+    * Is there **a way to remove** some of this **undifferentiated heavy lifting**?
+    * Yes! If you want to deploy your workloads and applications **without having to manage any EC2 instances**, you can 
+      do that on AWS with **serverless compute**
+  * **Go Serverless:**
+    * With **serverless compute**, you can spend time on the things that **differentiate your application**, rather than 
+      spending time on **ensuring availability, scaling, and managing servers**
+    * **Every definition of serverless** mentions the **following four aspects**:
+      * There are **no servers to provision or manage**
+      * It **scales with usage**
+      * You **never pay for idle resources**
+      * **Availability** and **fault tolerance** are **built in**
+    * AWS has developed **serverless services** for **all three layers of the application stack**
+    * We will cover two services, **AWS Fargate** and **AWS Lambda**, in the following lessons
+* **Exploring Serverless Containers with AWS Fargate:**
+  * **Fargate abstracts the EC2 instance** so that you’re **not required to manage** the **underlying compute 
+    infrastructure**
+  * However, **with Fargate**, you can **use all the same Amazon ECS concepts**, **APIs**, and **AWS integrations**
+  * It **natively integrates with IAM** and **Amazon Virtual Private Cloud (Amazon VPC)**
+  * With **native integration** with **Amazon VPC**, you can **launch Fargate containers inside your network** and 
+    **control connectivity to your applications**
+  * AWS Fargate is a **purpose-built serverless compute engine for containers**
+  * AWS Fargate **scales** and **manages the infrastructure**, so developers can work on what they do best, 
+    **application development**
+  * It achieves this by **allocating the right amount of compute**
+  * This **eliminates the need** to **choose and manage EC2 instances**, **cluster capacity**, and **scaling**
+  * Fargate **supports both Amazon ECS** and **Amazon EKS architecture** and provides **workload isolation** and 
+    **improved security** by design
+  * <img src="images/module_2/AWS_Fargate_Diagram.jpeg" width="800">
+* **Serverless with AWS Lambda:**
+  * **Running code on AWS Lambda:**
+    * If you want to **deploy your workloads and applications without having to manage any EC2 instances or containers**, 
+      you can use **Lambda**
+    * With Lambda, you can **run code without provisioning or managing servers**
+    * You can **run code** for **virtually any type of application** or **backend service**
+    * This includes **data processing**, **real-time stream processing**, **machine learning**, **WebSockets**, **IoT 
+      backends**, **mobile backends**, and **web applications** like your **employee directory application**
+    * Lambda **runs your code** on a **high availability compute infrastructure** and **requires no administration from 
+      the user**
+    * You **upload your source code** in **one of the languages that Lambda supports**, and Lambda **takes care of everything 
+      required** to **run** and **scale your code** with **high availability**
+    * There are **no servers to manage**
+    * You get **continuous scaling** with **subsecond metering** and **consistent performance**
+  * **How Lambda Works:**
+    * The **Lambda function** is the **foundational principle of AWS Lambda**
+    * You have the option of **configuring your Lambda functions** using the **Lambda console**, **Lambda API**, **AWS 
+      CloudFormation**, or **AWS Serverless Application Model (AWS SAM)**
+    * You can **invoke your function directly** by using the **Lambda API**, or you can **configure an AWS service or 
+      resource** to **invoke your function in response to an event**
+  * **Lambda Concepts:**
+    * **Function:**
+      * A **function** is a **resource** that **you can invoke** to **run your code in Lambda**
+      * Lambda **runs instances of your function** to **process events**
+      * When you **create the Lambda function**, it can be **authored in several ways**:
+        * You can **create the function from scratch**
+        * You can use a **blueprint that AWS provides**
+        * You can **select a container image** to **deploy for your function**
+        * You can **browse the AWS Serverless Application Repository**
+      * <img src="images/Module_2/Lambda_Function.png" width="800">
+    * **Trigger:**
+      * **Triggers** describe **when a Lambda function should run**
+      * A trigger **integrates your Lambda function** with **other AWS services** and **event source mappings**
+      * So you can **run your Lambda function in response** to **certain API calls** or by **reading items from a stream 
+        or queue**
+      * This **increases your ability** to **respond to events in your console without having to perform manual 
+        actions**
+    * **Event:**
+      * An **event** is a **JSON-formatted document** that **contains data for a Lambda function to process**
+      * The **runtime converts the event to an object** and **passes it to your function code**
+      * When you **invoke a function**, you determine the **structure** and **contents of the event**
+    * **Application Environment:**
+      * An **application environment** provides a **secure** and **isolated runtime environment** for your Lambda 
+        function
+      * An application environment **manages the processes and resources** that are **required to run the function**
+    * **Deployment Package:**
+      * You **deploy** your Lambda function code using a **deployment package**
+      * Lambda supports **two types of deployment packages**:
+        * **A .zip File Archive:**
+          * This contains your **function code** and **its dependencies**
+          * Lambda **provides the operating system** and **runtime for your function**
+        * **A Container Image:**
+          * This is **compatible** with the **Open Container Initiative (OCI) specification**
+          * You **add your function code** and **dependencies** to the **image**
+          * You **must also include** the **operating system** and a **Lambda runtime**
+    * **Runtime:**
+      * The runtime provides a **language-specific environment** that **runs in an application environment**
+      * When you create your Lambda function, you **specify the runtime** that you **want your code to run in**
+      * You can use **built-in runtimes**, such as **Python**, **Node.js**, **Ruby**, **Go**, **Java**, or **.NET Core**
+      * Or you can **implement your Lambda functions** to run on a **custom runtime**
+    * **Lambda Function Handler:**
+      * The **AWS Lambda function handler** is the **method in your function code** that **processes events**
+      * When your **function is invoked**, **Lambda runs** the **handler method**
+      * When the **handler exits** or **returns a response**, it **becomes available to handle another event**
+      * You can use the following **general syntax** when **creating a function handler** in **Python**:
+```
+def handler_name (event, context):
+...
+return some_value
+```
+* **Serverless with AWS Lambda (cont.):**
+  * **Billing Granularity:**
+    * With Lambda, you can **run code without provisioning or managing servers**, and you **pay only for what you use**
+    * You are **charged** for the **number of times that your code is invoked** (**requests**) and for the **time that 
+      your code runs**, r**ounded up to the nearest 1 millisecond (ms) of duration**
+    * AWS **rounds up duration** to the **nearest ms** with **no minimum run time**
+    * With this pricing, it can be **cost effective** to **run functions whose execution time is very low**, such as 
+      **functions with durations under 100 ms or low latency APIs**
+  * **"No server is easier to manage than no server."**
+    * This **quote** from **Werner Vogels**, Amazon CTO summarizes the **convenience** that you can have when **running 
+      serverless solutions** like **AWS Fargate** and **AWS Lambda**
+    * Later, you will **apply all the information** that you have acquired about **Amazon EC2**, **Amazon ECS**, 
+      **Amazon EKS**, and **AWS Fargate** to some **use cases for each service**
+* **Choosing the Right Compute Service:**
+  * **Scenario 1: Infrequent Updates:**
+    * **Scenario Description:**
+      * Consider a scenario where you are a **developer** who is tasked with creating a **new feature** for an **online 
+        store web application** being **hosted on EC2**
+      * Right now, all the items being sold in the store are **loaded into a database manually** behind the scenes
+      * By manually, I mean there is a **person** who adds a **new row to a database** for **each new item to be sold** 
+        in the store
+      * This process takes a **long time**, **isn't scalable**, and is **prone to error**
+      * You are tasked with **automating the process** of getting the **new item information loaded into the inventory 
+        database**
+      * The goal is to have a **person upload an inventory spreadsheet into Amazon S3**, the **object storage service**, 
+        then have a **process automatically load the data into the inventory database**
+      * New inventory gets **updated once a quarter**
+      * **What compute would you use** to **host the processing logic** to **load the items from the file into the 
+        database**?
+    * **Deciding on a Compute Solution:**
+      * You could have decided to use **Amazon EC2** here
+      * You could **spin up a new instance specifically for this process** and write some code that **polls the location 
+        of the spreadsheet** for a **new upload every so often**
+      * **Updating the database** when it **finds a new file**, that would work, but we should look at **how often** a 
+        **new inventory** gets **added to the database**
+      * **Amazon EC2 charges per second** or **per hour**
+      * So if I have an **instance running all the time** to **serve requests that happens once per quarter**, that 
+        seems like a **lost opportunity** to **optimize for cost**
+      * I would be **spending money on a resource** I **rarely use**
+      * It certainly **would work**, but it **may not be the best fit** for **this use case**
+      * I **could automate the process** of **starting and stopping the instance when needed,** but instead, what about 
+        using **AWS Lambda**?
+      * **AWS Lambda** is the **correct answer** for a few reasons
+      * First of all, to address your **concern on cost**, **AWS Lambda only charges for the compute you consume** when 
+        the code is **actually running**
+      * And code is **only run in response** to **triggers** or a **direct invitation**
+      * So here's my suggestion
+      * You know that the goal is to **have someone upload an inventory document to S3**, which **should kick off the 
+        process of updating the database**
+      * You also learned that **AWS Lambda has triggers** that **run your Lambda functions code**
+      * AWS Lambda **integrates** with **many AWS services** to **act as triggers**, and **Amazon S3 is one of them**
+      * So my suggestion would be to:
+        * **Create an AWS Lambda function**
+        * Configure a **`PutEvent` as the trigger** from **Amazon S3**
+        * Then **when the inventory is uploaded**, **Amazon S3 will trigger the Lambda function to run** and the **code 
+          in the function** will **parse the inventory document** and **add each item to the database**
+
+
+
