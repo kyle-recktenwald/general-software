@@ -561,7 +561,7 @@ return some_value
       **Amazon EKS**, and **AWS Fargate** to some **use cases for each service**
 * **Choosing the Right Compute Service:**
   * **Scenario 1: Infrequent Updates:**
-    * **Scenario Description:**
+    * **Description:**
       * Consider a scenario where you are a **developer** who is tasked with creating a **new feature** for an **online 
         store web application** being **hosted on EC2**
       * Right now, all the items being sold in the store are **loaded into a database manually** behind the scenes
@@ -602,6 +602,41 @@ return some_value
         * Configure a **`PutEvent` as the trigger** from **Amazon S3**
         * Then **when the inventory is uploaded**, **Amazon S3 will trigger the Lambda function to run** and the **code 
           in the function** will **parse the inventory document** and **add each item to the database**
+  * **Scenario 2: Migrating an Application from On-Premises**
+    * **Description:**
+      * Let's say you have an **application currently hosted** in your **on-premises data center**, which **needs to be 
+        migrated to AWS**
+      * It's **currently running on Linux servers in the data center**, and you want to **minimize the amount of 
+        refactoring needed** to **migrate to AWS**
+      * It's important that this **workload is elastic** and **can support varying demand**
+      * What **AWS compute option** would you choose?
+    * **Deciding on a Compute Solution:**
+      * Considering the fact that **minimizing refactoring** is an **important aspect of this workload**, I would 
+        **architect a solution** using **Amazon EC2 as the compute service**
+      * **EC2 instances** can be **launched from Linux-based AMIs**, and the **application could be hosted on the EC2 
+        instance the same way it would be hosted on a Linux server on premises**
+      * **Amazon EC2** also has the ability to **scale in or out based on demand**
+      * Considering other options, **AWS Lambda could work**, but you **can't just upload** the **same code you would 
+        run on Amazon EC2 into a Lambda function**
+      * There would have to be a **decent amount of refactoring** in order to **take advantage of that service**
+      * Same idea with any of the **AWS container services**, like **ECS** or **EKS**
+      * Again, you'd have some amount of **rework required** to **migrate to containers**
+      * Therefore, **Amazon EC2** is the **best option** for this **migration**
+  * **Scenario 3: New Microservice Application**
+    * **Description:**
+      * Imagine you are planning to write a **brand-new application** using a **microservices** or **service-oriented 
+        design**
+      * And you want to **architect the application** where it can **scale up or down quickly**, and you want to **lower 
+        the risk** of **deploying new changes to production**
+      * **Which AWS compute service** would you use?
+    * **Deciding on a Compute Solution:**
+      * One of the **AWS container services** like **Amazon ECS** or **Amazon EKS**
+      * Using **containers** makes it **easier to support microservice or service-oriented designs**
+      * **Containers boot up quickly**, so **scaling is quicker than EC2 instances**, and the use of containers helps 
+        with **code portability**
+      * Meaning, if I **write the code on my laptop** and **run it in a container**, **test it in QA in a container**, I 
+        can then **expect the same container** to **behave the same way once deployed to production**, thus **reducing 
+        the risk of deployments causing errors** because of **environmental issues**
 
 
 
