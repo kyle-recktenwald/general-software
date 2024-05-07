@@ -1154,3 +1154,32 @@ public class SortedSetExample {
 * It is **also known as the conditional operator**
 * The **syntax** of the ternary operator is as follows:
   * `result = (condition) ? valueIfTrue : valueIfFalse;`
+
+### Reading and Writing Files in Java:
+```java
+public class IoExamples {
+  private String stringFromLocalFile(String fileName) throws IOException {
+    return FileUtils.readFileToString(new File("/path/to/file"), StandardCharsest.UTF_8);
+  }
+    
+  private String stringFromResourceFile(String fileName) throws IOException {
+    ClassPathResource resource = new ClassPathResource(fileName);
+    byte[] bytes = FileCopyUtils.copyToByteArray(resource.getInputStream());
+    return new String(bytes, StandardCharsets.UTF_8);
+  }
+  
+  private void stringToLocalFile(String str, String outputFilename) throws IOException {
+    File outputFile = new File(outputFilename);
+    OutputStream outputStream = new FileOutputStream(outputFile);
+    byte[] bytes = str.getBytes();
+    outputStream.write(bytes);
+    outputStream.close();
+  }
+
+  public static void main(String[] args) {
+    stringFromLocalFile("/Users/krecktenwald/Desktop/...");
+    stringFromResourceFile("data/example.html");
+    stringToLocalFile("/Users/krecktenwald/Desktop/...");
+  }
+}
+```

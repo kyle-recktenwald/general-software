@@ -53,3 +53,9 @@
 ### Heap:
 
 ### Trie:
+
+## Important Concepts:
+
+### CAP Theorem:
+
+### ACID:
