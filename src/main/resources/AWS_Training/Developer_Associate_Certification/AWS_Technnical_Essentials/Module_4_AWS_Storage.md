@@ -426,122 +426,127 @@
       encryption** with **S3-managed keys** as the **base level of encryption** for **every bucket in Amazon S3** at 
       **no additional cost**
 * **Amazon S3 Storage Classes:**
-  * When you upload an object to Amazon S3 and you don’t specify the storage class, you upload it to the default storage 
-    class, often referred to as standard storage
-  * In previous lessons, you learned about the default Amazon S3 standard storage class
-  * Amazon S3 storage classes let you change your storage tier when your data characteristics change
-  * For example, if you are accessing your old photos infrequently, you might want to change the storage class for the 
-    photos to save costs
+  * When you **upload an object to Amazon S3** and you **don’t specify the storage class**, you upload it to the 
+    **default storage class**, often referred to as **standard storage**
+  * In previous lessons, you learned about the **default Amazon S3 standard storage class**
+  * Amazon S3 storage classes let you **change your storage tier** when your **data characteristics change**
+  * For **example**, if you are accessing your **old photos infrequently**, you might want to **change the storage 
+    class** for the photos to **save costs**
   * **Storage Classes:**
     * **S3 Standard:**
-      * This is considered general-purpose storage for cloud applications, dynamic websites, content distribution, 
-        mobile and gaming applications, and big data analytics
+      * This is considered **general-purpose storage** for **cloud applications**, **dynamic websites**, **content 
+        distribution**, **mobile and gaming applications**, and **big data analytics**
     * **S3 Intelligent-Tiering:**
-      * This tier is useful if your data has unknown or changing access patters
-      * S3 Intelligent-Tiering stores objects in three tiers: a frequent access tier, an infrequent access tier, and an 
-        archive instance access tier. Amazon S3 monitors access patterns of your data and automatically moves your data 
-        to the most cost-effective storage tier based on frequency of access
+      * This tier is useful if your data has **unknown** or **changing access patterns**
+      * S3 Intelligent-Tiering stores objects in **three tiers**: a **frequent access tier**, an **infrequent access 
+        tier**, and an **archive instance access tier**
+      * Amazon S3 **monitors access patterns of your data** and **automatically moves your data** to the **most 
+        cost-effective storage tier** based on **frequency of access**
     * **S3 Standard-Infrequent Access (S3 Standard-IA):**
-      * This tier is for data that is accessed less frequently but requires rapid access when needed
-      * S3 Standard-IA offers the high durability, high throughput, and low latency of S3 Standard, with a low per-GB 
-        storage price and per-GB retrieval fee
-      * This storage tier is ideal if you want to store long-term backups, disaster recovery files, and so on
+      * This tier is for data that is **accessed less frequently** but **requires rapid access when needed**
+      * S3 Standard-IA offers the **high durability**, **high throughput**, and **low latency of S3 Standard**, with a 
+        **low per-GB storage price** and **per-GB retrieval fee**
+      * This storage tier is ideal if you want to **store long-term backups**, **disaster recovery files**, and so on
     * **S3 One Zone-Infrequent Access (S3 One Zone-IA):**
-      * Unlike other S3 storage classes that store data in a minimum of three Availability Zones, S3 One Zone-IA stores 
-        data in a single Availability Zone, which makes it less expensive than S3 Standard-IA
-      * S3 One Zone-IA is ideal for customers who want a lower-cost option for infrequently accessed data, but do not 
-        require the availability and resilience of S3 Standard or S3 Standard-IA
-      * It's a good choice for storing secondary backup copies of on-premises data or easily recreatable data
+      * Unlike other S3 storage classes that store data in a minimum of three Availability Zones, S3 One Zone-IA 
+        **stores data** in a **single Availability Zone**, which makes it **less expensive than S3 Standard-IA**
+      * S3 One Zone-IA is ideal for customers who want a **lower-cost option** for **infrequently accessed data**, but 
+        **do not require** the **availability** and **resilience** of **S3 Standard** or **S3 Standard-IA**
+      * It's a good choice for **storing secondary backup copies of on-premises data** or **easily recreatable data**
     * **S3 Glacier Instant Retrieval:**
-      * Use S3 Glacier Instant Retrieval for archiving data that is rarely accessed and requires millisecond retrieval
-      * Data stored in this storage class offers a cost savings of up to 68 percent compared to the S3 Standard-IA 
-        storage class, with the same latency and throughput performance
+      * Use S3 Glacier Instant Retrieval for **archiving data** that is **rarely accessed** and **requires millisecond 
+        retrieval**
+      * Data stored in this storage class offers a **cost savings** of up to **68 percent** **compared to the S3 
+        Standard-IA storage class**, with the **same latency and throughput performance**
     * **S3 Glacier Flexible Retrieval:**
-      * S3 Glacier Flexible Retrieval offers low-cost storage for archived data that is accessed 1–2 times per year
-      * With S3 Glacier Flexible Retrieval, your data can be accessed in as little as 1–5 minutes using an expedited 
-        retrieval
-      * You can also request free bulk retrievals in up to 5–12 hours
-      * It is an ideal solution for backup, disaster recovery, offsite data storage needs, and for when some data 
-        occasionally must be retrieved in minutes
+      * S3 Glacier Flexible Retrieval offers **low-cost storage** for **archived data** that is **accessed 1–2 times per 
+        year**
+      * With S3 Glacier Flexible Retrieval, your data can be accessed in as little as **1–5 minutes** using an 
+        **expedited retrieval**
+      * You can also request **free bulk retrievals** in **up to 5–12 hours**
+      * It is an ideal solution for **backup**, **disaster recovery**, **offsite data storage needs**, and for when 
+        **some data occasionally must be retrieved in minutes**
     * **S3 Glacier Deep Archive:**
-      * S3 Glacier Deep Archive is the lowest-cost Amazon S3 storage class
-      * It supports long-term retention and digital preservation for data that might be accessed once or twice a year
-      * Data stored in the S3 Glacier Deep Archive storage class has a default retrieval time of 12 hours
-      * It is designed for customers that retain data sets for 7–10 years or longer, to meet regulatory compliance 
-        requirements
-      * Examples include those in highly regulated industries, such as the financial services, healthcare, and public 
-        sectors
+      * S3 Glacier Deep Archive is the **lowest-cost** Amazon S3 storage class
+      * It supports **long-term retention** and **digital preservation** for data that **might be accessed once or twice 
+        a year**
+      * Data stored in the S3 Glacier Deep Archive storage class has a **default retrieval time** of **12 hours**
+      * It is designed for customers that **retain data sets** for **7–10 years or longer**, to **meet regulatory 
+        compliance requirements**
+      * Examples include those in **highly regulated industries**, such as the **financial services**, **healthcare**, 
+        and **public sectors**
     * **S3 on Outposts:**
-      * Amazon S3 on Outposts delivers object storage to your on-premises AWS Outposts environment using S3 API's and 
-        features
-      * For workloads that require satisfying local data residency requirements or need to keep data close to on 
-        premises applications for performance reasons, the S3 Outposts storage class is the ideal option
+      * Amazon S3 on Outposts **delivers object storage** to your **on-premises AWS Outposts environment** using **S3 
+        API's and features**
+      * For workloads that require **satisfying local data residency requirements** or need to **keep data close to on 
+        premises applications** for **performance reasons**, the S3 Outposts storage class is the ideal option
 * **Amazon S3 Versioning:**
-  * As described earlier, Amazon S3 identifies objects in part by using the object name
-  * For example, when you upload an employee photo to Amazon S3, you might name the object employee.jpg and store it in 
-    a bucket called employees
-  * Without Amazon S3 versioning, every time you upload an object called employee.jpg to the employees bucket, it will 
-    overwrite the original object
-  * This can be an issue for several reasons, including the following:
-    * Common names:
-      * The employee.jpg object name is a common name for an employee photo object
-      * You or someone else who has access to the bucket might not have intended to overwrite it; but once it's 
-        overwritten, the original object can't be accessed
-    * Version preservation:
-      * You might want to preserve different versions of employee.jpg
-      * Without versioning, if you wanted to create a new version of employee.jpg, you would need to upload the object 
-        and choose a different name for it
-      * Having several objects all with slight differences in naming variations can cause confusion and clutter in S3 
-        buckets
-  * To counteract these issues, you can use Amazon S3 versioning
-  * Versioning keeps multiple versions of a single object in the same bucket
-  * This preserves old versions of an object without using different names, which helps with object recovery from 
-    accidental deletions, accidental overwrites, or application failures
-  * If you enable versioning for a bucket, Amazon S3 automatically generates a unique version ID for the object
-  * In one bucket, for example, you can have two objects with the same key but different version IDs, such as 
-    employeephoto.jpg (version 111111) and employeephoto.jpg (version 121212)
-  * By using versioning-enabled buckets, you can recover objects from accidental deletion or overwrite
-  * The following are examples:
-    * Deleting an object does not remove the object permanently
-      * Instead, Amazon S3 puts a marker on the object that shows that you tried to delete it
+  * As described earlier, Amazon S3 **identifies objects in part** by using the **object name**
+  * For **example**, when you **upload an employee photo** to Amazon S3, you might **name the object `employee.jpg`** 
+    and store it in a **bucket** called **`employees`**
+  * **Without Amazon S3 versioning**, **every time** you **upload an object called `employee.jpg`** to the **`employees` 
+    bucket**, it will **overwrite the original object**
+  * This **can be an issue** for **several reasons**, including the following:
+    * **Common Names:**
+      * The **`employee.jpg` object name** is a **common name** for an **employee photo object**
+      * **You** or **someone else who has access to the bucket might not have intended to overwrite it**; but **once 
+        it's overwritten**, the **original object can't be accessed**
+    * **Version Preservation:**
+      * You **might want to preserve different versions** of `employee.jpg`
+      * **Without versioning**, if you wanted to **create a new version of `employee.jpg`**, you would need to **upload 
+        the object** and **choose a different name for it**
+      * Having **several objects** all with **slight differences in naming variations** can cause **confusion** and 
+        **clutter** in **S3 buckets**
+  * To **counteract these issues**, you can use **Amazon S3 versioning**
+  * **Versioning keeps multiple versions** of a **single object** in the **same bucket**
+  * This **preserves old versions of an object without using different names**, which **helps with object recovery** 
+    from **accidental deletions**, **accidental overwrites**, or **application failures**
+  * If you **enable versioning for a bucket**, Amazon S3 **automatically generates a unique version ID for the object**
+  * In **one bucket**, for **example**, you can have **two objects** with the **same key but different version IDs**, 
+    such as **`employeephoto.jpg` (version `111111`)** and **`employeephoto.jpg` (version `121212`)**
+  * By using **versioning-enabled buckets**, you can **recover objects from accidental deletion or overwrite**
+  * The following are **examples**:
+    * **Deleting an object does not remove the object permanently**
+      * Instead, **Amazon S3 puts a marker on the object** that shows that you **tried to delete it**
       * If you want to restore the object, you can remove the marker and the object is reinstated
-    * If you overwrite an object, it results in a new object version in the bucket
-      * You still have access to previous versions of the object
+    * If you **overwrite an object**, it results in a **new object version in the bucket**
+      * You **still have access** to **previous versions of the object**
   * **Versioning States:**
-    * Buckets can be in one of three states
-    * The versioning state applies to all objects in the bucket
-    * Storage costs are incurred for all objects in your bucket, including all versions
-    * To reduce your Amazon S3 bill, you might want to delete previous versions of your objects when they are no longer 
-      needed
+    * **Buckets** can be in **one of three states**
+    * The **versioning state applies to all objects in the bucket**
+    * **Storage costs are incurred** for **all objects in your bucket**, **including all versions**
+    * To **reduce your Amazon S3 bill**, you might want to **delete previous versions** of your objects when they are 
+      **no longer needed**
     * **Unversioned (Default):**
-      * No new and existing objects in the bucket have a version
+      * **No new and existing objects in the bucket have a version**
     * **Versioning Enabled:**
-      * Versioning is enabled for all objects in the bucket
-      * After you version-enable a bucket, it can never return to an unversioned state. However, you can suspend 
-        versioning on that bucket
+      * **Versioning is enabled** for **all objects in the bucket**
+      * After you **version-enable a bucket**, it can **never return to an unversioned state**
+      * However, **you can suspend versioning on that bucket**
     * **Versioning-Suspended:**
-      * Versioning is suspended for new objects
-      * All new objects in the bucket will not have a version
-      * However, all existing objects keep their object versions
+      * **Versioning is suspended** for **new objects**
+      * **All new objects in the bucket** will **not have a version**
+      * However, **all existing objects keep their object versions**
 * **Managing Your Storage Lifecycle:**
-  * If you keep manually changing your objects, such as your employee photos, from storage tier to storage tier, you 
-    might want to automate the process by configuring their Amazon S3 lifecycle
-  * When you define a lifecycle configuration for an object or group of objects, you can choose to automate between two 
-    types of actions: transition and expiration
-    * Transition actions define when objects should transition to another storage class
-    * Expiration actions define when objects expire and should be permanently deleted
-  * For example, you might transition objects to S3 Standard-IA storage class 30 days after you create them
-  * Or you might archive objects to the S3 Glacier Deep Archive storage class 1 year after creating them
-  * The following use cases are good candidates for the use of lifecycle configuration rules:
+  * If you **keep manually changing your objects**, such as your **employee photos**, from **storage tier to storage 
+    tier**, you might want to **automate the process** by **configuring their Amazon S3 lifecycle**
+  * When you **define a lifecycle configuration** for an **object** or **group of objects**, **you can choose to 
+    automate between two types of actions**: **transition** and **expiration**
+    * **Transition actions define when objects should transition to another storage class**
+    * **Expiration actions define when objects expire and should be permanently deleted**
+  * For **example**:
+    * You might **transition objects** to **S3 Standard-IA storage class 30 days after you create them**
+    * Or you **might archive objects** to the **S3 Glacier Deep Archive storage class 1 year after creating them**
+  * The **following use cases** are **good candidates** for the use of l**ifecycle configuration rules**:
     * **Periodic Logs:**
-      * If you upload periodic logs to a bucket, your application might need them for a week or a month
-      * After that, you might want to delete them
+      * If you **upload periodic logs** to a bucket, your **application might need them** for a **week** or a **month**
+      * After that, you **might want to delete them**
     * **Data That Changes in Access Frequency:**
-      * Some documents are frequently accessed for a limited period of time
-      * After that, they are infrequently accessed
-      * At some point, you might not need real-time access to them
-      * But your organization or regulations might require you to archive them for a specific period
-      * After that, you can delete them
+      * **Some documents** are **frequently accessed** for a **limited period of time**
+      * After that, they are **infrequently accessed**
+      * At some point, you **might not need real-time access to them**
+      * But your **organization** or **regulations** might **require you to archive them** for a **specific period**
+      * **After that**, you can **delete them**
 
 
 
