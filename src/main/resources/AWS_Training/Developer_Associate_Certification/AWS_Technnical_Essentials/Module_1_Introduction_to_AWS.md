@@ -1,3 +1,4 @@
+<html>
 # Module 1: Introduction to AWS:
 
 ### Cloud Computing Deployment Models:
@@ -201,7 +202,7 @@
     desired service**
   * This can be the **easiest way** to **create and manage resources** when you **first begin working with the cloud**
   * The following is a **screenshot** that shows the **landing page** when you **first log in to the console**
-  * <img src="images/Module_1/AWS_Console.png" width="500">
+  * <img src="images/Module_1/AWS_Console.png" width="500"></img>
   * In the **upper-left corner**, you can choose **Services** to **view AWS services grouped by categories**, such as 
     **Compute**, **Storage**, **Database**, and **Analytics**
   * In the **upper-right corner** is the **Region selector**
@@ -263,7 +264,7 @@ print(response)
 * To depict this shared responsibility, AWS created the **shared responsibility model**
 * The **distinction of responsibility** is commonly referred to as **security of the cloud** as compared to **security 
   in the cloud**
-* <img src="images/Module_1/Shared_Responsibility_Model.png" width="500">
+* <img src="images/Module_1/Shared_Responsibility_Model.png" width="500"></img>
 * **AWS Responsibility:**
   * AWS is responsible for **security of the cloud**
     * This means that **AWS protects and secures** the **infrastructure** that **runs the services offered in the AWS 
@@ -276,7 +277,7 @@ print(response)
   * The **level of responsibility** that **AWS has depends on the service**
   * AWS **classifies services** into **two categories**
   * The following table provides information about each, including the AWS responsibility
-  * <img src="images/Module_1/AWS_Responsibility_Table.png" width="500">
+  * <img src="images/Module_1/AWS_Responsibility_Table.png" width="500"></img>
 * **Customer Responsibility:**
   * **Customers are responsible** for **security in the cloud**
   * When using any AWS service, the **custome is responsibler** for **properly configuring the service and their 
@@ -288,7 +289,7 @@ print(response)
     resources**
   * Using the **two categories of AWS services**, customers can determine **their level of responsibility** for **each 
     AWS service** that they use
-  * <img src="images/Module_1/Customer_Responsibility_Table.png" width="500">
+  * <img src="images/Module_1/Customer_Responsibility_Table.png" width="500"></img>
 * **Conclusion:**
   * Due to the **varying levels of effort**, customers must **consider which AWS services they use** and review the 
     **level of responsibility required** to **secure each service**
@@ -379,7 +380,7 @@ print(response)
   * **AWS supports** a **variety of MFA mechanisms**, such as **virtual MFA devices**, **hardware time-based one-time 
     password (TOTP) tokens**, and **FIDO security keys**
   * To learn more, take a look at the table below:
-  * <img src="images/Module_1/AWS_MFA_Table.png" width="500">
+  * <img src="images/Module_1/AWS_MFA_Table.png" width="500"></img>
 **Resources:**
   * **AWS User Guide:** [Enabling a Hardware TOTP token](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_physical.html)
   * **AWS User Guide:** [Enabling a FIDO Security Key](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_fido.html)
@@ -614,3 +615,4 @@ print(response)
         need so that you can **remove them**
       * This helps you **reduce** the **number of users, roles, permissions, policies, and credentials** that you have 
         to monitor
+</html>
