@@ -548,6 +548,156 @@
       * But your **organization** or **regulations** might **require you to archive them** for a **specific period**
       * **After that**, you can **delete them**
 
+### Choosing the Right Storage Service:
+* **Amazon EC2 Instance Store:**
+  * **Instance store** is **ephemeral block storage**
+  * This is p**reconfigured storage** that **exists on the same physical server that hosts the EC2 instance** and 
+    **cannot be detached from Amazon EC2**
+  * You can think of it as a **built-in drive** for your **EC2 instance**
+  * Instance store is **generally well suited** for **temporary storage** of information that is **constantly 
+    changing**, such as **buffers**, **caches**, and **scratch data**
+  * It is **not meant for data** that is **persistent** or **long-lasting**
+  * If you need **persistent long-term block storage** that **can be detached from Amazon EC2** and provide you **more 
+    management flexibility**, such as **increasing volume size** or **creating snapshots**, you should use **Amazon 
+    EBS**
+* **Amazon EBS:**
+  * **Amazon EBS** is meant for **data that changes frequently** and **must persist through instance stops**, 
+    **terminations**, or **hardware failures**
+  * Amazon EBS has **two types of volumes**: **SSD-backed volumes** and **HDD-backed volumes**
+  * The **performance** of **SSD-backed volumes** depends on the **IOPs (Input/Output Operations per Second)** and is 
+    **ideal for transactional workloads**, such as **databases** and **boot volumes**
+  * The **performance** of **HDD-backed volumes** depends on **megabytes per second (MBps)** and is **ideal for 
+    throughput-intensive workloads**, such as **big data**, **data warehouses**, **log processing**, and **sequential 
+    data I/O**
+  * Here are a few **important features** of Amazon EBS that you need to know when comparing it to other services
+    * It is **block storage**
+    * You **pay for what you provision** (you **have to provision storage in advance**)
+    * EBS volumes are **replicated across multiple servers** in a **single Availability Zone**
+    * Most EBS volumes **can only be attached to a single EC2 instance at a time**
+* **Amazon S3:**
+  * If your **data doesn’t change often**, **Amazon S3** might be a **cost-effective** and **scalable storage solution** 
+    for you
+  * Amazon S3 is **ideal for storing static web content and media**, **backups and archiving**, and **data for 
+    analytics**
+  * It can also **host entire static websites** with **custom domain names**
+  * Here are a few **important features** of Amazon S3 to know about when **comparing it to other services**:
+    * It is **object storage**
+    * You **pay for what you use** (you **don’t have to provision storage in advance**)
+    * Amazon S3 **replicates your objects across multiple Availability Zones in a Region**
+    * Amazon S3 is **not storage attached to compute**
+* **Amazon EFS:**
+  * Amazon EFS provides **highly optimized file storage** for a **broad range of workloads and applications**
+  * It is the **only cloud-native shared file system** with **fully automatic lifecycle management**
+  * Amazon EFS file systems can **automatically scale from gigabytes to petabytes of data without needing to provision 
+    storage**
+  * **Tens, hundreds, or even thousands** of **compute instances can access an Amazon EFS file system at the same time**
+  * Amazon EFS **Standard storage classes** are **ideal for workloads** that **require the highest levels of durability 
+    and availability**
+  * EFS **One Zone storage classes** are **ideal for workloads** such as **development**, **build**, and **staging 
+    environments**
+  * Here are a few **important features** of Amazon EFS to know about when **comparing it to other services**:
+    * It is **file storage**
+    * Amazon EFS is **elastic**, and **automatically scales up or down** as you **add or remove files**
+    * And you **pay only for what you use**
+    * Amazon EFS is **highly available** and designed to be **highly durable**
+      * **All files and directories** are **redundantly stored within and across multiple Availability Zones**
+    * Amazon EFS offers **native lifecyle management of your files** and a **range of storage classes to choose from**
+* **Amazon FSx:**
+  * Amazon FSx provides **native compatibility** with **third-party file systems**
+  * You can choose from **NetApp ONTAP**, **OpenZFS**, **Windows File Server**, and **Lustre**
+  * With Amazon FSx, you **don't need to worry** about **managing file servers and storage**
+    * This is because Amazon FSx **automates time-consuming administration tasks** such as **hardware provisioning**, 
+      **software configuration**, **patching**, and **backups**
+    * This **frees you up** to **focus on your applications**, end **users**, and **business**
+  * Amazon FSx file systems **offer feature sets**, **performance profiles**, and **data management capabilities** that 
+    **support a wide variety** of **use cases** and **workloads**
+  * Examples include **machine learning**, **analytics**, **high performance computing (HPC) applications**, and **media 
+    and entertainment**
+  * **Amazon FSx for NETAPP ONTAP:**
+    * Fully managed shared storage built on the **NetApp popular ONTAP file system**
+  * **Amazon FSx for OpenZFS:**
+    * Fully managed shared storage built on the **popular OpenZFS file system**
+  * **Amazon FSx for Windows File Server:**
+    * Fully managed shared storage built on **Windows Server**
+  * **Amazon FSx for Lustre:**
+    * Fully managed shared storage built on the **world's most popular high-performance file system**
+* **Example Use Cases:**
+  * **Use Case #1:**
+    * **Description:**
+      * Let's say you're a developer, and you plan to build out an **application** to **transcode large media files like 
+        videos**
+      * You will be using an **AWS Lambda function** to **perform the transcoding**, but you **need a place to store 
+        both the original media files** and the **transcoded media files**
+      * Due to **regulations**, you **need to store these files** for **at least a year**
+      * **Which AWS storage services** should you use?
+    * **Solution:**
+      * **Amazon S3**
+      * First of all, the question says that they're using a **Lambda function**
+      * Because of that, we can **rule EBS out**, as **EBS volumes** can **only be attached to EC2 instances**
+      * **Even if they were using EC2**, **video files** are **typically large**, so you **may have to use multiple EBS 
+        volumes to store that data**, which **might not be cost-effective in the long run**, so **EBS is out**
+      * **Instance storage is out** for the **same reason**
+      * We're **not using EC2 here**, but also because we want this data to **persist for a year**, and **instance 
+        storage is considered ephemeral**
+  * **Use Case #2:**
+    * **Description:**
+      * You're an **architect** for an **ecommerce company** that wants to **run their MySQL database** on an **EC2 
+        instance**
+      * This **database needs a storage layer** to **store their order and customer information**
+      * The database will **frequently be accessed and updated**, so the **storage layer needs to respond quickly**
+      * It's **important** that the **storage is fast and durable**
+      * **Which AWS storage service** should you use?
+    * **Solution:**
+      * **Amazon EBS**
+      * It seems like we're looking for **storage attached to the compute**, so **why not EC2 instance store**?
+      * Right, that's **also an option** but it's **not ideal**
+      * Since it's an **ecommerce company**, their **order and customer data** is **what drives the business**, which 
+        means the **persistence and durability of that data is really important**
+      * Using **EC2 instance store** would definitely **give us the speed** we're looking for, but it **wouldn't give us 
+        the durability needed** to **store this data long term**
+  * **Use Case #3:**
+    * **Description:**
+      * You have a **web application** that **needs to write to disk** in order to **perform certain calculations**
+      * The application will **store temporary data during the calculation**
+      * The **most important aspects** of this **architecture** are **speed** and **cost**
+      * **Which AWS storage solution** would you choose?
+    * **Solution:**
+      * **EC2 instance store**
+      * **Why not EBS?**
+      * We're looking for **storage attached to compute** in this case
+      * This is **temporary data** we're talking about
+      * We're **not looking** at a **huge amount of data**, and we also **don't necessarily care** about the 
+        **durability of that data**
+      * If the **instance fails mid-calculation**, and you want to **plan for failure**, you can just **restart the 
+        calculation from scratch**
+      * So **durability doesn't matter**, **but cost does**
+      * By **not using EBS** and **instead using instance store**, you may **save yourself some costs**
+      * That is because **instance store** is **included in the overall EC2 instance price**
+  * **Use Case #4:**
+    * **Description:**
+      * Let's say you're creating a **WordPress site** on **multiple instances**
+      * **By default**, **WordPress stores user uploads** on the **local file system**
+      * Since you **want to use multiple instances**, you will **need to move the WordPress installation** and **all
+        the user customizations** into a **shared storage platform**
+      * **Which storage option** would you use?
+    * **Solution:**
+      * **Amazon Elastic File System, or Amazon EFS**
+      * Typically, when we talk about **shared storage systems that multiple instances can access**, we think **Amazon 
+        S3**
+      * **Why wouldn't we use that in this case?**
+      * Well, **S3 isn't a file system**
+      * It's actually a **flat structure** for **storing objects instead of a hierarchy**
+      * And you **can't mount it onto multiple instances**
+      * Because **S3** has a **different underlying type of storage**, it's **not right for this use case**
+      * So by **moving the entire WordPress installation directory onto an EFS file system** and **mounting it onto each 
+        of your EC2 instances when they boot**, your **WordPress site** and **all of its data** is **automatically 
+        stored on a distributed file system** that **isn't dependent on any one EC2 instance**
+
+
+
+
+
+
 
 
 
