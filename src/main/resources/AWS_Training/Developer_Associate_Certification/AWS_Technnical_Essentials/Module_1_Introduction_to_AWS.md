@@ -1,4 +1,3 @@
-<html>
 # Module 1: Introduction to AWS:
 
 ### Cloud Computing Deployment Models:
@@ -615,4 +614,3 @@ print(response)
         need so that you can **remove them**
       * This helps you **reduce** the **number of users, roles, permissions, policies, and credentials** that you have 
         to monitor
-</html>

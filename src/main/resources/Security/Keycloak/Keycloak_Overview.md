@@ -49,3 +49,22 @@ cd ~/Desktop/Software-Development/keycloak-23.0.1/bin
   * [http://localhost:8180/admin](http://localhost:8180/admin)
 * Create an Initial Admin User
 * Sign in to the admin console and create a realm using a resource file
+
+### Exporting Realm Settings from Keycloak within a Docker Container:
+* **Access Keycloak Container Shell:**
+```
+docker exec -it auth-service /bin/bash
+```
+* **Export the Realm Settings:**
+```
+cd /opt/bitnami/keycloak/bin
+./kc.sh export --dir /tmp --users realm_file
+```
+* **Actually Written To:**
+```
+/opt/bitnami/keycloak/realm-export.json
+```
+* **Copy to Host Machine:**
+```
+docker cp auth-service:/opt/bitnami/keycloak/realm-export.json ~/Desktop
+```

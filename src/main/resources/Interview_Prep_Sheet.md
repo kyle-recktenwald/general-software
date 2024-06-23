@@ -54,6 +54,14 @@
 
 ### Trie:
 
+## Algorithms:
+
+### Depth First Search:
+
+### Breadth First Search:
+
+### Binary Search:
+
 ## Important Concepts:
 
 ### CAP Theorem:

@@ -47,7 +47,7 @@
 * It's applied to **methods** or **classes** to specify that they **should be executed within a transactional context**
 * When this annotation is used, Spring **intercepts calls** to the **annotated methods** and **manages transactions 
   transparently**
-* It ensures that methods are eexecuted within a transactional context, so **any operations** they perform are either
+* It ensures that methods are executed within a transactional context, so **any operations** they perform are either
   **committed together** or **rolled back as a single unit**, based on the **transactional configuration provided**
 * It provides a **convenient way** to **specify transactional behavior without explicitly managing** the **transaction 
   handling code**
