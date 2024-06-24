@@ -106,154 +106,165 @@
   
 ### Amazon RDS:
 * **Amazon RDS Overview:**
-  * Amazon RDS is a managed database service customers can use to create and manage relational databases in the cloud 
-    without the operational burden of traditional database management
-  * For example, imagine you sell healthcare equipment, and your goal is to be the number-one seller on the West Coast 
-    of the United States
-  * Building a database doesn’t directly help you achieve that goal
-  * However, having a database is a necessary component to achieving that goal
-  * With Amazon RDS, you can offload some of the unrelated work of creating and managing a database
-  * You can focus on the tasks that differentiate your application, instead of focusing on infrastructure-related tasks, 
-    like provisioning, patching, scaling, and restoring
-  * Amazon RDS supports most of the popular RDBMSs, ranging from commercial options to open-source options and even a 
-    specific AWS option
-  * Supported Amazon RDS engines include the following:
-    * **Commercial:** Oracle, SQL Server
-    * **Open Source:** MySQL, PostgreSQL, MariaDB
-    * **Cloud Native:** Aurora
+  * **Amazon RDS** is a **managed database service** customers can use to **create and manage relational databases in 
+    the cloud without the operational burden** of **traditional database management**
+  * **For example**, imagine you **sell healthcare equipment**, and your goal is to be the **number-one seller on the 
+    West Coast** of the United States
+  * **Building a database doesn’t directly help you** achieve that goal
+  * However, **having a database** is a **necessary component to achieving that goal**
+  * With Amazon RDS, you can **offload some of the unrelated work** of **creating and managing a database**
+  * You can **focus on the tasks** that **differentiate your application**, instead of focusing on 
+    **infrastructure-related tasks**, like **provisioning**, **patching**, **scaling**, and **restoring**
+  * Amazon RDS **supports most of the popular RDBMSs**, ranging from **commercial options** to **open-source options** 
+    and even a **specific AWS option**
+  * **Supported Amazon RDS engines** include the following:
+    * **Commercial:** **Oracle**, **SQL Server**
+    * **Open Source:** **MySQL**, **PostgreSQL**, **MariaDB**
+    * **Cloud Native:** **Aurora**
 * **Database Instances:**
-  * Just like the databases you build and manage yourself, Amazon RDS is built from compute and storage
-  * The compute portion is called the database (DB) instance, which runs the DB engine
-  * Depending on the engine selected, the instance will have different supported features and configurations
-  * A DB instance can contain multiple databases with the same engine, and each DB can contain multiple tables
-  * Underneath the DB instance is an EC2 instance
-  * However, this instance is managed through the Amazon RDS console instead of the Amazon EC2 console
-  * When you create your DB instance, you choose the instance type and size
-  * The DB instance class you choose affects how much processing power and memory it has
+  * Just like the **databases you build and manage yourself**, Amazon RDS is **built from compute and storage**
+  * The **compute portion** is called the **database (DB) instance**, which **runs the DB engine**
+  * Depending on the **engine selected**, the instance will have **different supported features and configurations**
+  * A DB instance **can contain multiple databases** with the **same engine**, and **each DB can contain multiple 
+    tables**
+  * **Underneath the DB instance** is an **EC2 instance**
+  * However, this **instance is managed through the Amazon RDS console instead of the Amazon EC2 console**
+  * When you **create your DB instance**, you choose the **instance type** and **size**
+  * The DB instance class you choose affects **how much processing power and memory it has**
   * <img src="images/Module_5/RDS_Instance_Config.png" width="600">
   * **1. Standard Classes:**
-    * Standard instancess provide a balance of compute, memory, and network resources
-    * They are a good choice for many database workloads
+    * **Standard instances** provide a **balance** of **compute**, **memory**, and **network resources**
+    * They are a **good choice** for **many database workloads**
   * **2. Memory Optimized Classes:**
-    * Memory opttimized instances accelerate performance for workloadss that process large datasets in memory
+    * **Memory optimized instances accelerate performance** for workloads that **process large datasets in memory**
   * **3. Burstable Classes:**
-    * Burstable performance instances provide baseline level of CPU performance with the ability to burst above the 
-      baseline
-  * **4. Amazon RDS Instance Configiuration Dropdown Menu:**
-    * By choosing the dropdown menu, you can select from a range of instance configurations with different 
-     computational, networking, and memory capacity
+    * Burstable performance instances provide **baseline level of CPU performance** with the **ability to burst above 
+      the baseline**
+  * **4. Amazon RDS Instance Configuration Dropdown Menu:**
+    * By choosing the **dropdown menu**, you can select from a **range of instance configurations** with **different 
+     computational, networking, and memory capacity**
 * **Storage on Amazon RDS:**
-  * The storage portion of DB instances for Amazon RDS use Amazon Elastic Block Store (Amazon EBS) volumes for database 
-    and log storage
-  * This includes MySQL, MariaDB, PostgreSQL, Oracle, and SQL Server
-  * When using Aurora, data is stored in cluster volumes, which are single, virtual volumes that use solid-state drives 
-    (SSDs)
-  * A cluster volume contains copies of your data across three Availability Zones in a single AWS Region
-  * For nonpersistent, temporary files, Aurora uses local storage
-  * Amazon RDS provides three storage types: General Purpose SSD (also called gp2 and gp3), Provisioned IOPS SSD (also 
-    called io1), and Magnetic (also called standard)
-  * They differ in performance characteristics and price, which means you can tailor your storage performance and cost 
-    to the needs of your database workload
+  * The **storage portion** of **DB instances for Amazon RDS** use **Amazon Elastic Block Store (Amazon EBS) volumes** 
+    for **database and log storage**
+  * This includes **MySQL**, **MariaDB**, **PostgreSQL**, **Oracle**, and **SQL Server**
+  * When using **Aurora**, data is stored in **cluster volumes**, which are **single, virtual volumes** that use 
+    **solid-state drives (SSDs)**
+  * A **cluster volume** contains **copies of your data across three Availability Zones** in a **single AWS Region**
+  * For **nonpersistent, temporary files**, **Aurora uses local storage**
+  * Amazon RDS provides **three storage types**: **General Purpose SSD (also called gp2 and gp3)**, **Provisioned IOPS 
+    SSD (also called io1)**, and **Magnetic (also called standard)**
+  * They **differ in performance characteristics and price**, which means you can **tailor your storage performance and 
+    cost** to the **needs of your database workload**
   * <img src="images/Module_5/RDS_Storage.png" width="600">
   * **1. General Purpose SSD:**
-    * These volumes offer cost effective storage
-    * This is ideal for a broad range of workloads running on medium-sized DB instances
-    * General Purpose storagee is best suited for development and testing environments
+    * These volumes offer **cost-effective storage**
+    * This is ideal for a **broad range of workloads** running on **medium-sized DB instances**
+    * General Purpose storage is **best suited** for **development and testing environments**
   * **2. Provisioned IOPS SSD:**
-    * This type of storagee is designed to meet the needs of I/O intensive workloads
-    * For example, database workloads requiring low I/O latency and consistent I/O throughput
-    * Provisiooned IOPS stooragee is best suited for production environments
+    * This type of storage is designed to **meet the needs** of **I/O intensive workloads**
+    * For example, database workloads requiring **low I/O latency** and **consistent I/O throughput**
+    * **Provisioned IOPS storage** is **best suited for production environments**
   * **3. Magnetic:**
-    * Amazon RDS also supports magnetic storage for backwards compatibility
-    * We recommend that you use General Purpose SSD or Provisioned IOPIS SSD for any new storage needs
-    * The maximum amouont of storage for DB instances on magnetic storage is less than that of the other storage types
+    * Amazon RDS also supports **magnetic storage** for **backwards compatibility**
+    * We **recommend** that you use General **Purpose SSD or Provisioned IOPS SSD** for **any new storage needs**
+    * The **maximum amount of storage** for DB instances on magnetic storage is **less than that of the other storage 
+      types**
 * **Amazon RDS in an Amazon Virtual Private Cloud:**
-  * When you create a DB instance, you select the Amazon Virtual Private Cloud (Amazon VPC) your databases will live in
-  * Then, you select the subnets that will be designated for your DB
-  * This is called a DB subnet group, and it has at least two Availability Zones in its Region
-  * The subnets in a DB subnet group should be private, so they don’t have a route to the internet gateway
-  * This ensures that your DB instance, and the data inside it, can be reached only by the application backend
-  * Access to the DB instance can be restricted further by using network access control lists (network ACLs) and 
-    security groups. With these firewalls, you can control, at a granular level, the type of traffic you want to provide 
-    access into your database
-  * Using these controls provides layers of security for your infrastructure
-  * It reinforces that only the backend instances have access to the database
+  * When you **create a DB instance**, you **select the Amazon Virtual Private Cloud (Amazon VPC)** your databases 
+    **will live in**
+  * Then, you **select the subnets** that will be **designated for your DB**
+  * This is called a **DB subnet group**, and it has **at least two Availability Zones in its Region**
+  * The **subnets in a DB subnet group should be private**, so they **don’t have a route to the internet gateway**
+  * This **ensures** that your **DB instance**, and the **data inside it**, **can be reached only by the application 
+    backend**
+  * **Access to the DB instance** can be **restricted further** by using **network access control lists (network ACLs)** 
+    and **security groups**
+  * With these **firewalls**, you can **control**, at a **granular level**, the **type of traffic you want to provide 
+    access into your database**
+  * **Using these controls** provides **layers of security for your infrastructure**
+  * It **reinforces** that **only the backend instances have access to the database**
 * **Backup Data:**
-  * You don’t want to lose your data
-  * To take regular backups of your Amazon RDS instance, you can use automated backups or manual snapshots
+  * You **don’t want to lose your data**
+  * To take **regular backups** of your Amazon RDS instance, you can use **automated backups** or **manual snapshots**
   * **Automated Backups:**
-    * Automated backups are turned on by default
-    * This backs up your entire DB instance (not just individual databases on the instance) and your transaction logs
-    * When you create your DB instance, you set a backup window that is the period of time that automatic backups occur
-    * Typically, you want to set the window during a time when your database experiences little activity because it can 
-      cause increased latency and downtime
+    * Automated backups are **turned on by default**
+    * This **backs up your entire DB instance (not just individual databases on the instance)** and your **transaction 
+      logs**
+    * When you **create your DB instance**, you **set a backup window** that is the **period of time that automatic 
+      backups occur**
+    * Typically, you want to **set the window during a time** when your database experiences **little activity** because 
+      it can cause **increased latency and downtime**
     * **Retaining Backups:**
-      * Automated backups are retained between 0 and 35 days
-      * You might ask yourself, “Why set automated backups for 0 days?”
-      * The 0 days setting stops automated backups from happening
-      * If you set it to 0, it will also delete all existing automated backups
-      * This is not ideal
-      * The benefit of automated backups that you can do point-in-time recovery
+      * Automated backups are **retained between 0 and 35 days**
+      * You might ask yourself, “**Why set automated backups for 0 days?**”
+      * The **0 days setting stops automated backups from happening**
+      * If you **set it to 0**, it will also **delete all existing automated backups**
+      * This is **not ideal**
+      * The **benefit of automated backups** that you can do **point-in-time recovery**
     * **Point-In-Time Recovery:**
-      * This creates a new DB instance using data restored from a specific point in time
-      * This restoration method provides more granularity by restoring the full backup and rolling back transactions 
-        up to the specified time range
+      * This **creates a new DB instance** using **data restored from a specific point in time**
+      * This **restoration method** provides **more granularity** by **restoring the full backup** and **rolling back 
+        transactions up to the specified time range**
   * **Manual Snapshots:**
-    * If you want to keep your automated backups longer than 35 days, use manual snapshots
-    * Manual snapshots are similar to taking Amazon EBS snapshots, except you manage them in the Amazon RDS console
-    * These are backups that you can initiate at any time
-    * They exist until you delete them
-    * For example, to meet a compliance requirement that mandates you to keep database backups for a year, you need to 
-      use manual snapshots
-    * If you restore data from a manual snapshot, it creates a new DB instance using the data from the snapshot
-  * Choosing a Backup Option:
-    * It is advisable to deploy both backup options
-    * Automated backups are beneficial for point-in-time recovery
-    * With manual snapshots, you can retain backups for longer than 35 days
+    * If you want to **keep your automated backups longer than 35 days**, use **manual snapshots**
+    * Manual snapshots are **similar to taking Amazon EBS snapshots**, except you **manage them** in the **Amazon RDS 
+      console**
+    * These are **backups that you can initiate at any time**
+    * They **exist until you delete them**
+    * For example, to meet a **compliance requirement** that **mandates you to keep database backups for a year**, you 
+      **need to use manual snapshots**
+    * If you **restore data from a manual snapshot**, it **creates a new DB instance using the data from the snapshot**
+  * **Choosing a Backup Option:**
+    * It is **advisable to deploy both backup options**
+    * **Automated backups** are **beneficial** for **point-in-time recovery**
+    * With **manual snapshots**, you can **retain backups for longer than 35 days**
   * **Redundancy with Amazon RDS Multi-AZ:**
-    * In an Amazon RDS Multi-AZ deployment, Amazon RDS creates a redundant copy of your database in another 
-      Availability Zone
-    * You end up with two copies of your database—a primary copy in a subnet in one Availability Zone and a standby 
-      copy in a subnet in a second Availability Zone
-    * The primary copy of your database provides access to your data so that applications can query and display the 
-      information
-    * The data in the primary copy is synchronously replicated to the standby copy
-    * The standby copy is not considered an active database, and it does not get queried by applications
-    * To improve availability, Amazon RDS Multi-AZ ensures that you have two copies of your database running and that 
-      one of them is in the primary role
-    * If an availability issue arises, such as the primary database loses connectivity, Amazon RDS initiates an '
-      automatic failover
-    * When you create a DB instance, a Domain Name System (DNS) name is provided
-    * AWS uses that DNS name to fail over to the standby database
-    * In an automatic failover, the standby database is promoted to the primary role, and queries are redirected to the 
-      new primary database
-    * To help ensure that you don't lose Multi-AZ configuration, there are two ways you can create a new standby 
-      database
+    * In an **Amazon RDS Multi-AZ deployment**, **Amazon RDS creates a redundant copy of your database in another 
+      Availability Zone**
+    * You end up with **two copies of your database**:
+      * A **primary copy** in a **subnet in one Availability Zone**
+      * A **standby copy** in a **subnet in a second Availability Zone**
+    * The **primary copy** of your database provides **access to your data** so that **applications can query and 
+      display the information**
+    * The **data in the primary copy** is **synchronously replicated to the standby copy**
+    * The **standby copy** is **not considered an active database**, and it **does not get queried by applications**
+    * To **improve availability**, **Amazon RDS Multi-AZ ensures** that you have **two copies of your database running** 
+      and that **one of them is in the primary role**
+    * If an **availability issue arises**, such as the **primary database loses connectivity**, **Amazon RDS initiates 
+      an automatic fail-over**
+    * When you **create a DB instance**, a **Domain Name System (DNS) name is provided**
+    * **AWS uses that DNS name** to **fail over to the standby database**
+    * In an **automatic fail-over**, the **standby database is promoted to the primary role**, and **queries are 
+      redirected to the new primary database**
+    * To help **ensure** that you **don't lose Multi-AZ configuration**, there are **two ways** you can **create a new 
+      standby database**
     * They are as follows:
-      * Demote the previous primary to standby if it's still up and running
-      * Stand up a new standby DB instance
-    * The reason you can select multiple subnets for an Amazon RDS database is because of the Multi-AZ configuration
-    * You will want to ensure that you have subnets in different Availability Zones for your primary and standby copies
+      * **Demote the previous primary to standby** if it's **still up and running**
+      * **Stand up a new standby DB instance**
+    * The reason you can **select multiple subnets** for an Amazon RDS database is because of the **Multi-AZ 
+      configuration**
+    * You will want to ensure that you have **subnets in different Availability Zone**s for your **primary and standby 
+      copies**
   * **Amazon RDS Security:**
-    * When it comes to security in Amazon RDS, you have control over managing access to your Amazon RDS resources, such 
-      as your databases on a DB instance
-    * How you manage access will depend on the tasks you or other users need to perform in Amazon RDS
-    * Network ACLs and security groups help users dictate the flow of traffic
-    * If you want to restrict the actions and resources others can access, you can use AWS Identity and Access 
-      Management (IAM) policies
+    * When it comes to **security in Amazon RDS**, you have **control over managing access** to your **Amazon RDS 
+      resources**, such as **your databases on a DB instance**
+    * **How you manage access** will **depend on the tasks you or other users need to perform** in Amazon RDS
+    * **Network ACLs** and **security groups help users dictate the flow of traffic**
+    * If you want to **restrict the actions and resources others can access**, you can use **AWS Identity and Access 
+      Management (IAM) policies**
     * **IAM:**
-      * Use IAM policies to assign permissions that determine who can manage Amazon RDS resources
-      * For example, you can use IIAM to determine who can create, descriibe, modiify, and delete DB instances, tag 
-        resources, or modify security groups
+      * Use **IAM policies** to **assign permissions** that **determine who can manage Amazon RDS resources**
+      * For example, you can use **IAM** to determine **who can create, describe, modiify, and delete DB instances**, 
+        **tag resources**, or **modify security groups**
     * **Security Groups:**
-      * Use security groups to control which IP addresses or Amazon EC2 instances can connect to your databases on a 
-        DB instance
-      * When you first create a DB instance, all database access is preventeedd except through rules specified by an 
-        associated security group
+      * Use **security groups** to **control which IP addresses or Amazon EC2 instances can connect to your databases** 
+        on a DB instance
+      * When you **first create a DB instance**, **all database access is prevented except through rules specified by an 
+        associated security group**
     * **Amazon RDS Encryption:**
-      * Use Amazon RDS encryption to secure your DB instances and snapshots at rest
+      * Use **Amazon RDS encryption** to **secure your DB instances and snapshots at rest**
     * **SSL or TLS:**
-      * Use Secure Sockets Layer (SSL) or Transport Layer Security (TSL) connections with DB instances running the 
-        MySQL, MariaDB, PostgreSQL, Oracle, or SQL Server database engines
+      * Use **Secure Sockets Layer (SSL)** or **Transport Layer Security (TSL)** connections with DB instances running 
+        the **MySQL**, **MariaDB**, **PostgreSQL**, **Oracle**, or **SQL Server database engines**
     
   
