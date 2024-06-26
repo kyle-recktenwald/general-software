@@ -342,4 +342,119 @@
   * Amazon QLDB is a purpose-built **ledger database** that **provides a complete and cryptographically verifiable 
     history** of **all changes made to your application data**
     
-  
+### DynamoDB Overview:
+* DynamoDB is a **fully managed NoSQL database service** that provides **fast** and **predictable performance** with 
+  **seamless scalability**
+* With DynamoDB, you can **offload the administrative burdens** of **operating and scaling** a **distributed database**
+* You **don't need to worry** about **hardware provisioning**, **setup and configuration**, **replication**, **software 
+  patching**, or **cluster scaling**
+* With DynamoDB, you can do the following:
+  * **Create database tables** that can **store and retrieve any amount of data** and **serve any level of request 
+    traffic**
+  * **Scale up or scale down your tables' throughput capacity without downtime or performance degradation**
+  * **Monitor resource usage** and **performance metrics** using the **AWS Management Console**
+* DynamoDB **automatically spreads the data and traffic for your tables over a sufficient number of servers to handle 
+  your throughput and storage requirements**
+* It does this while **maintaining consistent, fast performance**
+* **All your data** is **stored on SSDs** and is **automatically replicated across multiple Availability Zones in a 
+  Region**, providing **built-in high availability** and **data durability**
+* **DynamoDB Core Components:**
+  * In DynamoDB, **tables**, **items**, and **attributes** are the **core components** that you work with
+  * A **table** is a **collection of items**, and **each item** is a **collection of attributes**
+  * DynamoDB uses **primary keys** to **uniquely identify each item in a table** and **secondary indexes to provide more 
+    querying flexibility**
+  * <img src="images/Module_5/Dynamo_DB.png" width="600">
+  * **1. Table:**
+    * **Similar to other database systems**, DynamoDB **stores data in tables**
+    * A **table** is a **collection of data**
+    * For example, you can have a table called **`Person`** that you can use to **store personal contact information** 
+      about **friends, family, or anyone else of interest**
+    * You can also have a **`Cars` table** to **store information about vehicles that people drive**
+  * **2. Item:**
+    * **Each table contains zero or more items**
+    * An **item** is a **group of attributes** that is **uniquely identifiable among all the other items**
+    * In a **`Cars` table**, **each item represents one vehicle**
+    * Items in DynamoDB are **similar in many ways to rows**, **records**, or **tuples** in **other database systems**
+    * In DynamoDB, there is **no limit** to the **number of items you can store in a table**
+  * **3. Attribute:**
+    * **Each item** is composed of **one or more attributes**
+    * An **attribute** is a **fundamental data element**, something that **does not need to be broken down any further**
+    * For example, an **item in a `Person` table might contain attributes** called **`PersonID`, `LastName`, 
+      `FirstName`**, and so on
+    * In a **`Department` table**, an **item** might have **attributes** such as **`DepartmentID`, `Name`, `Manager`**, 
+      and so on
+    * **Attributes** in DynamoDB are **similar in many ways** to **fields** or **columns** in **other database systems**
+* **DynamoDB Use Cases:**
+  * DynamoDB is a **fully managed service** that **handles the operations work**
+  * You can **offload the administrative burdens** of **operating and scaling distributed databases to AWS**
+  * You **might want to consider using DynamoDB** in the **following circumstances**:
+    * You are experiencing **scalability problems** with **other traditional database systems**
+    * You are **actively engaged** in **developing an application or service**
+    * You are **working with an Online Transaction Processing (OLTP) workload**
+    * You care deploying a **mission-critical application** that must be **highly available at all times without manual 
+      intervention**
+    * You require a **high level of data durability**, **regardless of your backup-and-restore strategy**
+    * DynamoDB is used in a **wide range of workloads** because of its **simplicity**, from **low-scale operations** to 
+      **ultrahigh-scale operations**, such as those demanded by **Amazon.com**
+  * **Potential Use Cases:**
+    * **Develop Software Applications:**
+      * Build **internet-scale applications** supporting **user-content metadata** and **caches** that **require high 
+        concurrency and connections** for **millions of users** and **millions of requests per second**
+    * **Create Media Metadata Stores:**
+      * **Scale throughput and concurrency** for **analysis of media and entertainment workloads**, such as **real-time 
+        video streaming** and **interactive content**
+      * Deliver **lower latency** with **multi-Region replication across Regions**
+    * **Scale Gaming Platforms:**
+      * Focus on **driving innovation** with **no operational overhead**
+      * Build out your **game platform** with **player data**, **session history**, and **leaderboards** for **millions 
+        of concurrent users**
+    * **Deliver Seamless Retail Experiences:**
+      * Use **design patterns** for **deploying shopping carts**, **workflow engines**, **inventory tracking**, and 
+        **customer profiles**
+      * DynamoDB supports **high-traffic**, **extreme-scaled events** and **can handle millions of queries per second**
+* **DynamoDB Security:**
+  * DynamoDB provides a number of **security features** to consider as you **develop and implement your own security 
+    policies**
+  * They include the following:
+    * DynamoDB provides a **highly durable storage infrastructure** designed for **mission-critical** and **primary data 
+      storage**
+      * **Data is redundantly stored** on **multiple devices across multiple facilities** in a DynamoDB Region
+    * **All user data stored in DynamoDB** is **fully encrypted at rest**
+      * **DynamoDB encryption at rest** provides **enhanced security** by **encrypting all your data at rest** using 
+        **encryption keys stored in AWS Key Management Service (AWS KMS)**
+    * **IAM administrators control who can be authenticated and authorized** to **use DynamoDB resources**
+      * You can use **IAM** to **manage access permissions** and **implement security policies**
+    * As a **managed service**, DynamoDB is **protected** by the **AWS global network security procedures**
+  * **DynamoDB Security Best Practices:**
+    * **Use AWS CloudTrail to Monitor AWS Managed Key Usage**
+      * If you are using an **AWS managed key** for **encryption at rest**, **usage of the key is recorded in AWS 
+        CloudTrail**
+      * CloudTrail can tell you **who made the request**, the **services used**, **actions performed**, **parameters for 
+        the action**, and **response elements returned**
+    * **Use IAM Roles to Authenticate Access to DynamoDB:**
+      * For **users**, **applications**, and **other AWS services** to **access DynamoDB**, they **must include valid 
+        AWS credentials** in their **AWS API requests**
+      * Use **IAM roles** to **obtain temporary access keys**
+    * **Use IAM Policy Conditions for Fine Grained Access Control:**
+      * When you **grant permissions in DynamoDB**, you can **specify conditions** that determine **how a permissions 
+        policy takes effect**
+      * Implementing **least privilege** is key in **reducing security risk** and the impact that can result from 
+        **errors** or **malicious intent**
+    * **Monitor DynamoDB Operations Using CloudTrail:**
+      * When **activity occurs in DynamoDB**, that **activity is recorded** in a **CloudTrail event**
+      * For an **ongoing record of events in DynamoDB and in your AWS account**, create a **trail** to **deliver log 
+        files to an Amazon Simple Storage Service (Amazon S3) bucket**
+
+### Choosing the Right Database Service
+* **AWS Database Services:**
+  * As we learned in the previous lessons, AWS has a **variety of database options** for **different use cases**
+  * The following table provides a quick look at the **AWS database portfolio**
+  * <img src="images/Module_5/AWS_DB_Services.png" width="600">
+  * As the **industry changes**, **applications and databases change too**
+  * Today, with **larger applications**, you **no longer see just one database supporting them**
+  * Instead, **applications are broken into smaller services**, each with its own **purpose-built database supporting 
+    it**
+  * This **shift removes the idea** of a **one-size-fits-all database** and replaces it with a **complimentary database 
+    strategy**
+  * You can **give each database** the **appropriate functionality**, **performance**, and **scale the workload 
+    requires**
