@@ -282,3 +282,149 @@
       issues**
     * By **using AWS services together** like this, you can **respond to events more quickly**
 
+### Solution Optimization:
+* **Availability:**
+  * The **availability of a system** is **typically expressed** as a **percentage of uptime** in a **given year** or as 
+    a **number of nines**
+  * In the following table is a list of **availability percentages based on the downtime per year** and its **notation 
+    in nines**:
+  * <img src="images/Module_6/Availability_Table.png" width="600">
+  * To **increase availability**, you **need redundancy**
+  * This typically means **more infrastructure**, **more data centers**, **more servers**, **more databases**, and 
+    **more replication of data**
+  * You can imagine that **adding more of this infrastructure** means a **higher cost**
+  * **Customers** want the application to **always be available**, but you **need to draw a line** where **adding 
+    redundancy is no longer viable in terms of revenue**
+* **Why Improve Application Availability?**
+  * In the **current application**, **one EC2 instance hosts the application**
+  * The **photos are served from Amazon S3**, and the **structured data is stored in Amazon DynamoDB**
+  * That **single EC2 instance** is a **single point of failure for the application**
+  * Even if the **database** and **Amazon S3** are **highly available**, customers have **no way to connect** if the 
+    **single instance becomes unavailable**
+  * One way to solve this **single point of failure issue** is to **add one more server** in a **second Availability 
+    Zone**
+  * **Adding a Second Availability Zone:**
+    * The **physical location of a server is important**
+    * In addition to **potential software issues** at the **operating system (OS) or application level**, you must also 
+      consider **hardware issues**
+    * They might be in the **physical server**, the **rack**, the **data center**, or even the **Availability Zone 
+      hosting the virtual machine**
+    * To **remedy the physical location issue**, you can **deploy a second EC2 instance** in a **second Availability 
+      Zone**
+    * This **second instance might also solve issues with the OS and the application**
+    * <img src="images/Module_6/AZ_Diagram.png" width="600">
+    * However, when there is **more than one instance**, it **brings new challenges**, such as the following:
+      * **Replication Process:**
+        * The first challenge with **multiple EC2 instances** is that **you need to create a process to replicate 
+          the configuration files, software patches, and application across instances**
+        * The best method is to **automate where you can**
+      * **Customer Redirection:**
+        * The second challenge is **how to notify the clients** (the **computers sending requests to your server**) 
+          about the **different servers**
+        * You can use **various tools** here
+        * The **most common** is using a **Domain Name System (DNS)** where the **client uses one record that points to 
+          the IP address of all available servers**
+        * However, **this method isn't always used** because of **propagation**, or the **time frame it takes for DNS 
+          changes to be updated across the Internet**
+        * Another option is to use a **load balancer**, which **takes care of health checks** and **distributing the 
+          load across each server**
+        * **Situated between the client and the server**, a **load balancer avoids propagation time issues**
+        * You will learn **more about load balancers** in the **next section**
+      * **Types of High Availability:**
+        * The last challenge to address when there is more than one server is the **type of availability you need**: 
+          **active-passive** or **active-active**
+    * **Active-Passive Systems:**
+      * With an **active-passive system**, **only one of the two instances is available at a time**
+      * One **advantage of this method** is that for **stateful applications** (where **data about the client’s 
+        session** is **stored on the server**), there **won’t be any issues**
+      * This is because the **customers are always sent to the server where their session is stored**
+    * **Active-Active Systems:**
+      * A **disadvantage** of an **active-passive system** is **scalability**
+      * This is **where an active-active system shines**
+      * With **both servers available**, the **second server can take some load for the application**, and the **entire 
+        system can take more load**
+      * However, **if the application is stateful**, there would be an issue if the **customer’s session isn’t available 
+        on both servers**
+      * **Stateless applications** work better for **active-active systems**
+
+### Traffic Routing with Elastic Load Balancing:
+* **Load Balancers:**
+  * Load balancing refers to the process of distributing tasks across a set of resources
+  * In the case of the Employee Directory application, the resources are EC2 instances that host the application, and 
+    the tasks are the requests being sent
+  * You can use a load balancer to distribute the requests across all the servers hosting the application
+  * To do this, the load balancer needs to take all the traffic and redirect it to the backend servers based on an 
+    algorithm
+  * The most popular algorithm is round robin, which sends the traffic to each server one after the other
+  * A typical request for an application starts from a client's browser
+  * The request is sent to a load balancer
+  * Then, it’s sent to one of the EC2 instances that hosts the application
+  * The return traffic goes back through the load balancer and back to the client's browser
+  * Although it is possible to install your own software load balancing solution on EC2 instances, AWS provides the ELB 
+    service for you
+  * <img src="images/Module_6/Load_Balancer.png" width="600">
+* **ELB Features:**
+  * The ELB service provides a major advantage over using your own solution to do load balancing
+  * Mainly, you don’t need to manage or operate ELB
+  * It can distribute incoming application traffic across EC2 instances, containers, IP addresses, and Lambda functions
+  * Other key features include the following:
+    * Hybrid mode:
+      * Because ELB can load balance to IP addresses, it can work in a hybrid mode, which means it also load balances 
+        to on-premises servers
+    * High availability:
+      * ELB is highly available
+      * The only option you must ensure is that the load balancer's targets are deployed across multiple Availability 
+        Zones
+    * Scalability:
+      * In terms of scalability, ELB automatically scales to meet the demand of the incoming traffic
+      * It handles the incoming traffic and sends it to your backend application
+* **Health Checks:**
+  * Monitoring is an important part of load balancers because they should route traffic to only healthy EC2 instances
+  * That’s why ELB supports two types of health checks as follows:
+    * Establishing a connection to a backend EC2 instance using TCP and marking the instance as available if the 
+      connection is successful
+    * Making an HTTP or HTTPS request to a webpage that you specify and validating that an HTTP response code is 
+      returned
+  * Taking time to define an appropriate health check is critical
+  * Only verifying that the port of an application is open doesn’t mean that the application is working
+  * It also doesn’t mean that making a call to the home page of an application is the right way either
+  * For example, the Employee Directory application depends on a database and Amazon S3
+  * The health check should validate all the elements
+  * One way to do that is to create a monitoring webpage, such as /monitor
+  * It will make a call to the database to ensure that it can connect, get data, and make a call to Amazon S3
+  * Then, you point the health check on the load balancer to the /monitor page
+  * <img src="images/Module_6/Load_Balancer_Health_Check.png" width="600">
+  * After determining the availability of a new EC2 instance, the load balancer starts sending traffic to it
+  * If ELB determines that an EC2 instance is no longer working, it stops sending traffic to it and informs Amazon EC2 
+    Auto Scaling
+  * It is the responsibility of Amazon EC2 Auto Scaling to remove that instance from the group and replace it with a 
+    new EC2 instance
+  * Traffic is only sent to the new instance if it passes the health check
+  * If Amazon EC2 Auto Scaling has a scaling policy that calls for a scale down action, it informs ELB that the EC2 
+    instance will be terminated
+  * ELB can prevent Amazon EC2 Auto Scaling from terminating an EC2 instance until all connections to the instance end
+  * It also prevents any new connections
+  * This feature is called connection draining
+  * We will learn more about Amazon EC2 Auto Scaling in the next lesson
+* ELB Components:
+  * The ELB service is made up of three main components: rules, listeners, and target groups
+  * <img src="images/Module_6/ELB_Components.png" width="600">
+  * **1. Rule:**
+    * To associate a target group to a listener, you must use a rule. Rules are made up of two conditions
+    * The first condition is the source IP address of the client
+    * The second condition decides which target group to send the traffic to
+  * **2. Listener:**
+    * The client connects to the listener
+    * This is often called client side
+    * To define a listener, a port must be provided in addition to the protocol, depending on the load balancer type
+    * There can be many listeners for a single load balancer
+  * **3. Target Group:**
+    * The backend servers, or server side, are defined in one or more target groups
+    * This is where you define the type of backend you want to direct traffic to, such as EC2 instances, Lambda 
+      functions, or IP addresses
+    * Also, a health check must be defined for each target group
+* Types of load balancers
+
+We will cover three types of load balancers: Application Load Balancer (ALB), Network Load Balancer (NLB), and Gateway Load Balancer (GLB).
+
+To learn more about each type of load balancer, flip each of the following flashcards by choosing them. 
