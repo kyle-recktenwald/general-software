@@ -1,6 +1,6 @@
 ### Advanced Redux Sample Project:
 * `~/Desktop/Repositories/React/react-tutorial-projects/redux/01-starting-project_2`
-* Install Redux Toolkit:
+* Install Redux & Redux Toolkit:
 ```
 npm install redux
 npm install @reduxjs/toolkit
