@@ -1,4 +1,4 @@
-**# Python Overview:
+### Python Overview:
 
 ### Overview:
 * **Python** is a **high-level**, **versatile** **programming language** known for its **readability** and **simplicity**
@@ -29,11 +29,152 @@
 * Python's **simplicity** and **readability** make it an **excellent choice for beginners**, while its **vast 
   capabilities** and **strong community support** make it a favorite among **seasoned developers**
 
-### Working in the Python Virtual Environment:
-* **To Activate a Project's Virtual Environment in the Terminal:**
+### Python Resources:
+* [Python Package Index](pypi.org)
+
+### Installing a Package in Python / PyCharm:
+* [Python Package Index](pypi.org)
+* Select `PyCharm` -> `Settings...`
+* Expand `Project: {project-name}` -> `Project Interpreter`
+* Click on the `+` button
+* Find your package and click `Install`
+
+### Instantiating an Object:
 ```
-source ~/Desktop/Repositories/Python/python-projects/flask_app_postgres/.venv/bin/activate
+from prettytable import PrettyTable
+
+table = PrettyTable()
 ```
+
+### The Python `input()` Function:
+* The **`input()` function** in **Python** is used to **read a line of text from the user**
+* **Syntax:**
+```
+input(prompt=None)
+```
+* **Parameters:**
+  * `prompt` (optional):
+    * A **string** that is **displayed on the standard output** (usually the screen) **before the user input is read**
+    * This can be used to **provide instructions or information to the user** about **what kind of input is expected**
+    * If **no prompt is provided**, `input()` will simply **wait for user input without displaying any message**
+* **Return Value:**
+  * The function **returns a string** which **contains the user's input**
+* **Behavior:**
+  * When **`input()` is called**, the **program pauses** and **waits for the user to type something** and **press the 
+    Enter key**
+  * The **text entered by the user** is **returned as a string**
+  * If the user just **presses Enter without typing anything**, an **empty string is returned**
+* **Example:**
+```
+name = input("Enter your name: ")
+print(f"Hello, {name}!")
+```
+* **In this example:**
+  * The **`input("Enter your name: ")` function displays the prompt `Enter your name:`**
+  * The **program waits** for the user to **input their name and press Enter**
+  * The **user's input** is **stored in the variable `name`**
+  * The **`print(f"Hello, {name}!")` function** then **displays a greeting** using the **user's input**
+* **Notes:**
+  * In a **terminal** or **command line interface**, the **`input()` function captures the entire line of text the user 
+    types until they press Enter**
+  * If you need to **capture numerical input**, you **must convert the string returned by `input()` to an integer or 
+    float** using the **`int()` or `float()` functions, respectively**
+* **For Example:**
+```
+age = int(input("Enter your age: "))
+height = float(input("Enter your height in meters: "))
+```
+
+### Formatted String Literals (f-strings) in Python:
+* **Formatted string literals**, also known as **f-strings**, are a way to **embed expressions inside string literals** 
+  using **curly braces `{}`**
+* Introduced in **Python 3.6**, they provide a **concise** and **convenient** way to **format strings**
+* **Definition:**
+  * An **f-string** is a **string literal** that is **prefixed with `f` or `F`** and **contains expressions inside curly 
+    braces `{}`** that are **evaluated at runtime** and **formatted using the `str()` function by default**
+* **Syntax:**
+```
+f"some text {expression} more text"
+```
+* **Key Features:**
+  * **Prefix with `f` or `F`:**
+    * The **string must begin** with `f` or `F` **before the opening quote**
+  * **Expressions Inside Curly Braces:**
+    * **Any valid Python expression can be placed inside the curly braces `{}`**
+    * The **expression is evaluated** and its **result is formatted into the string**
+  * **Automatic Type Conversion:**
+    * The **result of the expression** is **automatically converted to a string** using the **`str()` function**
+  * **Supports Multi-line Strings:**
+    * F-strings can **span multiple lines** using **triple quotes `"""` or `'''`**
+  * **Formatted Output:**
+    * You can specify **formatting options within the curly braces** using a **colon `:`** followed by **format 
+      specifications**
+* **Examples:**
+  * **Basic Usage:**
+```
+name = "Alice"
+age = 30
+greeting = f"Hello, {name}! You are {age} years old."
+print(greeting)
+```
+**Output:** `Hello, Alice! You are 30 years old.`
+* **Expressions:**
+```
+result = f"The sum of 2 and 3 is {2 + 3}."
+print(result)
+```
+* **Output:** `The sum of 2 and 3 is 5.`
+
+* **Calling Functions:**
+```
+def greet(name):
+  return f"Hello, {name}!"
+
+message = f"{greet('Bob')}"
+print(message)
+```
+* **Output:** `Hello, Bob!`
+
+* **Formatted Numbers:**
+```
+value = 1234.56789
+formatted_value = f"Value: {value:.2f}"
+print(formatted_value)
+```
+* **Output:** `Value: 1234.57`
+
+* **Multi-line Strings:**
+```
+name = "Charlie"
+age = 25
+message = f"""
+Name: {name}
+Age: {age}
+"""
+print(message)
+```
+* **Output:**
+```
+Name: Charlie
+Age: 25
+```
+* **Including Braces:**
+* To **include literal curly braces in the string**, **double them `{{` or `}}`**
+```
+text = f"{{This is a literal brace}}"
+print(text)
+```
+* **Output:** `{This is a literal brace}`
+* **Advantages:**
+  * **Readability:**
+    * F-strings make it **easier to see which parts of the string are dynamic**
+  * **Performance:**
+    * F-strings are **generally faster than other string formatting methods** like **`%`-formatting** or 
+      **`str.format()`** because **expressions are evaluated at runtime**
+  * **Flexibility:**
+    * You can **include complex expressions** and **formatting options directly within the string**
+    * F-strings provide a **powerful** and **flexible** way to **create formatted strings**, making code **more 
+      readable** and **easier to write**
 
 ### Functions in Python:
 * In Python, **functions** are **blocks of organized, reusable code** used to **perform a single, related action**
@@ -135,6 +276,12 @@ print(my_dict.get('job', 'Default Job'))
 * Dictionaries are **widely used in Python** because of their **flexibility** and **efficiency** in **retrieving** and 
   **manipulating** **data** by **using keys** to **access values**, making them a **fundamental** and **powerful** 
   part of the language
+
+### Working in the Python Virtual Environment:
+* **To Activate a Project's Virtual Environment in the Terminal:**
+```
+source ~/Desktop/Repositories/Python/python-projects/flask_app_postgres/.venv/bin/activate
+```
 
 ### Tuples in Python:
 * In Python, a tuple is a collection data type that is similar to a list but with a few key differences
@@ -505,4 +652,20 @@ for i in range(1, 10, 2):
 ```
 1 3 5 7 9
 ```
+
+### Printing a Table with `PrettyTable`:
+* [Pretty Table on PyPi](https://pypi.org/project/prettytable/)
+```
+from prettytable import PrettyTable
+
+table = PrettyTable()
+
+table.add_column("Pokemon Name", ["Pikachu", "Squirtle", "Charmander"])
+table.add_column("Type", ["Electric", "Water", "Fire"])
+
+table.align = "l"
+
+print(table)
+```
+
 

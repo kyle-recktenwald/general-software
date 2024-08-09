@@ -48,6 +48,9 @@
 * It's **widely used** in building **web applications**, **mobile apps** (with **React Native**), and even for 
   **server-side rendering** with frameworks like **Next.js**
 
+### To Uninstall a Project's Packages:
+* `rm -rf node_modules package-lock.json`
+
 ### Components:
 * In React, a **component** is a **reusable**, **self-contained building block** that **encapsulates** a **part of a 
   user interface**
@@ -665,3 +668,7 @@ npm install json-server
 json-server --watch --port 4000 ./_data/db.json
 ```
 
+### React Resources:
+* [Mark's Dev Blog](https://blog.isquaredsoftware.com/)
+* [Redux Style Guide](https://redux.js.org/style-guide/)
+* [Why React Context is Not a "State Management" Tool (and Why It Doesn't Replace Redux)](https://blog.isquaredsoftware.com/2021/01/context-redux-differences/)

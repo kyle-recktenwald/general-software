@@ -1047,55 +1047,6 @@ public class Main {
 * Records can **greatly simplify code** that involves **modeling data without adding unnecessary complexity**
 * They provide a **concise syntax** for **defining classes whose main purpose is to hold data**
 
-### Streams in Java:
-* In Java, streams represent a **sequence of elements** that you can **process in a declarative way**
-* Introduced in **Java 8** as part of the **Stream API** in the `java.util.stream package`, **streams** provide a 
-  **higher-level abstraction** for **working with collections of data**, allowing for **concise and functional-style 
-  operations**
-* Streams enable you to perform a **series of aggregate operations** (such as **filtering**, **mapping**, **sorting**, 
-  and **reducing**) on a **collection of data elements**
-* These **operations** can be **chained together** to **form a pipeline**, where **each operation is applied to the 
-  elements as they flow through the stream**
-* Key characteristics of Java streams include:
-  * **Declarative and Functional Approach:**
-    * Streams **support functional programming paradigms**, allowing you to **express operations on data** in a **declarative 
-      manner without explicitly handling iteration or mutable state**
-  * **Lazy Evaluation:**
-    * Many stream operations are **lazily evaluated**, meaning they are **executed only when necessary**
-    * This allows for **efficiency**, especially with **large datasets**, as **operations** are **performed on elements 
-      as they're needed in the pipeline**
-  * **Pipelines:**
-    * Streams enable you to **create pipelines** by **chaining multiple operations** (such as **`filter`**, **`map`**, 
-      **`reduce`**, **`collect`**, etc.) to **process data in a sequence**
-  * **Parallel Processing:**
-    * Streams can take advantage of **parallel processing** via the **`parallel()` method**, allowing operations to be 
-      **executed concurrently** on **multiple threads**, **potentially improving performance** for **certain types of 
-      tasks**
-* Example of using streams in Java:
-```java
-import java.util.Arrays;
-import java.util.List;
-
-public class StreamExample {
-    public static void main(String[] args) {
-        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-
-        // Example: Filter even numbers, square them, and find their sum
-        int sum = numbers.stream()
-                .filter(n -> n % 2 == 0) // Filter even numbers
-                .map(n -> n * n) // Square each number
-                .reduce(0, Integer::sum); // Sum the squared numbers
-
-        System.out.println("Sum of squares of even numbers: " + sum);
-    }
-}
-```
-* In this example, a **stream** is created **from a list of numbers**
-* The **stream operations** (**`filter`**, **`map`**, and **`reduce`**) are **chained together** to **filter even 
-  numbers**, **square them**, and **find their sum**
-* However, the **power of streams** comes from their ability to **chain multiple operations together**, making the code 
-  **concise**, **readable**, and **expressive** for **various data processing tasks**
-
 ### The `SortedSet` Interface in Java:
 * In Java, a **`SortedSet`** is a **subtype of the `Set` interface** that **maintains its elements** in a **sorted 
   order**
@@ -1183,3 +1134,160 @@ public class IoExamples {
   }
 }
 ```
+
+### The Comparator Interface in Java:
+* A **`Comparator` in Java** is an **interface** used to **define a custom ordering for objects**
+* It allows you to specify **how two objects should be compared**, which is **especially useful when you need to sort 
+  collections of objects that do not have a natural ordering** (or if you want to **override the natural ordering**)
+* Here's the **basic structure** of a `Comparator`:
+```java
+import java.util.Comparator;
+
+public class MyComparator implements Comparator<MyClass> {
+    @Override
+    public int compare(MyClass o1, MyClass o2) {
+        // Comparison logic
+        // Return a negative number if o1 is less than o2
+        // Return zero if o1 equals o2
+        // Return a positive number if o1 is greater than o2
+        return o1.getSomeField().compareTo(o2.getSomeField());
+    }
+}
+```
+* **Key Points:**
+  * **`compare(T o1, T o2)`**:
+    * The **primary method** you **must implement**, which **compares two objects** and **returns an integer**
+    * The result follows these rules:
+      * Returns a **negative integer** if the **first object is "less than" the second**
+      * Returns **zero** if the **two objects are "equal."**
+      * Returns a **positive integer** if the **first object is "greater than" the second**
+* **Lambda Expressions:**
+  * Since Java 8, you can **implement a `Comparator` using a lambda expression**, which can make the code **more 
+    concise**:
+```
+Comparator<MyClass> comparator = 
+  (o1, o2) -> o1.getSomeField().compareTo(o2.getSomeField());
+```
+* **Comparator Chain:**
+  * You can also **chain multiple comparators** using methods like `thenComparing()` to **build complex comparison 
+    logic**:
+```
+Comparator<MyClass> comparator = Comparator
+    .comparing(MyClass::getField1)
+    .thenComparing(MyClass::getField2);
+```
+* **Example:**
+  * Let's say you have a **class `Person`** with **fields `name` and `age`**, and you want to **sort a list of `Person` 
+    objects** by **`age`**
+```java
+import java.util.*;
+
+class Person {
+    private String name;
+    private int age;
+
+    // Constructor, getters, and setters
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        List<Person> people = Arrays.asList(
+            new Person("Alice", 30),
+            new Person("Bob", 25),
+            new Person("Charlie", 35)
+        );
+
+        // Sorting by age
+        people.sort(Comparator.comparingInt(Person::getAge));
+
+        // Printing the sorted list
+        for (Person person : people) {
+            System.out.println(person.getName() + ": " + person.getAge());
+        }
+    }
+}
+```
+* **This Code Will Output:**
+```
+Bob: 25
+Alice: 30
+Charlie: 35
+```
+
+### Java's Just In Time Compiler:
+* The **Java Just-In-Time (JIT) Compiler** is a **key component** of the **Java Virtual Machine (JVM)** that **enhances 
+  the performance of Java applications** by **converting Java bytecode into native machine code at runtime**
+* This process **allows Java programs** to **run faster** by **optimizing the execution** of **frequently executed 
+  code**
+* **Key Concepts:**
+  * **Java Bytecode:**
+    * When you **compile Java source code (`.java` files)**, it is **translated into bytecode (`.class` files)**, which 
+      is **platform-independent** and can be **executed on any system with a compatible JVM**
+  * **Interpretation vs. Compilation:**
+    * **Interpretation:**
+      * **Initially, the JVM interprets the bytecode**, **executing it instruction by instruction**
+      * This method is **straightforward but slower** because **each instruction has to be translated on the fly every 
+        time it's executed**
+    * **Compilation:**
+      * The **JIT compiler improves performance** by **compiling frequently executed bytecode sequences** into **native 
+        machine code**, which the **CPU can execute directly**, **avoiding the overhead of interpretation**
+  * **Just-In-Time Compilation:**
+    * The **JIT compiler operates just in time**, meaning it **compiles bytecode into machine code during the execution 
+      of the program rather than before execution**
+    * This **allows the JVM** to **optimize code based on the actual runtime behavior of the application**
+    * It **targets "hot" code paths**, **sections of code that are executed frequently**, by **identifying them during 
+      execution and compiling them into optimized machine code**
+    * The **compiled code is cached**, so **subsequent executions are faster**
+  * **JIT Optimization Techniques:**
+    * **Method Inlining:**
+      * **Replaces a method call with the method's body** to **reduce the overhead of the call**
+    * **Loop Unrolling:**
+      * **Expands loops** to **decrease the number of iterations**, **reducing the loop's overhead**
+    * **Dead Code Elimination:**
+      * **Removes code** that is **never executed** or **does not affect the program's outcome**
+    * **Constant Folding:**
+      * **Pre-computes constant expressions at compile time rather than runtime**
+  * **Tiered Compilation:**
+    * **Modern JVMs** use a technique called **tiered compilation**, which **combines both interpretation and multiple 
+      levels of JIT compilation**
+    * **Initially**, the **JVM interprets the code**, and **as it identifies "hot" methods**, it **progressively applies 
+      more aggressive optimizations**
+    * This **helps balance startup performance** and **long-term execution efficiency**
+  * **Garbage Collection and JIT:**
+    * The JIT compiler **works in conjunction with the garbage collector**
+    * **When code is compiled**, the **JIT ensures** that **references to objects are correctly managed**, helping to 
+      **optimize memory usage and performance**
+* **Benefits of JIT Compilation:**
+  * **Performance:**
+    * By **compiling and optimizing code at runtime**, JIT can **significantly increase the execution speed of Java 
+      applications**, especially for **long-running or resource-intensive programs**
+  * **Portability:**
+    * Since JIT **compiles bytecode to native machine code at runtime**, Java applications **remain 
+      platform-independent**
+    * The **JVM abstracts away the differences between operating systems and hardware architectures**
+  * **Adaptive Optimization:**
+    * The JIT compiler can o**ptimize code based on the actual workload**, allowing it to **tailor optimizations to the 
+      specific conditions in which the application is running**
+* **Example in Context:**
+  * When you **run a Java application**, the **JVM starts by interpreting the bytecode**
+  * **As the program runs**, the **JIT compiler identifies methods or loops** that are **executed repeatedly**
+  * For these **"hot" sections of code**, the **JIT compiler translates the bytecode into native machine code**, which 
+    can be **executed directly by the CPU**
+  * This **compiled code** is **then used for subsequent executions**, leading to **faster performance**
+* **Conclusion:**
+  * The Java JIT Compiler is an **integral part of the JVM** that **enhances the performance of Java applications** by 
+    **dynamically compiling bytecode into optimized machine code during execution**
+  * **This process**, **combined with other JVM optimizations**, enables Java applications to **run efficiently** on a 
+    **wide variety of platforms** while **maintaining their platform independence**

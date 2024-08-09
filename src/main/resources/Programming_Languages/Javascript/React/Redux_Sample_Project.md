@@ -1,6 +1,6 @@
 ### Advanced Redux Sample Project:
 * `~/Desktop/Repositories/React/react-tutorial-projects/redux/01-starting-project_2`
-* Install Redux & Redux Toolkit:
+* **Install Redux & Redux Toolkit:**
 ```
 npm install redux
 npm install @reduxjs/toolkit
@@ -52,7 +52,7 @@ function App() {
 
 export default App;
 ```
-* `src/index.js`:
+* **`src/index.js`:**
 ```
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
@@ -65,7 +65,7 @@ import store from './store/index'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<Provider store={store}><App /></Provider>);
 ```
-* `src/components/Cart/Cart.js`:
+* **`src/components/Cart/Cart.js`:**
 ```
 import { useSelector } from 'react-redux';
 
@@ -100,7 +100,7 @@ const Cart = (props) => {
 
 export default Cart;
 ```
-* `src/components/Cart/CartButton.js`:
+* **`src/components/Cart/CartButton.js`:**
 ```
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -146,7 +146,7 @@ const CartButton = (props) => {
 
 export default CartButton;
 ```
-* `src/components/Cart/CartItem.js`:
+* **`src/components/Cart/CartItem.js`:**
 ```
 import {useDispatch} from 'react-redux';
 
@@ -194,7 +194,7 @@ const CartItem = (props) => {
 
 export default CartItem;
 ```
-* `src/components/Shop/ProductItem.js`:
+* **`src/components/Shop/ProductItem.js`:**
 ```
 import { useDispatch } from 'react-redux';
 
@@ -233,7 +233,7 @@ const ProductItem = (props) => {
 
 export default ProductItem;
 ```
-* `src/components/Shop/Products.js`:
+* **`src/components/Shop/Products.js`:**
 ```
 import ProductItem from './ProductItem';
 import classes from './Products.module.css';
@@ -274,7 +274,7 @@ const Products = (props) => {
 
 export default Products;
 ```
-* `src/components/UI/Notification.js`:
+* **`src/components/UI/Notification.js`:**
 ```
 import classes from './Notification.module.css';
 
@@ -300,7 +300,7 @@ const Notification = (props) => {
 
 export default Notification;
 ```
-* `src/components/UI/Notification.module.css`:
+* **`src/components/UI/Notification.module.css`:**
 ```
 .notification {
     width: 100%;
@@ -327,7 +327,20 @@ export default Notification;
     background-color: #1ad1b9;
   }
 ```
-* `src/store/cart-actions.js`:
+* * **`src/store/index.js`:**
+```
+import { configureStore } from '@reduxjs/toolkit'
+import uiSlice from './ui-slice'
+import cartSlice from './cart-slice'
+
+//Store:
+const store = configureStore({
+  reducer: {ui: uiSlice.reducer, cart: cartSlice.reducer}
+});
+
+export default store;
+```
+* **`src/store/cart-actions.js`:**
 ```
 import { uiActions } from './ui-slice';
 import { cartActions } from './cart-slice';
@@ -412,7 +425,7 @@ export const sendCartData = (cart) => {
     };
 };
 ```
-* `src/store/cart-slice.js`:
+* **`src/store/cart-slice.js`:**
 ```
 import { createSlice } from '@reduxjs/toolkit'
 
@@ -426,6 +439,10 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState: initialCartState,
     reducers: {
+        replaceCart(state, action) {
+            state.totalQuantity = action.payload.totalQuantity;
+            state.items = action.payload.items;
+          },
         addItemToCart(state, action) {
             const newItem = action.payload;
             const existingItem = state.items.find(item => item.id === newItem.id);
@@ -462,20 +479,7 @@ export const cartActions = cartSlice.actions;
 
 export default cartSlice;
 ```
-* `src/store/index.js`:
-```
-import { configureStore } from '@reduxjs/toolkit'
-import uiSlice from './ui-slice'
-import cartSlice from './cart-slice'
-
-//Store:
-const store = configureStore({
-  reducer: {ui: uiSlice.reducer, cart: cartSlice.reducer}
-});
-
-export default store;
-```
-* `src/store/ui-slice.js`:
+* **`src/store/ui-slice.js`:**
 ```
 import { createSlice } from '@reduxjs/toolkit'
 

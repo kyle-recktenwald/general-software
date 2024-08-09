@@ -157,6 +157,129 @@ public class GetOrDefaultExample {
 }
 ```
 
+### The `LinkedHashMap` Class in Java:
+* A **`LinkedHashMap`** in Java is a part of the **Java Collections Framework** and is an **implementation of the `Map` 
+  interface**
+* It **extends `HashMap`** and **maintains a linked list of the entries in the map, in the order in which they were 
+  inserted**
+* This makes it **different from a regular `HashMap`**, which **does not guarantee any specific iteration order**
+* **Key Characteristics of `LinkedHashMap`:**
+  * **Insertion Order:**
+    * `LinkedHashMap` **maintains the order of insertion**, meaning that **when you iterate over the entries of the 
+      map**, they **will be returned in the order they were added**
+  * **Performance:**
+    * It provides **constant-time performance** for **basic operations like `get`, `put`, `remove`, and `containsKey`**, 
+      **similar to `HashMap`**
+    * However, the **overhead of maintaining the linked list** results in **slightly lower performance compared to 
+      `HashMap`**
+  * **No Duplicates:**
+    * **Each key must be unique**, but **values can be duplicated**
+  * **Null Handling:**
+    * `LinkedHashMap` **allows one null key** and **multiple null values**
+  * **Access Order:**
+    * **Besides insertion order**, `LinkedHashMap` **can also maintain access order**, meaning the **order of entries is 
+      based on the order in which they are accessed**, **if it is configured to do so**
+* **Example of Usage:**
+```java
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+public class LinkedHashMapExample {
+public static void main(String[] args) {
+// Creating a LinkedHashMap
+LinkedHashMap<Integer, String> linkedHashMap = new LinkedHashMap<>();
+    // Adding key-value pairs
+    linkedHashMap.put(3, "Apple");
+    linkedHashMap.put(1, "Mango");
+    linkedHashMap.put(2, "Banana");
+    linkedHashMap.put(4, "Orange");
+
+    // Displaying the LinkedHashMap (insertion order)
+    System.out.println("LinkedHashMap (Insertion Order): " + linkedHashMap);
+
+    // Accessing an element
+    linkedHashMap.get(2);
+
+    // Displaying the LinkedHashMap after access (still insertion order)
+    System.out.println("LinkedHashMap after accessing key 2: " + linkedHashMap);
+
+    // Removing a key-value pair
+    linkedHashMap.remove(3);
+
+    // Displaying the LinkedHashMap after removal
+    System.out.println("LinkedHashMap after removal: " + linkedHashMap);
+  }
+}
+```
+* **Output:**
+```
+LinkedHashMap (Insertion Order): {3=Apple, 1=Mango, 2=Banana, 4=Orange}
+LinkedHashMap after accessing key 2: {3=Apple, 1=Mango, 2=Banana, 4=Orange}
+LinkedHashMap after removal: {1=Mango, 2=Banana, 4=Orange}
+```
+* **Explanation:**
+  * **Insertion Order:**
+    * The `LinkedHashMap` **maintains the order in which the elements were inserted**
+    * This is **evident** when you **iterate over the map** or **display its contents**
+  * **Key-Value Operations:**
+    * Like **other `Map` implementations**, you can **retrieve values by their keys**, **remove entries**, and **add 
+      new key-value pairs**
+  * **Access Order:**
+    * The **order in the output does not change after accessing a key** because the **default mode of `LinkedHashMap` 
+      maintains insertion order**, **not access order**
+    * If you want the map to **reorder based on access**, you can create it with the **`accessOrder` flag set to true**:
+```
+LinkedHashMap<Integer, String> linkedHashMap = 
+  new LinkedHashMap<>(16, 0.75f, true);
+```
+* This can be useful in cases where you want to create a **cache-like structure** (like an LRU cache) where the **least 
+  recently accessed entries are removed first**
+
+### The Load Factor in Java's `HashMap` and `LinkedHashMap`:
+* In Java's **`HashMap`** and **`LinkedHashMap`**, the **load factor** is a measure that **helps control the size of the 
+  hash table**, which is used to **store the map’s entries**
+* It is a **crucial parameter** for **balancing between time and space efficiency**
+* **Definition:**
+  * **Load Factor:**
+    * The load factor is a **measure** that **represents the ratio of the number of elements to the number of buckets 
+      (or slots) in the hash table**
+    * It is used to **determine when to resize the hash table**
+* **How It Works:**
+  * **Initial Capacity:**
+    * When a **`HashMap` or `LinkedHashMap` is created**, it **starts with an initial capacity** (the **number of 
+      buckets in the hash table**)
+    * By **default**, this is **16**
+  * **Load Factor:**
+    * The **default load factor is 0.75**
+    * This means that when the **number of entries in the map exceeds 75% of the current capacity**, the **hash table is 
+      resized (usually doubled)** to **maintain efficient performance**
+  * **Resizing:**
+    * When **resizing occurs**, the **number of buckets is increased**, and **all existing entries are rehashed** (i.e., 
+      **their positions are recalculated based on the new capacity**)
+* **Example of Load Factor:**
+  * If you create a `HashMap` with an **initial capacity of 16** and a **load factor of 0.75**, the **map will resize 
+    when the number of entries exceeds 16 * 0.75 = 12**
+  * At this point, the **map will create a new internal array** with a **larger capacity**, typically **doubling the 
+    size to 32**, and **rehash all existing entries into the new array**
+* **Usage:**
+  * When **creating a `HashMap` or `LinkedHashMap`**, you can **specify the initial capacity and load factor**:
+```
+int initialCapacity = 16; // Initial capacity of the hash table
+float loadFactor = 0.75f; // Load factor for resizing
+
+// Creating a HashMap with the specified capacity and load factor
+HashMap<Integer, String> hashMap = new HashMap<>(initialCapacity, loadFactor);
+```
+* **Impact:**
+  * **Higher Load Factor:**
+    * A **higher load factor** means that the **hash table will be resized less frequently**, which can **save memory** 
+      but **may increase the likelihood of collisions** and **reduce performance due to more collisions**
+  * **Lower Load Factor:**
+    * A **lower load factor** means that the **hash table will be resized more frequently**, which can **improve 
+      performance by reducing collisions** but **may use more memory**
+* Choosing an **appropriate load factor** is a **trade-off between space and time efficiency**, depending on the 
+  **expected number of entries** and the **desired performance characteristics of the map**
+
 ### The `HashSet` Class in Java:
 * A `HashSet` in Java is a collection class that **implements the `Set` interface**
 * It is part of the **Java Collections Framework** and is used to **store a collection of unique elements**
